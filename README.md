@@ -95,7 +95,7 @@ toaster.PushError("An error occurred.")
 toaster.PushInfo("Here's some information.")
 toaster.PushWarning("This is a warning message.")
 
-toaster.DisplayAll()
+toaster.RenderAll()
 ```
 
 ## Theming

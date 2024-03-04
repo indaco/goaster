@@ -29,7 +29,7 @@ func (g *HTMLGenerator) GoasterCSSToGoHTML() (template.HTML, error) {
 func (g *HTMLGenerator) GoasterJSToGoHTML(t *Toaster, jsOptions *GoasterJSOptions) (template.HTML, error) {
 	html, err := templ.ToGoHTML(context.Background(), GoasterJS(t, jsOptions))
 	if err != nil {
-		return "", fmt.Errorf("failed to generate toast CSS: %v", err)
+		return "", fmt.Errorf("failed to generate toast JS: %v", err)
 	}
 	return html, nil
 }
@@ -37,9 +37,9 @@ func (g *HTMLGenerator) GoasterJSToGoHTML(t *Toaster, jsOptions *GoasterJSOption
 // DisplayAll generates HTML code for displaying the toast and returns it as a template.HTML.
 func (g *HTMLGenerator) DisplayAll(t *Toaster) (template.HTML, error) {
 	// Generate HTML code for displaying the toast.
-	html, err := templ.ToGoHTML(context.Background(), t.DisplayAll())
+	html, err := templ.ToGoHTML(context.Background(), t.RenderAll())
 	if err != nil {
-		return "", fmt.Errorf("failed to generate toast JS: %v", err)
+		return "", fmt.Errorf("failed to generate toast HTML: %v", err)
 	}
 	return html, nil
 }

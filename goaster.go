@@ -55,8 +55,8 @@ func (t *Toaster) Queue() *Queue {
 	return t.queue
 }
 
-// DisplayAll prints all the toast notifications in the queue.
-func (t *Toaster) DisplayAll() templ.Component {
+// RenderAll prints all the toast notifications in the queue.
+func (t *Toaster) RenderAll() templ.Component {
 	return container(t)
 }
 
