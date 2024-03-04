@@ -1,0 +1,25 @@
+# Go
+go.work
+*.exe
+*.so
+*.test
+*.out
+
+# GoLand #
+.idea
+
+# OSX
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+
+# VisualStudioCode
+.vscode/*
+.history/
+
+#
+*.log
+tmp
+.air.toml
+_examples/**/*_templ.go

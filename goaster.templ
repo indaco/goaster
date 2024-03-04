@@ -1,0 +1,46 @@
+package goaster
+
+templ container(toaster *Toaster) {
+	<div class={ gttContainer(), toaster.Position.CSS }>
+		for _, toast := range toaster.Queue().GetMessagesAndDequeue() {
+			@component(toast, toaster)
+		}
+	</div>
+}
+
+templ component(t Toast, toaster *Toaster) {
+	<div
+		role="alert"
+		class={
+			gttToast(),
+			templ.KV(gttBordered(), toaster.Border),
+			toastLevelCSSMap[t.Level],
+			gttShow(),
+			templ.KV(gttAnimated(), toaster.Animation),
+			entranceCssClassesByPosition[toaster.Position],
+		}
+		if toaster.AutoDismiss {
+			data-auto-dismiss="true"
+		} else {
+			data-auto-dismiss="false"
+		}
+	>
+		if toaster.AutoDismiss && toaster.ProgressBar {
+			<div class={ gttProgressBar() }></div>
+		}
+		if toaster.ShowIcon {
+			<div class={ gttIcon() }>
+				@templ.Raw(toaster.Icons[t.Level])
+			</div>
+		}
+		<p class={ gttMessage() }>{ t.Message }</p>
+		if toaster.Button {
+			<button class={ gttCloseBtn() }>
+				<span class={ gttSrOnly() }>Dismiss</span>
+				<svg style="stroke: currentColor; flex-shrink: 0; width: 1rem; height: 1rem;" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+					<path d="M6.28 5.22a.75.75 0 00-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 101.06 1.06L10 11.06l3.72 3.72a.75.75 0 101.06-1.06L11.06 10l3.72-3.72a.75.75 0 00-1.06-1.06L10 8.94 6.28 5.22z"></path>
+				</svg>
+			</button>
+		}
+	</div>
+}

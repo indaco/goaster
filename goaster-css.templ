@@ -1,0 +1,372 @@
+package goaster
+
+templ GoasterCSS() {
+	<style type="text/css">
+        *
+        {
+          box-sizing: border-box;
+          border-width: 0;
+          border-style: solid;
+        }
+
+        :root {
+            /* Padding Y and X for the toast element */
+            --gtt-py: 0rem;
+            --gtt-px: 0.75rem;
+
+            /* Font styling for the toast text */
+            --gtt-font-family: inherit;
+            --gtt-font-size: 1rem;
+            --gtt-line-height: 1rem;
+
+            /* Border styling for the toast */
+            --gtt-border-radius: 0.375rem;
+            --gtt-border-style: solid;
+            --gtt-border-width: 1px;
+
+            /* Default toast theme colors (border, background, text color) */
+            --gtt-default-border-color: #f3f4f6; /* gray-100 */
+            --gtt-default-bg: #f9fafb; /* gray-50 */
+            --gtt-default-color: #1f2937; /* gray-800 */
+            --gtt-default-progress-bar-color: #e5e7eb; /* gray-200 */
+
+            /* Success toast theme colors (border, background, text color) */
+            --gtt-success-border-color: #dcfce7; /* green-100 */
+            --gtt-success-bg: #f0fdf4; /* green-50 */
+            --gtt-success-color: #166534; /* green-800 */
+            --gtt-success-progress-bar-color: #bbf7d0; /* green-200 */
+
+            /* Error toast theme colors (border, background, text color) */
+            --gtt-error-border-color: #fee2e2; /* red-100 */
+            --gtt-error-bg: #fef2f2; /* red-50 */
+            --gtt-error-color: #991b1b; /* red-800 */
+            --gtt-error-progress-bar-color: #fecaca; /* red-200 */
+
+            /* Warning toast theme colors (border, background, text color) */
+            --gtt-warning-border-color: #ffedd5; /* orange-100 */
+            --gtt-warning-bg: #fff7ed; /* orange-50 */
+            --gtt-warning-color: #9a3412; /* orange-800 */
+            --gtt-warning-progress-bar-color: #fed7aa; /* orange-200 */
+
+            /* Info toast theme colors (border, background, text color) */
+            --gtt-info-border-color: #dbeafe; /* blue-100 */
+            --gtt-info-bg: #eff6ff; /* blue-50 */
+            --gtt-info-color: #1e40af; /* blue-800 */
+            --gtt-info-progress-bar-color: #bfdbfe; /* blue-200 */
+
+            /* Default entrance animation properties */
+            --gtt-entrance-animation-name: gttFadeIn;
+            --gtt-entrance-animation-duration: 0.5s;
+            --gtt-entrance-animation-direction: normal;
+            --gtt-entrance-animation-timing-function: ease;
+            --gtt-entrance-animation-delay: 0s;
+
+            /* Default exit animation properties */
+            --gtt-exit-animation-name: gttFadeOut;
+            --gtt-exit-animation-duration: 0.5s;
+            --gtt-exit-animation-direction: normal;
+            --gtt-exit-animation-timing-function: ease;
+            --gtt-exit-animation-delay: 0s;
+
+            /* Animation properties (names) when entrance direction is from the top */
+            --gtt-entrance-animation-name-top: gttFadeInDown;
+            --gtt-exit-animation-name-top: gttFadeOut;
+
+            /* Animation properties (names) when entrance direction is from the bottom */
+            --gtt-entrance-animation-name-bottom: gttFadeInUp;
+            --gtt-exit-animation-name-bottom: gttFadeOut;
+        }
+
+        /* Define the animation properties for a toast element's exit animation */
+        .gttClose {
+            animation-duration: var(--gtt-exit-animation-duration);
+            animation-direction: var(--gtt-exit-animation-direction);
+            animation-timing-function: var(--gtt-exit-animation-timing-function);
+            animation-delay: var(--gtt-exit-animation-delay);
+        }
+
+        .gttCloseFromTop {
+            animation-name: var(--gtt-exit-animation-name-top, var(--gtt-exit-animation-name));
+        }
+
+        .gttCloseFromBottom {
+            animation-name: var(--gtt-exit-animation-name-bottom, var(--gtt-exit-animation-name));
+        }
+
+        /* Animations */
+        @keyframes gttFadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes gttFadeOut {
+            from {
+                opacity: 1;
+            }
+
+            to {
+                opacity: 0;
+            }
+        }
+
+        @keyframes gttFadeInUp {
+            from {
+                opacity: 0;
+                transform: translate3d(0, 100%, 0);
+            }
+
+            to {
+                opacity: 1;
+                transform: translate3d(0, 0, 0);
+            }
+        }
+
+        @keyframes gttFadeInDown {
+            from {
+                opacity: 0;
+                transform: translate3d(0, -100%, 0);
+            }
+
+            to {
+                opacity: 1;
+                transform: translate3d(0, 0, 0);
+            }
+        }
+
+        @keyframes gttFadeOutUp {
+            from {
+                opacity: 1;
+            }
+
+            to {
+                opacity: 0;
+                transform: translate3d(0, -100%, 0);
+            }
+        }
+
+        @keyframes gttFadeOutDown {
+            from {
+                opacity: 1;
+            }
+
+            to {
+                opacity: 0;
+                transform: translate3d(0, 100%, 0);
+            }
+        }
+
+        @keyframes gttSlideInUp {
+            from {
+                transform: translate3d(0, 100%, 0);
+                visibility: visible;
+            }
+
+            to {
+                transform: translate3d(0, 0, 0);
+            }
+        }
+
+        @keyframes gttSlideInDown {
+            from {
+                transform: translate3d(0, -100%, 0);
+                visibility: visible;
+            }
+
+            to {
+                transform: translate3d(0, 0, 0);
+            }
+        }
+
+
+        @keyframes gttSlideInRight {
+            from {
+                transform: translate3d(100%, 0, 0);
+                visibility: visible;
+            }
+
+            to {
+                transform: translate3d(0, 0, 0);
+            }
+        }
+
+        @keyframes gttSlideInLeft {
+          from {
+            transform: translate3d(-100%, 0, 0);
+            visibility: visible;
+          }
+
+          to {
+            transform: translate3d(0, 0, 0);
+          }
+        }
+    </style>
+}
+
+css gttContainer() {
+	position: fixed;
+	z-index: 1000;
+	display: flex;
+	flex-direction: column-reverse;
+	align-items: flex-end;
+	max-height: 90%;
+	overflow-y: auto;
+	font-family: var(--gtt-font-family);
+	font-size: var(--gtt-font-size);
+	line-height: var(--gtt-line-height);
+}
+
+css gttContainerBottomRight() {
+	right: 15px;
+	bottom: 15px;
+	align-items: flex-end;
+}
+
+css gttContainerBottomLeft() {
+	left: 15px;
+	bottom: 15px;
+	align-items: flex-start;
+}
+
+css gttContainerBottomCenter() {
+	left: 50%;
+	bottom: 15px;
+	transform: translateX(-50%);
+	align-items: center;
+}
+
+css gttContainerTopRight() {
+	right: 15px;
+	top: 15px;
+	align-items: flex-end;
+}
+
+css gttContainerTopLeft() {
+	left: 15px;
+	top: 15px;
+	align-items: flex-start;
+}
+
+css gttContainerTopCenter() {
+	left: 50%;
+	top: 15px;
+	transform: translateX(-50%);
+	align-items: center;
+}
+
+css gttToast() {
+	--gtt-progress-bar-color: var(--gtt-default-progress-bar-color);
+	position: relative;
+	min-width: 250px;
+	margin-top: 0.5rem;
+	background-color: var(--gtt-default-bg);
+	color: var(--gtt-default-color);
+	border-radius: var(--gtt-border-radius);
+	border-color: var(--gtt-default-border-color);
+	padding: var(--gtt-py) var(--gtt-px);
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+css gttBordered() {
+	border-style: var(--gtt-border-style);
+	border-width: var(--gtt-border-width);
+}
+
+css gttAnimated() {
+	animation-duration: var(--gtt-entrance-animation-duration);
+	animation-direction: var(--gtt-entrance-animation-direction);
+	animation-timing-function: var(--gtt-entrance-animation-timing-function);
+	animation-delay: var(--gtt-entrance-animation-delay);
+}
+
+css gttShow() {
+	visibility: visible;
+}
+
+css gttShowFromTop() {
+	animation-name: var(--gtt-entrance-animation-name-top, var(--gtt-entrance-animation-name));
+}
+
+css gttShowFromBottom() {
+	animation-name: var(--gtt-entrance-animation-name-bottom, var(--gtt-entrance-animation-name));
+}
+
+css gttProgressBar() {
+	position: absolute;
+	overflow: hidden;
+	top: 0;
+	left: 0;
+	height: 4px;
+	background-color: var(--gtt-progress-bar-color);
+	width: 100%;
+	transition: width linear;
+}
+
+css gttSuccessLevel() {
+	--gtt-progress-bar-color: var(--gtt-success-progress-bar-color);
+	border-color: var(--gtt-success-border-color);
+	background-color: var(--gtt-success-bg);
+	color: var(--gtt-success-color);
+}
+
+css gttErrorLevel() {
+	--gtt-progress-bar-color: var(--gtt-error-progress-bar-color);
+	border-color: var(--gtt-error-border-color);
+	background-color: var(--gtt-error-bg);
+	color: var(--gtt-error-color);
+}
+
+css gttWarningLevel() {
+	--gtt-progress-bar-color: var(--gtt-warning-progress-bar-color);
+	border-color: var(--gtt-warning-border-color);
+	background-color: var(--gtt-warning-bg);
+	color: var(--gtt-warning-color);
+}
+
+css gttInfoLevel() {
+	--gtt-progress-bar-color: var(--gtt-info-progress-bar-color);
+	border-color: var(--gtt-info-border-color);
+	background-color: var(--gtt-info-bg);
+	color: var(--gtt-info-color);
+}
+
+css gttIcon() {
+	display: inline-flex;
+	align-items: center;
+	flex-shrink: 0;
+	width: 1.125rem;
+	height: 1.125rem;
+}
+
+css gttMessage() {
+	margin: 1em 0 1em 0.75em;
+}
+
+css gttCloseBtn() {
+	margin-left: auto;
+	display: inline-flex;
+	align-items: center;
+	background-color: transparent;
+	border: none;
+	border-radius: 0.375rem;
+	color: inherit;
+	cursor: pointer;
+}
+
+css gttSrOnly() {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	white-space: nowrap;
+	border-width: 0;
+}
