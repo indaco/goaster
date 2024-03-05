@@ -2,7 +2,7 @@ package main
 
 import "github.com/indaco/goaster"
 
-templ HomePage(result bool, toaster *goaster.Toaster) {
+templ HomePage(toaster *goaster.Toaster) {
 	<!DOCTYPE html>
 	<html lang="en">
 		<head>
@@ -20,7 +20,7 @@ templ HomePage(result bool, toaster *goaster.Toaster) {
 			<style type="text/css">
                 :root {
                     /* Entrance animation from animate.css */
-                     --gtt-entrance-animation-name: bounceIn;
+                    --gtt-entrance-animation-name: bounceIn;
                     /* Exit animation from animate.css */
                     --gtt-exit-animation-name: bounceOut;
                 }
@@ -28,11 +28,7 @@ templ HomePage(result bool, toaster *goaster.Toaster) {
 		</head>
 		<body class="min-h-screen relative flex flex-col">
 			<!-- display the messages -->
-			if result {
-				@toaster.Success("Success Toast")
-			} else {
-				@toaster.Error("Error Toast")
-			}
+			@toaster.Info("Info Toast")
 			<!-- inject toast javascript -->
 			@goaster.GoasterJS(toaster, nil)
 		</body>

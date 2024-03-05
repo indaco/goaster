@@ -1,6 +1,25 @@
-# goaster
-
+<h1 style="font-size: 2rem; text-align: center">
+  goaster
+</h1>
+<h2 style="font-size: 1.5rem; text-align: center">
 A configurable, themeable and non-intrusive server-rendered toast notification component for Go web applications.
+</h2>
+<p style="text-align: center">
+    <a href="https://github.com/indaco/goaster/blob/main/LICENSE" target="_blank">
+        <img src="https://img.shields.io/badge/license-mit-blue?style=flat-square&logo=none" alt="license" />
+    </a>
+     &nbsp;
+     <a href="https://goreportcard.com/report/github.com/indaco/goaster/" target="_blank">
+        <img src="https://goreportcard.com/badge/github.com/indaco/goaster" alt="go report card" />
+    </a>
+    &nbsp;
+    <a href="https://pkg.go.dev/github.com/indaco/goaster/" target="_blank">
+        <img src="https://pkg.go.dev/badge/github.com/indaco/goaster/.svg" alt="go reference" />
+    </a>
+</p>
+
+
+
 
 Built with [templ](https://github.com/a-h/templ) library for seamless integration with Go-based web frontends.
 
@@ -18,6 +37,10 @@ Built with [templ](https://github.com/a-h/templ) library for seamless integratio
   - _Custom Animations_: Customize animations via CSS variables or integrate with external CSS animation libraries.
   - _Animation Control_: Full control over animation timing, easing, delay and effects, via CSS variables.
   - _Disable Animations Option_: Ability to completely disable animations, providing flexibility for different application needs and user preferences.
+
+<div style="display: flex; justify-content: center;">
+   <img src="statics/demo.gif" alt="Image" >
+</div>
 
 ## Installation
 
