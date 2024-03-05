@@ -14,7 +14,7 @@ templ HomePage(toaster *goaster.Toaster) {
 		</head>
 		<body class="min-h-screen relative flex flex-col">
 			<!-- display the messages -->
-			@toaster.DisplayAll()
+			@toaster.RenderAll()
 			<!-- inject toast javascript -->
 			@goaster.GoasterJS(toaster, nil)
 		</body>
