@@ -1,10 +1,10 @@
-<h1 style="font-size: 2rem; text-align: center">
+<h1 align="center" style="font-size: 2.5rem;">
   goaster
 </h1>
-<h2 style="font-size: 1.5rem; text-align: center">
+<h2 align="center" style="font-size: 1.5rem;">
 A configurable, themeable and non-intrusive server-rendered toast notification component for Go web applications.
 </h2>
-<p style="text-align: center">
+<p align="center">
     <a href="https://github.com/indaco/goaster/blob/main/LICENSE" target="_blank">
         <img src="https://img.shields.io/badge/license-mit-blue?style=flat-square&logo=none" alt="license" />
     </a>
@@ -17,9 +17,6 @@ A configurable, themeable and non-intrusive server-rendered toast notification c
         <img src="https://pkg.go.dev/badge/github.com/indaco/goaster/.svg" alt="go reference" />
     </a>
 </p>
-
-
-
 
 Built with [templ](https://github.com/a-h/templ) library for seamless integration with Go-based web frontends.
 
