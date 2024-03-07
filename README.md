@@ -166,26 +166,24 @@ Here below is the list of all CSS variables defined and their default values:
   --gtt-info-color: #1e40af; /* blue-800 */
 
   /* Default entrance animation properties */
-  --gtt-entrance-animation-name: gttFadeIn;
-  --gtt-entrance-animation-duration: 0.5s;
-  --gtt-entrance-animation-direction: normal;
-  --gtt-entrance-animation-timing-function: ease;
-  --gtt-entrance-animation-delay: 0s;
+  --gtt-animation-entrance-duration: 0.5s;
+  --gtt-animation-entrance-direction: normal;
+  --gtt-animation-entrance-timing-function: ease;
+  --gtt-animation-entrance-delay: 0s;
 
   /* Default exit animation properties */
-  --gtt-exit-animation-name: gttFadeOut;
-  --gtt-exit-animation-duration: 0.5s;
-  --gtt-exit-animation-direction: normal;
-  --gtt-exit-animation-timing-function: ease;
-  --gtt-exit-animation-delay: 0s;
+  --gtt-animation-exit-duration: 0.5s;
+  --gtt-animation-exit-direction: normal;
+  --gtt-animation-exit-timing-function: ease;
+  --gtt-animation-exit-delay: 0s;
 
   /* Animation properties (names) when entrance direction is from the top */
-  --gtt-entrance-animation-name-top: gttFadeInDown;
-  --gtt-exit-animation-name-top: gttFadeOutUp;
+  --gtt-animation-entrance-name-top: gttFadeInDown;
+  --gtt-animation-exit-name-top: gttFadeOutUp;
 
   /* Animation properties (names) when entrance direction is from the bottom */
-  --gtt-entrance-animation-name-bottom: gttFadeInUp;
-  --gtt-exit-animation-name-bottom: gttFadeOutDown;
+  --gtt-animation-entrance-name-bottom: gttFadeInUp;
+  --gtt-animation-exit-name-bottom: gttFadeOutDown;
 }
 ```
 

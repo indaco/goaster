@@ -55,42 +55,40 @@ templ GoasterCSS() {
             --gtt-info-progress-bar-color: #bfdbfe; /* blue-200 */
 
             /* Default entrance animation properties */
-            --gtt-entrance-animation-name: gttFadeIn;
-            --gtt-entrance-animation-duration: 0.5s;
-            --gtt-entrance-animation-direction: normal;
-            --gtt-entrance-animation-timing-function: ease;
-            --gtt-entrance-animation-delay: 0s;
+            --gtt-animation-entrance-duration: 0.5s;
+            --gtt-animation-entrance-direction: normal;
+            --gtt-animation-entrance-timing-function: ease;
+            --gtt-animation-entrance-delay: 0s;
 
             /* Default exit animation properties */
-            --gtt-exit-animation-name: gttFadeOut;
-            --gtt-exit-animation-duration: 0.5s;
-            --gtt-exit-animation-direction: normal;
-            --gtt-exit-animation-timing-function: ease;
-            --gtt-exit-animation-delay: 0s;
+            --gtt-animation-exit-duration: 0.5s;
+            --gtt-animation-exit-direction: normal;
+            --gtt-animation-exit-timing-function: ease;
+            --gtt-animation-exit-delay: 0s;
 
             /* Animation properties (names) when entrance direction is from the top */
-            --gtt-entrance-animation-name-top: gttFadeInDown;
-            --gtt-exit-animation-name-top: gttFadeOut;
+            --gtt-animation-entrance-name-top: gttFadeInDown;
+            --gtt-animation-exit-name-top: gttFadeOutUp;
 
             /* Animation properties (names) when entrance direction is from the bottom */
-            --gtt-entrance-animation-name-bottom: gttFadeInUp;
-            --gtt-exit-animation-name-bottom: gttFadeOut;
+            --gtt-animation-entrance-name-bottom: gttFadeInUp;
+            --gtt-animation-exit-name-bottom: gttFadeOutDown;
         }
 
         /* Define the animation properties for a toast element's exit animation */
         .gttClose {
-            animation-duration: var(--gtt-exit-animation-duration);
-            animation-direction: var(--gtt-exit-animation-direction);
-            animation-timing-function: var(--gtt-exit-animation-timing-function);
-            animation-delay: var(--gtt-exit-animation-delay);
+            animation-duration: var(--gtt-animation-exit-duration);
+            animation-direction: var(--gtt-animation-exit-direction);
+            animation-timing-function: var(--gtt-animation-exit-timing-function);
+            animation-delay: var(--gtt-animation-exit-delay);
         }
 
         .gttCloseFromTop {
-            animation-name: var(--gtt-exit-animation-name-top, var(--gtt-exit-animation-name));
+            animation-name: var(--gtt-animation-exit-name-top);
         }
 
         .gttCloseFromBottom {
-            animation-name: var(--gtt-exit-animation-name-bottom, var(--gtt-exit-animation-name));
+            animation-name: var(--gtt-animation-exit-name-bottom);
         }
 
         /* Animations */
@@ -279,10 +277,10 @@ css gttBordered() {
 }
 
 css gttAnimated() {
-	animation-duration: var(--gtt-entrance-animation-duration);
-	animation-direction: var(--gtt-entrance-animation-direction);
-	animation-timing-function: var(--gtt-entrance-animation-timing-function);
-	animation-delay: var(--gtt-entrance-animation-delay);
+	animation-duration: var(--gtt-animation-entrance-duration);
+	animation-direction: var(--gtt-animation-entrance-direction);
+	animation-timing-function: var(--gtt-animation-entrance-timing-function);
+	animation-delay: var(--gtt-animation-entrance-delay);
 }
 
 css gttShow() {
@@ -290,11 +288,11 @@ css gttShow() {
 }
 
 css gttShowFromTop() {
-	animation-name: var(--gtt-entrance-animation-name-top, var(--gtt-entrance-animation-name));
+	animation-name: var(--gtt-animation-entrance-name-top);
 }
 
 css gttShowFromBottom() {
-	animation-name: var(--gtt-entrance-animation-name-bottom, var(--gtt-entrance-animation-name));
+	animation-name: var(--gtt-animation-entrance-name-bottom);
 }
 
 css gttProgressBar() {
