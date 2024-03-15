@@ -69,8 +69,8 @@ or customize the toaster with options:
 
 ```go
 toaster := goaster.NewToaster(
-   goaster.WithBorder(false), 
-   goaster.WithPosition(goaster.TopRight), 
+   goaster.WithBorder(false),
+   goaster.WithPosition(goaster.TopRight),
    goaster.WithAutoDismiss(false)
    // ...
 )
@@ -83,7 +83,7 @@ toaster := goaster.NewToaster(
 - `GoasterCSS`: it supplies the required CSS, encapsulating the visual design and layout specifics of the toast notifications.
 - `GoasterJS`: it provides the JavaScript logic essential for dynamic behaviors such as displaying, hiding, and managing toast notifications.
 
-To facilitate integration with Go's `template/html` standard library, `goaster` includes a dedicated `HTMLGenerator` type to seamlessly integrate toast notifications into web applications built with Go's `html/template` standard library. 
+To facilitate integration with Go's `template/html` standard library, `goaster` includes a dedicated `HTMLGenerator` type to seamlessly integrate toast notifications into web applications built with Go's `html/template` standard library.
 
 3 methods, acting as wrappers to the templ's `templ.ToGoHTML`, generate the necessary HTML to be embedded them into server-rendered pages:
 
@@ -93,7 +93,7 @@ To facilitate integration with Go's `template/html` standard library, `goaster` 
 > **Note**: refer to the [Examples](#examples) section to see how to use `goaster` with `templ` and `html/template`.
 
 ### Displaying Toast Messages
- 
+
 Display different levels of toast messages:
 
 ```go
@@ -124,68 +124,43 @@ Toast notifications are themeable using CSS variables (prefix `gtt`) to customiz
 
 Here below is the list of all CSS variables defined and their default values:
 
-```css
-:root {
-  /* Padding Y and X for the toast element */
-  --gtt-py: 0;
-  --gtt-px: 0.75rem;
-
-  /* Font styling for the toast text */
-  --gtt-font-family: inherit;
-  --gtt-font-size: 1rem;
-  --gtt-line-height: 1rem;
-
-  /* Border styling for the toast */
-  --gtt-border-radius: 0.375rem;
-  --gtt-border-style: solid;
-  --gtt-border-width: 1px;
-
-  /* Default toast theme colors (border, background, text color) */
-  --gtt-default-border-color: #f3f4f6; /* gray-100 */
-  --gtt-default-bg: #f9fafb; /* gray-50 */
-  --gtt-default-color: #1f2937; /* gray-800 */
-
-  /* Success toast theme colors (border, background, text color) */
-  --gtt-success-border-color: #dcfce7; /* green-100 */
-  --gtt-success-bg: #f0fdf4; /* green-50 */
-  --gtt-success-color: #166534; /* green-800 */
-
-  /* Error toast theme colors (border, background, text color) */
-  --gtt-error-border-color: #fee2e2; /* red-100 */
-  --gtt-error-bg: #fef2f2; /* red-50 */
-  --gtt-error-color: #991b1b; /* red-800 */
-
-  /* Warning toast theme colors (border, background, text color) */
-  --gtt-warning-border-color: #ffedd5; /* orange-100 */
-  --gtt-warning-bg: #fff7ed; /* orange-50 */
-  --gtt-warning-color: #9a3412; /* orange-800 */
-
-  /* Info toast theme colors (border, background, text color) */
-  --gtt-info-border-color: #dbeafe; /* blue-100 */
-  --gtt-info-bg: #eff6ff; /* blue-50 */
-  --gtt-info-color: #1e40af; /* blue-800 */
-
-  /* Default entrance animation properties */
-  --gtt-animation-entrance-duration: 0.5s;
-  --gtt-animation-entrance-direction: normal;
-  --gtt-animation-entrance-timing-function: ease;
-  --gtt-animation-entrance-delay: 0s;
-
-  /* Default exit animation properties */
-  --gtt-animation-exit-duration: 0.5s;
-  --gtt-animation-exit-direction: normal;
-  --gtt-animation-exit-timing-function: ease;
-  --gtt-animation-exit-delay: 0s;
-
-  /* Animation properties (names) when entrance direction is from the top */
-  --gtt-animation-entrance-name-top: gttFadeInDown;
-  --gtt-animation-exit-name-top: gttFadeOutUp;
-
-  /* Animation properties (names) when entrance direction is from the bottom */
-  --gtt-animation-entrance-name-bottom: gttFadeInUp;
-  --gtt-animation-exit-name-bottom: gttFadeOutDown;
-}
-```
+| Name                                   | Default Value                                                          | Description                                                      |
+|----------------------------------------|------------------------------------------------------------------------|------------------------------------------------------------------|
+| `--gtt-py`                             | 0                                                                      | Padding on the y-axis for the toast element                      |
+| `--gtt-px`                             | 0.75rem                                                                | Padding on the x-axis for the toast element                      |
+| `--gtt-font-family`                    | inherit                                                                | Font family for the toast text                                   |
+| `--gtt-font-size`                      | 1rem                                                                   | Font size for the toast text                                     |
+| `--gtt-line-height`                    | 1rem                                                                   | Line height for the toast text                                   |
+| `--gtt-border-radius`                  | 0.375rem                                                               | Border radius for the toast element                              |
+| `--gtt-border-style`                   | solid                                                                  | Border style for the toast                                       |
+| `--gtt-border-width`                   | 1px                                                                    | Border width for the toast                                       |
+| `--gtt-default-border-color`           | ![Color Preview](https://via.placeholder.com/20/f3f4f6?text=+) #f3f4f6 | Default border color for the toast                               |
+| `--gtt-default-bg`                     | ![Color Preview](https://via.placeholder.com/20/f9fafb?text=+) #f9fafb | Default background color for the toast                           |
+| `--gtt-default-color`                  | ![Color Preview](https://via.placeholder.com/20/1f2937?text=+) #1f2937 | Default text color for the toast                                 |
+| `--gtt-success-border-color`           | ![Color Preview](https://via.placeholder.com/20/dcfce7?text=+) #dcfce7 | Success border color for the toast                               |
+| `--gtt-success-bg`                     | ![Color Preview](https://via.placeholder.com/20/f0fdf4?text=+) #f0fdf4 | Success background color for the toast                           |
+| `--gtt-success-color`                  | ![Color Preview](https://via.placeholder.com/20/166534?text=+) #166534 | Success text color for the toast                                 |
+| `--gtt-error-border-color`             | ![Color Preview](https://via.placeholder.com/20/fee2e2?text=+) #fee2e2 | Error border color for the toast                                 |
+| `--gtt-error-bg`                       | ![Color Preview](https://via.placeholder.com/20/fef2f2?text=+) #fef2f2 | Error background color for the toast                             |
+| `--gtt-error-color`                    | ![Color Preview](https://via.placeholder.com/20/991b1b?text=+) #991b1b | Error text color for the toast                                   |
+| `--gtt-warning-border-color`           | ![Color Preview](https://via.placeholder.com/20/ffedd5?text=+) #ffedd5 | Warning border color for the toast                               |
+| `--gtt-warning-bg`                     | ![Color Preview](https://via.placeholder.com/20/fff7ed?text=+) #fff7ed | Warning background color for the toast                           |
+| `--gtt-warning-color`                  | ![Color Preview](https://via.placeholder.com/20/9a3412?text=+) #9a3412 | Warning text color for the toast                                 |
+| `--gtt-info-border-color`              | ![Color Preview](https://via.placeholder.com/20/dbeafe?text=+) #dbeafe | Info border color for the toast                                  |
+| `--gtt-info-bg`                        | ![Color Preview](https://via.placeholder.com/20/eff6ff?text=+) #eff6ff | Info background color for the toast                              |
+| `--gtt-info-color`                     | ![Color Preview](https://via.placeholder.com/20/1e40af?text=+) #1e40af | Info text color for the toast                                    |
+| `--gtt-animation-entrance-duration`    | 0.5s                                                                   | Default duration for entrance animations                         |
+| `--gtt-animation-entrance-direction`   | normal                                                                 | Default direction for entrance animations                        |
+| `--gtt-animation-entrance-timing-func` | ease                                                                   | Default timing function for entrance animations                  |
+| `--gtt-animation-entrance-delay`       | 0s                                                                     | Default delay for entrance animations                            |
+| `--gtt-animation-exit-duration`        | 0.5s                                                                   | Default duration for exit animations                             |
+| `--gtt-animation-exit-direction`       | normal                                                                 | Default direction for exit animations                            |
+| `--gtt-animation-exit-timing-function` | ease                                                                   | Default timing function for exit animations                      |
+| `--gtt-animation-exit-delay`           | 0s                                                                     | Default delay for exit animations                                |
+| `--gtt-animation-entrance-name-top`    | gttFadeInDown                                                          | Name of the entrance animation when direction is from the top    |
+| `--gtt-animation-exit-name-top`        | gttFadeOutUp                                                           | Name of the exit animation when direction is from the top        |
+| `--gtt-animation-entrance-name-bottom` | gttFadeInUp                                                            | Name of the entrance animation when direction is from the bottom |
+| `--gtt-animation-exit-name-bottom`     | gttFadeOutDown                                                         | Name of the exit animation when direction is from the bottom     |
 
 ## Custom Icons
 
