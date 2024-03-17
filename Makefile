@@ -12,6 +12,7 @@ EXAMPLES := \
 	_examples/custom-animations \
 	_examples/custom-icons \
 	_examples/theming \
+	_examples/variants \
 	_examples/go-html-template-single-toast \
 	_examples/go-html-template-multiple-toasts
 
@@ -59,12 +60,6 @@ _go_tools:
 _test:
 	@go test -race -covermode=atomic ./...
 
-_clean:
-	@echo ""
-	@echo "$(color_magenta)Clean up$(color_reset)"
-	@find . -type f -name '*.grc.bk' -exec rm -f {} +
-	@echo "$(color_green)Done!$(color_reset)"
-
 # ==================================================================================== #
 # BUILDERS
 # ==================================================================================== #
@@ -87,6 +82,13 @@ report-card: ## Run goreportcard-cli
 		goreportcard-cli -v; \
 	fi
 	@$(MAKE) _clean
+
+clean:
+	@echo ""
+	@echo "$(color_magenta)Clean up$(color_reset)"
+	@find . -type f -name '*.grc.bk' -exec rm -f {} +
+	@find . -type f -name '*_templ.txt' -exec rm -f {} +
+	@echo "$(color_green)Done!$(color_reset)"
 
 build: ## The main build target
 	@$(MAKE) templ _go_tools
