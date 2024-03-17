@@ -6,6 +6,7 @@ import (
 
 // Toaster struct holds configuration for toast notifications, including styling and behavior options.
 type Toaster struct {
+	Variant     Variant          // The style variant for the toast notification.
 	Border      bool             // Whether to display a border around the toast.
 	ShowIcon    bool             // Whether to display an icon in the toast.
 	Button      bool             // Whether to display a close button.
@@ -18,20 +19,18 @@ type Toaster struct {
 }
 
 var (
-	// toastLevelCSSMap maps each Level to a corresponding CSS class for styling.
-	toastLevelCSSMap map[Level]templ.CSSClass
 	// entranceCssClassesByPosition maps each Position to a corresponding templ.CSSClass representing the entrance direction for toast animations.
 	entranceCssClassesByPosition map[Position]templ.CSSClass
 )
 
 func init() {
-	toastLevelCSSMap = getToastCSSClassesByLevel()
 	entranceCssClassesByPosition = getToastEntranceCSSClassesByPosition()
 }
 
 // NewToaster creates a new Toaster instance with default settings, applying any provided options.
 func NewToaster(options ...Option) *Toaster {
 	toaster := &Toaster{
+		Variant:     Colorful,
 		Border:      true,
 		ShowIcon:    true,
 		Button:      true,

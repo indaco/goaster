@@ -73,7 +73,8 @@ func component(t Toast, toaster *Toaster) templ.Component {
 		var templ_7745c5c3_Var4 = []any{
 			gttToast(),
 			templ.KV(gttBordered(), toaster.Border),
-			toastLevelCSSMap[t.Level],
+			templ.KV(gttAccent(), isAnyAccentVariant(toaster.Variant)),
+			mapToastLevelToCSSClass(toaster.Variant)[t.Level],
 			gttShow(),
 			templ.KV(gttAnimated(), toaster.Animation),
 			entranceCssClassesByPosition[toaster.Position],
@@ -175,7 +176,7 @@ func component(t Toast, toaster *Toaster) templ.Component {
 		var templ_7745c5c3_Var8 string
 		templ_7745c5c3_Var8, templ_7745c5c3_Err = templ.JoinStringErrs(t.Message)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `goaster.templ`, Line: 35, Col: 39}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `goaster.templ`, Line: 36, Col: 39}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var8))
 		if templ_7745c5c3_Err != nil {

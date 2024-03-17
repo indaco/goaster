@@ -3,6 +3,13 @@ package goaster
 // Option type for functional options pattern, allowing customization of the Toaster instance.
 type Option func(*Toaster)
 
+// WithVariant configures the style variant for the toast.
+func WithVariant(variant Variant) Option {
+	return func(tp *Toaster) {
+		tp.Variant = variant
+	}
+}
+
 // WithBorder configures the presence of a border around the toast.
 func WithBorder(border bool) Option {
 	return func(tp *Toaster) {

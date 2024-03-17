@@ -28,3 +28,10 @@ var (
 	BottomLeft   = Position{Name: "bottom-left", CSS: gttContainerBottomLeft()}
 	BottomCenter = Position{Name: "bottom-center", CSS: gttContainerBottomCenter()}
 )
+
+// Variant constants define the style variant to be used for the toast.
+const (
+	Colorful   = "colorful"
+	Accent     = "accent"
+	AccentDark = "accent_dark"
+)

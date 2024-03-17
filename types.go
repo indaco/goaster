@@ -1,6 +1,8 @@
 package goaster
 
-import "github.com/a-h/templ"
+import (
+	"github.com/a-h/templ"
+)
 
 // Level represents the severity level of a toast notification.
 type Level string
@@ -13,3 +15,10 @@ type Position struct {
 
 // LevelCSSClass represents the CSS class (templ.CSSClass) associated with a specific toast Level.
 type LevelCSSClass = templ.CSSClass
+
+// Variant represent a style variant for the toast component.
+type Variant string
+
+func (v Variant) String() string {
+	return string(v)
+}
