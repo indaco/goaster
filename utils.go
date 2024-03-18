@@ -34,13 +34,13 @@ func mapToastLevelToCSSClass(variant Variant) map[Level]templ.CSSClass {
 			WarningLevel: gttWarningLevel(),
 			InfoLevel:    gttInfoLevel(),
 		}
-	case Accent:
+	case AccentLight:
 		variantClasses = map[Level]templ.CSSClass{
-			DefaultLevel: gttAccentDefaultLevel(),
-			SuccessLevel: gttAccentSuccessLevel(),
-			ErrorLevel:   gttAccentErrorLevel(),
-			WarningLevel: gttAccentWarningLevel(),
-			InfoLevel:    gttAccentInfoLevel(),
+			DefaultLevel: gttAccentLightDefaultLevel(),
+			SuccessLevel: gttAccentLightSuccessLevel(),
+			ErrorLevel:   gttAccentLightErrorLevel(),
+			WarningLevel: gttAccentLightWarningLevel(),
+			InfoLevel:    gttAccentLightInfoLevel(),
 		}
 	case AccentDark:
 		variantClasses = map[Level]templ.CSSClass{

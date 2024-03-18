@@ -9,7 +9,7 @@ import (
 )
 
 func HandleHome(w http.ResponseWriter, r *http.Request) {
-	toaster := goaster.NewToaster(goaster.WithVariant(goaster.Accent), goaster.WithAutoDismiss(false))
+	toaster := goaster.NewToaster(goaster.WithVariant(goaster.AccentLight), goaster.WithAutoDismiss(false))
 	templ.Handler(HomePage(toaster)).ServeHTTP(w, r)
 }
 

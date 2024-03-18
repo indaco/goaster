@@ -30,7 +30,7 @@ templ GoasterCSS() {
             --gtt-border-radius: 0.375rem;
 
             /* Accent toast theme colors */
-            --gtt-accent-bg: white;
+            --gtt-accent-light-bg: white;
 
             /* Dark accent toast theme colors */
             --gtt-accent-dark-bg: hsla(220.9,39.3%,11%, 0.85);
@@ -280,9 +280,9 @@ css gttDefaultLevel() {
 	--gtt-progress-bar-color: var(--gtt-default-progress-bar-color);
 }
 
-css gttAccentDefaultLevel() {
+css gttAccentLightDefaultLevel() {
 	--gtt-color: var(--gtt-default-accent-color);
-	--gtt-bg: var(--gtt-accent-bg);
+	--gtt-bg: var(--gtt-accent-light-bg);
 	--gtt-border-color: var(--gtt-default-border-color);
 	border-left-color: var(--gtt-default-accent-border-color, #6b7280);
 }
@@ -301,9 +301,9 @@ css gttSuccessLevel() {
 	--gtt-progress-bar-color: var(--gtt-success-progress-bar-color);
 }
 
-css gttAccentSuccessLevel() {
+css gttAccentLightSuccessLevel() {
 	--gtt-color: var(--gtt-success-accent-color);
-	--gtt-bg: var(--gtt-accent-bg);
+	--gtt-bg: var(--gtt-accent-light-bg);
 	--gtt-border-color: var(--gtt-success-border-color);
 	border-left-color: var(--gtt-success-accent-dark-color, #22c55e);
 }
@@ -322,9 +322,9 @@ css gttErrorLevel() {
 	--gtt-progress-bar-color: var(--gtt-error-progress-bar-color);
 }
 
-css gttAccentErrorLevel() {
+css gttAccentLightErrorLevel() {
 	--gtt-color: var(--gtt-error-accent-color);
-	--gtt-bg: var(--gtt-accent-bg);
+	--gtt-bg: var(--gtt-accent-light-bg);
 	--gtt-border-color: var(--gtt-error-border-color);
 	border-left-color: var(--gtt-error-accent-border-color, #ef4444);
 }
@@ -343,9 +343,9 @@ css gttWarningLevel() {
 	--gtt-progress-bar-color: var(--gtt-warning-progress-bar-color);
 }
 
-css gttAccentWarningLevel() {
+css gttAccentLightWarningLevel() {
 	--gtt-color: var(--gtt-warning-accent-color);
-	--gtt-bg: var(--gtt-accent-bg);
+	--gtt-bg: var(--gtt-accent-light-bg);
 	--gtt-border-color: var(--gtt-warning-border-color);
 	border-left-color: var(--gtt-warning-accent-border-color, #f97316);
 }
@@ -364,9 +364,9 @@ css gttInfoLevel() {
 	--gtt-progress-bar-color: var(--gtt-info-progress-bar-color);
 }
 
-css gttAccentInfoLevel() {
+css gttAccentLightInfoLevel() {
 	--gtt-color: var(--gtt-info-accent-color);
-	--gtt-bg: var(--gtt-accent-bg);
+	--gtt-bg: var(--gtt-accent-light-bg);
 	--gtt-border-color: var(--gtt-info-border-color);
 	border-left-color: var(--gtt-info-accent-border-color, #3b82f6);
 }
