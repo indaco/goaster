@@ -17,6 +17,13 @@ func WithBorder(border bool) Option {
 	}
 }
 
+// WithRounded configures the presence of a rounded border around the toast.
+func WithRounded(rounded bool) Option {
+	return func(tp *Toaster) {
+		tp.Rounded = rounded
+	}
+}
+
 // WithShowIcon configures whether the toast should display the icon.
 func WithShowIcon(icon bool) Option {
 	return func(tp *Toaster) {

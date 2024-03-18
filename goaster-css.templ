@@ -223,7 +223,6 @@ css gttToast() {
 	margin-top: 0.5rem;
 	background-color: var(--gtt-bg);
 	color: var(--gtt-color);
-	border-radius: var(--gtt-border-radius);
 	border-color: var(--gtt-border-color);
 	padding: var(--gtt-py) var(--gtt-px);
 	display: flex;
@@ -231,16 +230,19 @@ css gttToast() {
 	justify-content: space-between;
 }
 
-css gttAccent() {
-	--gtt-border-radius: 0;
-	border: 0;
-	border-left-width: 4px;
-	border-left-style: solid;
+css gttRounded() {
+	border-radius: var(--gtt-border-radius);
 }
 
 css gttBordered() {
 	border-style: var(--gtt-border-style);
 	border-width: var(--gtt-border-width);
+}
+
+css gttAccent() {
+	border: 0;
+	border-left-width: 4px;
+	border-left-style: solid;
 }
 
 css gttAnimated() {
@@ -280,6 +282,10 @@ css gttDefaultLevel() {
 	--gtt-progress-bar-color: var(--gtt-default-progress-bar-color);
 }
 
+css gttAccentDefaultLevel() {
+	border-left-color: var(--gtt-default-accent-border-color, #6b7280);
+}
+
 css gttAccentLightDefaultLevel() {
 	--gtt-color: var(--gtt-default-accent-color);
 	--gtt-bg: var(--gtt-accent-light-bg);
@@ -299,6 +305,10 @@ css gttSuccessLevel() {
 	--gtt-bg: var(--gtt-success-bg);
 	--gtt-border-color: var(--gtt-success-border-color);
 	--gtt-progress-bar-color: var(--gtt-success-progress-bar-color);
+}
+
+css gttAccentSuccessLevel() {
+	border-left-color: var(--gtt-success-accent-dark-color, #22c55e);
 }
 
 css gttAccentLightSuccessLevel() {
@@ -322,6 +332,10 @@ css gttErrorLevel() {
 	--gtt-progress-bar-color: var(--gtt-error-progress-bar-color);
 }
 
+css gttAccentErrorLevel() {
+	border-left-color: var(--gtt-error-accent-border-color, #ef4444);
+}
+
 css gttAccentLightErrorLevel() {
 	--gtt-color: var(--gtt-error-accent-color);
 	--gtt-bg: var(--gtt-accent-light-bg);
@@ -343,6 +357,10 @@ css gttWarningLevel() {
 	--gtt-progress-bar-color: var(--gtt-warning-progress-bar-color);
 }
 
+css gttAccentWarningLevel() {
+	border-left-color: var(--gtt-warning-accent-border-color, #f97316);
+}
+
 css gttAccentLightWarningLevel() {
 	--gtt-color: var(--gtt-warning-accent-color);
 	--gtt-bg: var(--gtt-accent-light-bg);
@@ -362,6 +380,10 @@ css gttInfoLevel() {
 	--gtt-bg: var(--gtt-info-bg);
 	--gtt-border-color: var(--gtt-info-border-color);
 	--gtt-progress-bar-color: var(--gtt-info-progress-bar-color);
+}
+
+css gttAccentInfoLevel() {
+	border-left-color: var(--gtt-info-accent-border-color, #3b82f6);
 }
 
 css gttAccentLightInfoLevel() {

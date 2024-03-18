@@ -16,23 +16,33 @@ func defaultIcons() map[Level]string {
 	}
 }
 
-func isAnyAccentVariant(variant Variant) bool {
+// getMapCssClassByLevel returns a map of CSS classes for toasts based on their level.
+func getMapCssClassByLevel() map[Level]templ.CSSClass {
+	return map[Level]templ.CSSClass{
+		SuccessLevel: gttSuccessLevel(),
+		ErrorLevel:   gttErrorLevel(),
+		WarningLevel: gttWarningLevel(),
+		InfoLevel:    gttInfoLevel(),
+	}
+}
+
+func isAccent(variant Variant) bool {
 	return strings.Contains(variant.String(), "accent")
 }
 
-// mapToastLevelToCSSClass returns a map of CSS classes corresponding to each toast level
+// getMapCssClassByVariant returns a map of CSS classes corresponding to each toast level
 // based on the specified variant.
-func mapToastLevelToCSSClass(variant Variant) map[Level]templ.CSSClass {
+func getMapCssClassByVariant(variant Variant) map[Level]templ.CSSClass {
 	var variantClasses map[Level]templ.CSSClass
 
 	switch variant {
-	case Colorful:
+	case Accent:
 		variantClasses = map[Level]templ.CSSClass{
-			DefaultLevel: gttDefaultLevel(),
-			SuccessLevel: gttSuccessLevel(),
-			ErrorLevel:   gttErrorLevel(),
-			WarningLevel: gttWarningLevel(),
-			InfoLevel:    gttInfoLevel(),
+			DefaultLevel: gttAccentDefaultLevel(),
+			SuccessLevel: gttAccentSuccessLevel(),
+			ErrorLevel:   gttAccentErrorLevel(),
+			WarningLevel: gttAccentWarningLevel(),
+			InfoLevel:    gttAccentInfoLevel(),
 		}
 	case AccentLight:
 		variantClasses = map[Level]templ.CSSClass{
@@ -49,15 +59,6 @@ func mapToastLevelToCSSClass(variant Variant) map[Level]templ.CSSClass {
 			ErrorLevel:   gttAccentDarkErrorLevel(),
 			WarningLevel: gttAccentDarkWarningLevel(),
 			InfoLevel:    gttAccentDarkInfoLevel(),
-		}
-	default:
-		// Default variant
-		variantClasses = map[Level]templ.CSSClass{
-			DefaultLevel: gttDefaultLevel(),
-			SuccessLevel: gttSuccessLevel(),
-			ErrorLevel:   gttErrorLevel(),
-			WarningLevel: gttWarningLevel(),
-			InfoLevel:    gttInfoLevel(),
 		}
 	}
 

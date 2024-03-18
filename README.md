@@ -24,8 +24,8 @@ Built with [templ](https://github.com/a-h/templ) library for seamless integratio
 
 - **No External Dependencies**: Built with native Go and the `templ` library, requiring no external frontend dependencies.
 - **Multiple Toasts**: Support to display multiple toast notifications.
-- **Configurable**: Customize appearance, behavior, and position.
-- **Variants**: Support for different toast variants including `Colorful` (default), `Accent`, and `AccentDark`.
+- **Configurable**: Customize appearance (bordered, rounded), behavior, and position.
+- **Variants**: Provide toast style variants like `Accent`, `AccentLight` and `AccentDark`.
 - **Themeable**: Use CSS variables to theme your toasts to match your application's design.
 - **Icon Support**: Include default SVG icons for various toast levels (such as success, error, info, etc.), allowing you to use your preferred icons.
 - **Positioning**: Flexible positioning of toast messages (top-right, bottom-left, etc.).
@@ -47,7 +47,7 @@ Ensure your project is using Go Modules.
 To install the module, use the `go get` command:
 
 ```sh
-go get github.com/indaco/goaster
+go get github.com/indaco/goaster@latest
 ```
 
 ## Usage

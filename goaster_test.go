@@ -10,8 +10,16 @@ import (
 func TestNewToasterDefault(t *testing.T) {
 	toaster := NewToaster()
 
+	if toaster.Variant != "" {
+		t.Errorf("expected Variant to be an empty string, got %v", toaster.Variant)
+	}
+
 	if toaster.Border != true {
 		t.Errorf("expected Border to be true, got %v", toaster.Border)
+	}
+
+	if toaster.Rounded != true {
+		t.Errorf("expected Rounded to be true, got %v", toaster.Rounded)
 	}
 
 	if toaster.ShowIcon != true {
@@ -43,6 +51,24 @@ func TestToasterOptions(t *testing.T) {
 			options: nil,
 			expected: Toaster{
 				Border:      true,
+				Rounded:     true,
+				ShowIcon:    true,
+				Button:      true,
+				AutoDismiss: true,
+				Animation:   true,
+				ProgressBar: true,
+				Position:    BottomRight,
+			},
+		},
+		{
+			name: "WithVariant accent",
+			options: []Option{
+				WithVariant(AccentLight),
+			},
+			expected: Toaster{
+				Variant:     AccentLight,
+				Border:      true,
+				Rounded:     true,
 				ShowIcon:    true,
 				Button:      true,
 				AutoDismiss: true,
@@ -58,6 +84,23 @@ func TestToasterOptions(t *testing.T) {
 			},
 			expected: Toaster{
 				Border:      false,
+				Rounded:     true,
+				ShowIcon:    true,
+				Button:      true,
+				AutoDismiss: true,
+				Animation:   true,
+				ProgressBar: true,
+				Position:    BottomRight,
+			},
+		},
+		{
+			name: "WithRounded false",
+			options: []Option{
+				WithRounded(false),
+			},
+			expected: Toaster{
+				Border:      true,
+				Rounded:     false,
 				ShowIcon:    true,
 				Button:      true,
 				AutoDismiss: true,
@@ -73,6 +116,7 @@ func TestToasterOptions(t *testing.T) {
 			},
 			expected: Toaster{
 				Border:      true,
+				Rounded:     true,
 				ShowIcon:    false,
 				Button:      true,
 				AutoDismiss: true,
@@ -88,6 +132,7 @@ func TestToasterOptions(t *testing.T) {
 			},
 			expected: Toaster{
 				Border:      true,
+				Rounded:     true,
 				ShowIcon:    true,
 				Button:      false,
 				AutoDismiss: true,
@@ -103,6 +148,7 @@ func TestToasterOptions(t *testing.T) {
 			},
 			expected: Toaster{
 				Border:      true,
+				Rounded:     true,
 				ShowIcon:    true,
 				Button:      true,
 				AutoDismiss: false,
@@ -118,6 +164,7 @@ func TestToasterOptions(t *testing.T) {
 			},
 			expected: Toaster{
 				Border:      true,
+				Rounded:     true,
 				ShowIcon:    true,
 				Button:      true,
 				AutoDismiss: true,
@@ -133,6 +180,7 @@ func TestToasterOptions(t *testing.T) {
 			},
 			expected: Toaster{
 				Border:      true,
+				Rounded:     true,
 				ShowIcon:    true,
 				Button:      true,
 				AutoDismiss: true,
@@ -148,6 +196,7 @@ func TestToasterOptions(t *testing.T) {
 			},
 			expected: Toaster{
 				Border:      true,
+				Rounded:     true,
 				ShowIcon:    true,
 				Button:      true,
 				AutoDismiss: true,
@@ -161,8 +210,14 @@ func TestToasterOptions(t *testing.T) {
 			toaster := NewToaster(tt.options...)
 
 			// Check each field in expected Toaster struct
+			if toaster.Variant != tt.expected.Variant {
+				t.Errorf("Variant: expected %v, got %v", tt.expected.Variant, toaster.Variant)
+			}
 			if toaster.Border != tt.expected.Border {
 				t.Errorf("Border: expected %v, got %v", tt.expected.Border, toaster.Border)
+			}
+			if toaster.Rounded != tt.expected.Rounded {
+				t.Errorf("Rounded: expected %v, got %v", tt.expected.Rounded, toaster.Rounded)
 			}
 			if toaster.ShowIcon != tt.expected.ShowIcon {
 				t.Errorf("ShowIcon: expected %v, got %v", tt.expected.ShowIcon, toaster.ShowIcon)

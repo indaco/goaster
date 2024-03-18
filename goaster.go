@@ -8,6 +8,7 @@ import (
 type Toaster struct {
 	Variant     Variant          // The style variant for the toast notification.
 	Border      bool             // Whether to display a border around the toast.
+	Rounded     bool             // Whether to display a rounded border for the toast.
 	ShowIcon    bool             // Whether to display an icon in the toast.
 	Button      bool             // Whether to display a close button.
 	AutoDismiss bool             // Whether the toast should automatically dismiss after a delay.
@@ -19,19 +20,23 @@ type Toaster struct {
 }
 
 var (
+	// cssByLevel maps each Level to a corresponding CSS class for styling.
+	mapCssClassByLevel map[Level]templ.CSSClass
+
 	// entranceCssClassesByPosition maps each Position to a corresponding templ.CSSClass representing the entrance direction for toast animations.
 	entranceCssClassesByPosition map[Position]templ.CSSClass
 )
 
 func init() {
+	mapCssClassByLevel = getMapCssClassByLevel()
 	entranceCssClassesByPosition = getToastEntranceCSSClassesByPosition()
 }
 
 // NewToaster creates a new Toaster instance with default settings, applying any provided options.
 func NewToaster(options ...Option) *Toaster {
 	toaster := &Toaster{
-		Variant:     Colorful,
 		Border:      true,
+		Rounded:     true,
 		ShowIcon:    true,
 		Button:      true,
 		AutoDismiss: true,

@@ -14,8 +14,11 @@ templ component(t Toast, toaster *Toaster) {
 		class={
 			gttToast(),
 			templ.KV(gttBordered(), toaster.Border),
-			templ.KV(gttAccent(), isAnyAccentVariant(toaster.Variant)),
-			mapToastLevelToCSSClass(toaster.Variant)[t.Level],
+			templ.KV(gttRounded(), toaster.Rounded),
+			mapCssClassByLevel[t.Level],
+			templ.KV(gttAccent(), isAccent(toaster.Variant)),
+			getMapCssClassByVariant(toaster.Variant)[t.Level],
+		
 			gttShow(),
 			templ.KV(gttAnimated(), toaster.Animation),
 			entranceCssClassesByPosition[toaster.Position],

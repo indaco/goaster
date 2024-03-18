@@ -31,7 +31,7 @@ var (
 
 // Variant constants define the style variant to be used for the toast.
 const (
-	Colorful    = "colorful"
+	Accent      = "accent"
 	AccentLight = "accent_light"
 	AccentDark  = "accent_dark"
 )
