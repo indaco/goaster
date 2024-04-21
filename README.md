@@ -16,6 +16,13 @@ A configurable, themeable and non-intrusive server-rendered toast notification c
     <a href="https://pkg.go.dev/github.com/indaco/goaster/" target="_blank">
         <img src="https://pkg.go.dev/badge/github.com/indaco/goaster/.svg" alt="go reference" />
     </a>
+    &nbsp;
+    <a href="https://jetpack.io/devbox/docs/contributor-quickstart/" target="_blank">
+      <img
+          src="https://jetpack.io/img/devbox/shield_galaxy.svg"
+          alt="Built with Devbox"
+      />
+    </a>
 </p>
 
 Built with [templ](https://github.com/a-h/templ) library for seamless integration with Go-based web frontends.
@@ -126,7 +133,7 @@ Toast notifications are themeable using CSS variables (prefix `gtt`) to customiz
 Here below is the list of all CSS variables defined and their default values:
 
 | Name                                   | Default Value                                                          | Description                                                      |
-|----------------------------------------|------------------------------------------------------------------------|------------------------------------------------------------------|
+| -------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------- |
 | `--gtt-py`                             | 0                                                                      | Padding on the y-axis for the toast element                      |
 | `--gtt-px`                             | 0.75rem                                                                | Padding on the x-axis for the toast element                      |
 | `--gtt-font-family`                    | inherit                                                                | Font family for the toast text                                   |
@@ -179,7 +186,7 @@ toaster := goaster.NewToaster(
 - [use with `a-h/templ` template](_examples/a-h-templ-single-toast)
 - [multiple messages with `a-h/templ`](_examples/a-h-templ-multiple-toasts)
 - [use with `template/html`](_examples/go-html-template-single-toast)
-- [multiple  messages with `template/html`](_examples/go-html-template-multiple-toasts)
+- [multiple messages with `template/html`](_examples/go-html-template-multiple-toasts)
 - [theming](_examples/theming)
 - [variants](_examples/variants)
 - [custom icons](_examples/custom-icons)

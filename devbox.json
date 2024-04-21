@@ -1,0 +1,20 @@
+{
+  "$schema": "https://raw.githubusercontent.com/jetpack-io/devbox/0.10.5/.schema/devbox.schema.json",
+  "packages": [
+    "git@latest",
+    "go@latest",
+    "golangci-lint@latest",
+    "templ@latest"
+  ],
+  "shell": {
+    "init_hook": [
+      "echo 'Welcome to @indaco/goaster devbox!'",
+      "git config core.hooksPath .githooks"
+    ],
+    "scripts": {
+      "build": ["make build"],
+      "templ": ["make templ"],
+      "test": ["make test"]
+    }
+  }
+}
