@@ -18,9 +18,13 @@ Icon
 .vscode/*
 .history/
 
+# DevBox
+.devbox/
+
 #
 *.log
 tmp
 .air.toml
+*_templ.txt
 _examples/**/*_templ.go
 sync.sh
