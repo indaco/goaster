@@ -4,6 +4,7 @@
     "git@latest",
     "go@latest",
     "golangci-lint@latest",
+    "gnumake@latest",
     "templ@latest"
   ],
   "shell": {
