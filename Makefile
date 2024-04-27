@@ -75,14 +75,6 @@ test: ## Run go tests
 templ: ## Process TEMPL files
 	@$(MAKE) _process_templ_files
 
-report-card: ## Run goreportcard-cli
-	@$(MAKE) build
-	@if [ -x $$(command -v goreportcard-cli) ]; then \
-		echo "$(color_cyan) * Running goreportcard-cli...$(color_reset)"; \
-		goreportcard-cli -v; \
-	fi
-	@$(MAKE) _clean
-
 clean:
 	@echo ""
 	@echo "$(color_magenta)Clean up$(color_reset)"
