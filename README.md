@@ -2,24 +2,21 @@
   goaster
 </h1>
 <p align="center">
-    <a href="https://github.com/indaco/goaster/blob/main/LICENSE" target="_blank">
-        <img src="https://img.shields.io/badge/license-mit-blue?style=flat-square&logo=none" alt="license" />
-    </a>
-     &nbsp;
-     <a href="https://goreportcard.com/report/github.com/indaco/goaster/" target="_blank">
-        <img src="https://goreportcard.com/badge/github.com/indaco/goaster" alt="go report card" />
-    </a>
-    &nbsp;
-    <a href="https://pkg.go.dev/github.com/indaco/goaster/" target="_blank">
-        <img src="https://pkg.go.dev/badge/github.com/indaco/goaster/.svg" alt="go reference" />
-    </a>
-    &nbsp;
-    <a href="https://jetpack.io/devbox/docs/contributor-quickstart/" target="_blank">
-      <img
-          src="https://jetpack.io/img/devbox/shield_galaxy.svg"
-          alt="Built with Devbox"
-      />
-    </a>
+  <a href="https://github.com/indaco/goaster/blob/main/LICENSE" target="_blank">
+    <img src="https://img.shields.io/badge/license-mit-blue?style=flat-square&logo=none" alt="license" />
+  </a>
+  &nbsp;
+  <a href="https://goreportcard.com/report/github.com/indaco/goaster/" target="_blank">
+    <img src="https://goreportcard.com/badge/github.com/indaco/goaster" alt="go report card" />
+  </a>
+  &nbsp;
+  <a href="https://pkg.go.dev/github.com/indaco/goaster/" target="_blank">
+      <img src="https://pkg.go.dev/badge/github.com/indaco/goaster/.svg" alt="go reference" />
+  </a>
+  &nbsp;
+  <a href="https://www.jetify.com/devbox/docs/contributor-quickstart/">
+    <img src="https://www.jetify.com/img/devbox/shield_moon.svg" alt="Built with Devbox" />
+  </a>
 </p>
 
 > A configurable, themeable and non-intrusive server-rendered toast notification component for Go web applications. Built with [templ](https://github.com/a-h/templ) library for seamless integration with Go-based web frontends.
