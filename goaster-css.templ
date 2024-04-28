@@ -2,168 +2,330 @@ package goaster
 
 templ GoasterCSS() {
 	<style type="text/css">
-        *
-        {
-          box-sizing: border-box;
-          border-width: 0;
-          border-style: solid;
-        }
+    * {
+      box-sizing: border-box;
+      border-width: 0;
+      border-style: solid;
+    }
 
-        :root {
-            /* Padding Y and X for the toast element */
-            --gtt-py: 0rem;
-            --gtt-px: 0.75rem;
+    :root {
+        /* - Color Shades - */
+      --gtt-color-space: oklab;
 
-            --gtt-bg: var(--gtt-default-bg);
-            --gtt-progress-bar-color: var(--gtt-default-progress-bar-color);
+        /* - Default Level - */
+      --gtt-default-base: hsl(220deg 9% 46%);
+      --gtt-default-lightest: color-mix(
+        in var(--gtt-color-space),
+        var(--gtt-default-base) 10%,
+        white
+      );
+      --gtt-default-lighter: color-mix(
+        in var(--gtt-color-space),
+        var(--gtt-default-base) 30%,
+        white
+      );
+      --gtt-default-light: color-mix(
+        in var(--gtt-color-space),
+        var(--gtt-default-base) 70%,
+        white
+      );
+      --gtt-default-dark: color-mix(
+        in var(--gtt-color-space),
+        var(--gtt-default-base) 70%,
+        black
+      );
+      --gtt-default-darker: color-mix(
+        in var(--gtt-color-space),
+        var(--gtt-default-base) 30%,
+        black
+      );
+      --gtt-default-darkest: color-mix(
+        in var(--gtt-color-space),
+        var(--gtt-default-base) 10%,
+        black
+      );
+      /* - Success Level - */
+      --gtt-success-base: hsl(142deg 71% 45%);
+      --gtt-success-lightest: color-mix(
+        in var(--gtt-color-space),
+        var(--gtt-success-base) 10%,
+        white
+      );
+      --gtt-success-lighter: color-mix(
+        in var(--gtt-color-space),
+        var(--gtt-success-base) 30%,
+        white
+      );
+      --gtt-success-light: color-mix(
+        in var(--gtt-color-space),
+        var(--gtt-success-base) 70%,
+        white
+      );
+      --gtt-success-dark: color-mix(
+        in var(--gtt-color-space),
+        var(--gtt-success-base) 70%,
+        black
+      );
+      --gtt-success-darker: color-mix(
+        in var(--gtt-color-space),
+        var(--gtt-success-base) 30%,
+        black
+      );
+      --gtt-success-darkest: color-mix(
+        in var(--gtt-color-space),
+        var(--gtt-success-base) 10%,
+        black
+      );
+      /* - Error Level - */
+      --gtt-error-base: hsl(0deg 84% 60%);
+      --gtt-error-lightest: color-mix(
+        in var(--gtt-color-space),
+        var(--gtt-error-base) 10%,
+        white
+      );
+      --gtt-error-lighter: color-mix(
+        in var(--gtt-color-space),
+        var(--gtt-error-base) 30%,
+        white
+      );
+      --gtt-error-light: color-mix(
+        in var(--gtt-color-space),
+        var(--gtt-error-base) 70%,
+        white
+      );
+      --gtt-error-dark: color-mix(
+        in var(--gtt-color-space),
+        var(--gtt-error-base) 70%,
+        black
+      );
+      --gtt-error-darker: color-mix(
+        in var(--gtt-color-space),
+        var(--gtt-error-base) 30%,
+        black
+      );
+      --gtt-error-darkest: color-mix(
+        in var(--gtt-color-space),
+        var(--gtt-error-base) 10%,
+        black
+      );
+      /* - Warning Level - */
+      --gtt-warning-base: hsl(25deg 95% 53%);
+      --gtt-warning-lightest: color-mix(
+        in var(--gtt-color-space),
+        var(--gtt-warning-base) 10%,
+        white
+      );
+      --gtt-warning-lighter: color-mix(
+        in var(--gtt-color-space),
+        var(--gtt-warning-base) 30%,
+        white
+      );
+      --gtt-warning-light: color-mix(
+        in var(--gtt-color-space),
+        var(--gtt-warning-base) 70%,
+        white
+      );
+      --gtt-warning-dark: color-mix(
+        in var(--gtt-color-space),
+        var(--gtt-warning-base) 70%,
+        black
+      );
+      --gtt-warning-darker: color-mix(
+        in var(--gtt-color-space),
+        var(--gtt-warning-base) 30%,
+        black
+      );
+      --gtt-warning-darkest: color-mix(
+        in var(--gtt-color-space),
+        var(--gtt-warning-base) 10%,
+        black
+      );
+      /* - Info Level - */
+      --gtt-info-base: hsl(217deg 91% 60%);
+      --gtt-info-lightest: color-mix(
+        in var(--gtt-color-space),
+        var(--gtt-info-base) 10%,
+        white
+      );
+      --gtt-info-lighter: color-mix(
+        in var(--gtt-color-space),
+        var(--gtt-info-base) 30%,
+        white
+      );
+      --gtt-info-light: color-mix(
+        in var(--gtt-color-space),
+        var(--gtt-info-base) 70%,
+        white
+      );
+      --gtt-info-dark: color-mix(
+        in var(--gtt-color-space),
+        var(--gtt-info-base) 70%,
+        black
+      );
+      --gtt-info-darker: color-mix(
+        in var(--gtt-color-space),
+        var(--gtt-info-base) 30%,
+        black
+      );
+      --gtt-info-darkest: color-mix(
+        in var(--gtt-color-space),
+        var(--gtt-info-base) 10%,
+        black
+      );
 
-            /* Font styling for the toast text */
-            --gtt-color: var(--gtt-default-color);
-            --gtt-font-family: inherit;
-            --gtt-font-size: 1rem;
-            --gtt-line-height: 1rem;
+      /* Padding Y and X for the toast element */
+      --gtt-py: 0rem;
+      --gtt-px: 0.75rem;
 
-            /* Border styling for the toast */
-            --gtt-border-width: 1px;
-            --gtt-border-style: solid;
-            --gtt-border-color: var(--gtt-default-border-color);
-            --gtt-border-radius: 0.375rem;
+      --gtt-bg: var(--gtt-default-bg);
+      --gtt-progress-bar-color: var(--gtt-default-progress-bar-color);
 
-            /* Accent toast theme colors */
-            --gtt-accent-light-bg: white;
+      /* Font styling for the toast text */
+      --gtt-color: var(--gtt-default-color);
+      --gtt-font-family: inherit;
+      --gtt-font-size: 1rem;
+      --gtt-line-height: 1rem;
+      /* Border styling for the toast */
+      --gtt-border-width: 1px;
+      --gtt-border-style: solid;
+      --gtt-border-color: var(--gtt-default-border-color);
+      --gtt-border-radius: 0.375rem;
 
-            /* Dark accent toast theme colors */
-            --gtt-accent-dark-bg: hsla(220.9,39.3%,11%, 0.85);
+      /* Accent toast theme colors */
+      --gtt-accent-light-bg: white;
 
-            /* Default toast theme colors (border, background, text color) */
-            --gtt-default-border-color: #f3f4f6; /* gray-100 */
-            --gtt-default-bg: #f9fafb; /* gray-50 */
-            --gtt-default-color: #1f2937; /* gray-800 */
-            --gtt-default-progress-bar-color: #e5e7eb; /* gray-200 */
-            --gtt-default-accent-color: var(--gtt-default-color);
-            --gtt-default-accent-dark-color: #94a3b8; /* gray-400 */
+      /* Dark accent toast theme colors */
+      --gtt-accent-dark-bg: hsla(220.9, 39.3%, 11%, 0.85);
 
-            /* Success toast theme colors (border, background, text color) */
-            --gtt-success-border-color: #dcfce7; /* green-100 */
-            --gtt-success-bg: #f0fdf4; /* green-50 */
-            --gtt-success-color: #166534; /* green-800 */
-            --gtt-success-progress-bar-color: #bbf7d0; /* green-200 */
-            --gtt-success-accent-color: var(--gtt-success-color);
-            --gtt-success-accent-dark-color: #22c55e; /* green-400 */
+      /* Default toast theme colors (border, background, text color) */
+      --gtt-default-border-color: var(--gtt-default-lighter);
+      --gtt-default-bg: var(--gtt-default-lightest);
+      --gtt-default-color: var(--gtt-default-dark);
+      --gtt-default-progress-bar-color: var(--gtt-default-light);
+      --gtt-default-accent-color: var(--gtt-default-dark);
+      --gtt-default-accent-dark-color: var(--gtt-default-light);
 
-            /* Error toast theme colors (border, background, text color) */
-            --gtt-error-border-color: #fee2e2; /* red-100 */
-            --gtt-error-bg: #fef2f2; /* red-50 */
-            --gtt-error-color: #991b1b; /* red-800 */
-            --gtt-error-progress-bar-color: #fecaca; /* red-200 */
-            --gtt-error-accent-color: var(--gtt-error-color);
-            --gtt-error-accent-dark-color: #f87171; /* red-400 */
+      /* Success toast theme colors (border, background, text color) */
+      --gtt-success-border-color: var(--gtt-success-lighter);
+      --gtt-success-bg: var(--gtt-success-lightest);
+      --gtt-success-color: var(--gtt-success-dark);
+      --gtt-success-progress-bar-color: var(--gtt-success-light);
+      --gtt-success-accent-color: var(--gtt-success-dark);
+      --gtt-success-accent-dark-color: var(--gtt-success-light);
 
-            /* Warning toast theme colors (border, background, text color) */
-            --gtt-warning-border-color: #ffedd5; /* orange-100 */
-            --gtt-warning-bg: #fff7ed; /* orange-50 */
-            --gtt-warning-color: #9a3412; /* orange-800 */
-            --gtt-warning-progress-bar-color: #fed7aa; /* orange-200 */
-            --gtt-warning-accent-color: var(--gtt-warning-color);
-            --gtt-warning-accent-dark-color: #fb923c; /* orange-400 */
+      /* Error toast theme colors (border, background, text color) */
+      --gtt-error-border-color: var(--gtt-error-lighter);
+      --gtt-error-bg: var(--gtt-error-lightest);
+      --gtt-error-color: var(--gtt-error-dark);
+      --gtt-error-progress-bar-color: var(--gtt-error-light);
+      --gtt-error-accent-color: var(--gtt-error-dark);
+      --gtt-error-accent-dark-color: var(--gtt-error-light);
 
-            /* Info toast theme colors (border, background, text color) */
-            --gtt-info-border-color: #dbeafe; /* blue-100 */
-            --gtt-info-bg: #eff6ff; /* blue-50 */
-            --gtt-info-color: #1e40af; /* blue-800 */
-            --gtt-info-progress-bar-color: #bfdbfe; /* blue-200 */
-            --gtt-info-accent-color: var(--gtt-info-color);
-            --gtt-info-accent-dark-color: #60a5fa; /* blue-400 */
+      /* Warning toast theme colors (border, background, text color) */
+      --gtt-warning-border-color: var(--gtt-warning-lighter);
+      --gtt-warning-bg: var(--gtt-warning-lightest);
+      --gtt-warning-color: var(--gtt-warning-dark);
+      --gtt-warning-progress-bar-color: var(--gtt-warning-light);
+      --gtt-warning-accent-color: var(--gtt-warning-dark);
+      --gtt-warning-accent-dark-color: var(--gtt-warning-light);
 
-            /* Default entrance animation properties */
-            --gtt-animation-entrance-duration: 0.5s;
-            --gtt-animation-entrance-direction: normal;
-            --gtt-animation-entrance-timing-function: ease;
-            --gtt-animation-entrance-delay: 0s;
+      /* Info toast theme colors (border, background, text color) */
+      --gtt-info-border-color: var(--gtt-info-lighter);
+      --gtt-info-bg: var(--gtt-info-lightest);
+      --gtt-info-color: var(--gtt-info-dark);
+      --gtt-info-progress-bar-color: var(--gtt-info-light);
+      --gtt-info-accent-color: var(--gtt-info-dark);
+      --gtt-info-accent-dark-color: var(--gtt-info-light);
 
-            /* Default exit animation properties */
-            --gtt-animation-exit-duration: 0.5s;
-            --gtt-animation-exit-direction: normal;
-            --gtt-animation-exit-timing-function: ease;
-            --gtt-animation-exit-delay: 0s;
+      /* Default entrance animation properties */
+      --gtt-animation-entrance-duration: 0.5s;
+      --gtt-animation-entrance-direction: normal;
+      --gtt-animation-entrance-timing-function: ease;
+      --gtt-animation-entrance-delay: 0s;
 
-            /* Animation properties (names) when entrance direction is from the top */
-            --gtt-animation-entrance-name-top: gttFadeInDown;
-            --gtt-animation-exit-name-top: gttFadeOutUp;
+      /* Default exit animation properties */
+      --gtt-animation-exit-duration: 0.5s;
+      --gtt-animation-exit-direction: normal;
+      --gtt-animation-exit-timing-function: ease;
+      --gtt-animation-exit-delay: 0s;
 
-            /* Animation properties (names) when entrance direction is from the bottom */
-            --gtt-animation-entrance-name-bottom: gttFadeInUp;
-            --gtt-animation-exit-name-bottom: gttFadeOutDown;
-        }
+      /* Animation properties (names) when entrance direction is from the top */
+      --gtt-animation-entrance-name-top: gttFadeInDown;
+      --gtt-animation-exit-name-top: gttFadeOutUp;
 
-        button[class^="gttCloseBtn"]:hover,
-        button[class^="gttCloseBtn"]:focus {
-            background-color: var(--gtt-border-color);
-        }
+      /* Animation properties (names) when entrance direction is from the bottom */
+      --gtt-animation-entrance-name-bottom: gttFadeInUp;
+      --gtt-animation-exit-name-bottom: gttFadeOutDown;
+    }
 
-        /* Define the animation properties for a toast element's exit animation */
-        .gttClose {
-            animation-duration: var(--gtt-animation-exit-duration);
-            animation-direction: var(--gtt-animation-exit-direction);
-            animation-timing-function: var(--gtt-animation-exit-timing-function);
-            animation-delay: var(--gtt-animation-exit-delay);
-        }
+    button[class^="gttCloseBtn"]:hover,
+    button[class^="gttCloseBtn"]:focus {
+      background-color: var(--gtt-border-color);
+    }
 
-        .gttCloseFromTop {
-            animation-name: var(--gtt-animation-exit-name-top);
-        }
+    /* Define the animation properties for a toast element's exit animation */
+    .gttClose {
+      animation-duration: var(--gtt-animation-exit-duration);
+      animation-timing-function: var(--gtt-animation-exit-timing-function);
+      animation-delay: var(--gtt-animation-exit-delay);
+      animation-direction: var(--gtt-animation-exit-direction);
+    }
 
-        .gttCloseFromBottom {
-            animation-name: var(--gtt-animation-exit-name-bottom);
-        }
+    .gttCloseFromTop {
+      animation-name: var(--gtt-animation-exit-name-top);
+    }
 
-        /* Animations */
-        @keyframes gttFadeInUp {
-            from {
-                opacity: 0;
-                transform: translate3d(0, 100%, 0);
-            }
+    .gttCloseFromBottom {
+      animation-name: var(--gtt-animation-exit-name-bottom);
+    }
 
-            to {
-                opacity: 1;
-                transform: translate3d(0, 0, 0);
-            }
-        }
+    /* Animations */
+    @keyframes gttFadeInUp {
+      from {
+        transform: translate3d(0, 100%, 0);
+        opacity: 0;
+      }
 
-        @keyframes gttFadeInDown {
-            from {
-                opacity: 0;
-                transform: translate3d(0, -100%, 0);
-            }
+      to {
+        transform: translate3d(0, 0, 0);
+        opacity: 1;
+      }
+    }
 
-            to {
-                opacity: 1;
-                transform: translate3d(0, 0, 0);
-            }
-        }
+    @keyframes gttFadeInDown {
+      from {
+        transform: translate3d(0, -100%, 0);
+        opacity: 0;
+      }
 
-        @keyframes gttFadeOutUp {
-            from {
-                opacity: 1;
-            }
+      to {
+        transform: translate3d(0, 0, 0);
+        opacity: 1;
+      }
+    }
 
-            to {
-                opacity: 0;
-                transform: translate3d(0, -100%, 0);
-            }
-        }
+    @keyframes gttFadeOutUp {
+      from {
+        opacity: 1;
+      }
 
-        @keyframes gttFadeOutDown {
-            from {
-                opacity: 1;
-            }
+      to {
+        transform: translate3d(0, -100%, 0);
+        opacity: 0;
+      }
+    }
 
-            to {
-                opacity: 0;
-                transform: translate3d(0, 100%, 0);
-            }
-        }
-    </style>
+    @keyframes gttFadeOutDown {
+      from {
+        opacity: 1;
+      }
+
+      to {
+        transform: translate3d(0, 100%, 0);
+        opacity: 0;
+      }
+    }
+  </style>
 }
 
 css gttContainer() {
