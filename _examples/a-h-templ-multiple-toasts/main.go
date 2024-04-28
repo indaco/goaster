@@ -1,11 +1,12 @@
 package main
 
 import (
-	"github.com/a-h/templ"
-	"github.com/indaco/goaster"
 	"log"
 	"net/http"
 	"os"
+
+	"github.com/a-h/templ"
+	"github.com/indaco/goaster"
 )
 
 var toaster *goaster.Toaster
