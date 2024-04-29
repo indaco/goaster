@@ -174,8 +174,8 @@ templ GoasterCSS() {
       );
 
       /* Padding Y and X for the toast element */
-      --gtt-py: 0rem;
-      --gtt-px: 0.75rem;
+      --gtt-py: 0;
+      --gtt-px: 0.75em;
 
       --gtt-bg: var(--gtt-default-bg);
       --gtt-progress-bar-color: var(--gtt-default-progress-bar-color);
@@ -240,13 +240,13 @@ templ GoasterCSS() {
       /* Default entrance animation properties */
       --gtt-animation-entrance-duration: 0.5s;
       --gtt-animation-entrance-direction: normal;
-      --gtt-animation-entrance-timing-function: ease;
+      --gtt-animation-entrance-timing-fn: ease;
       --gtt-animation-entrance-delay: 0s;
 
       /* Default exit animation properties */
       --gtt-animation-exit-duration: 0.5s;
       --gtt-animation-exit-direction: normal;
-      --gtt-animation-exit-timing-function: ease;
+      --gtt-animation-exit-timing-fn: ease;
       --gtt-animation-exit-delay: 0s;
 
       /* Animation properties (names) when entrance direction is from the top */
@@ -266,7 +266,7 @@ templ GoasterCSS() {
     /* Define the animation properties for a toast element's exit animation */
     .gttClose {
       animation-duration: var(--gtt-animation-exit-duration);
-      animation-timing-function: var(--gtt-animation-exit-timing-function);
+      animation-timing-function: var(--gtt-animation-exit-timing-fn);
       animation-delay: var(--gtt-animation-exit-delay);
       animation-direction: var(--gtt-animation-exit-direction);
     }
@@ -410,7 +410,7 @@ css gttAccent() {
 css gttAnimated() {
 	animation-duration: var(--gtt-animation-entrance-duration);
 	animation-direction: var(--gtt-animation-entrance-direction);
-	animation-timing-function: var(--gtt-animation-entrance-timing-function);
+	animation-timing-function: var(--gtt-animation-entrance-timing-fn);
 	animation-delay: var(--gtt-animation-entrance-delay);
 }
 
