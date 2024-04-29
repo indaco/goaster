@@ -19,7 +19,17 @@
   </a>
 </p>
 
-> A configurable, themeable and non-intrusive server-rendered toast notification component for Go web applications. Built with [templ](https://github.com/a-h/templ) library for seamless integration with Go-based web frontends.
+<p align="center">
+  <a href="#features">Features</a> •
+  <a href="#installation">Installation</a> •
+  <a href="#usage">Usage</a> •
+  <a href="#custom-icons">Custom Icons</a> •
+  <a href="#theming">Theming</a> •
+  <a href="#examples">Examples</a> •
+  <a href="#contributing">Contributing</a>
+</p>
+
+A configurable, themeable and non-intrusive server-rendered toast notification component for Go web applications. Built with [templ](https://github.com/a-h/templ) library for seamless integration with Go-based web frontends.
 
 ### Features
 
@@ -120,50 +130,6 @@ toaster.PushWarning("This is a warning message.")
 toaster.RenderAll()
 ```
 
-## Theming
-
-Toast notifications are themeable using CSS variables (prefix `gtt`) to customize the appearance according to your design.
-
-Here below is the list of all CSS variables defined and their default values:
-
-| Name                                   | Default Value                                                          | Description                                                      |
-| -------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------- |
-| `--gtt-py`                             | 0                                                                      | Padding on the y-axis for the toast element                      |
-| `--gtt-px`                             | 0.75rem                                                                | Padding on the x-axis for the toast element                      |
-| `--gtt-font-family`                    | inherit                                                                | Font family for the toast text                                   |
-| `--gtt-font-size`                      | 1rem                                                                   | Font size for the toast text                                     |
-| `--gtt-line-height`                    | 1rem                                                                   | Line height for the toast text                                   |
-| `--gtt-border-radius`                  | 0.375rem                                                               | Border radius for the toast element                              |
-| `--gtt-border-style`                   | solid                                                                  | Border style for the toast                                       |
-| `--gtt-border-width`                   | 1px                                                                    | Border width for the toast                                       |
-| `--gtt-default-border-color`           | ![Color Preview](https://via.placeholder.com/20/f3f4f6?text=+) #f3f4f6 | Default border color for the toast                               |
-| `--gtt-default-bg`                     | ![Color Preview](https://via.placeholder.com/20/f9fafb?text=+) #f9fafb | Default background color for the toast                           |
-| `--gtt-default-color`                  | ![Color Preview](https://via.placeholder.com/20/1f2937?text=+) #1f2937 | Default text color for the toast                                 |
-| `--gtt-success-border-color`           | ![Color Preview](https://via.placeholder.com/20/dcfce7?text=+) #dcfce7 | Success border color for the toast                               |
-| `--gtt-success-bg`                     | ![Color Preview](https://via.placeholder.com/20/f0fdf4?text=+) #f0fdf4 | Success background color for the toast                           |
-| `--gtt-success-color`                  | ![Color Preview](https://via.placeholder.com/20/166534?text=+) #166534 | Success text color for the toast                                 |
-| `--gtt-error-border-color`             | ![Color Preview](https://via.placeholder.com/20/fee2e2?text=+) #fee2e2 | Error border color for the toast                                 |
-| `--gtt-error-bg`                       | ![Color Preview](https://via.placeholder.com/20/fef2f2?text=+) #fef2f2 | Error background color for the toast                             |
-| `--gtt-error-color`                    | ![Color Preview](https://via.placeholder.com/20/991b1b?text=+) #991b1b | Error text color for the toast                                   |
-| `--gtt-warning-border-color`           | ![Color Preview](https://via.placeholder.com/20/ffedd5?text=+) #ffedd5 | Warning border color for the toast                               |
-| `--gtt-warning-bg`                     | ![Color Preview](https://via.placeholder.com/20/fff7ed?text=+) #fff7ed | Warning background color for the toast                           |
-| `--gtt-warning-color`                  | ![Color Preview](https://via.placeholder.com/20/9a3412?text=+) #9a3412 | Warning text color for the toast                                 |
-| `--gtt-info-border-color`              | ![Color Preview](https://via.placeholder.com/20/dbeafe?text=+) #dbeafe | Info border color for the toast                                  |
-| `--gtt-info-bg`                        | ![Color Preview](https://via.placeholder.com/20/eff6ff?text=+) #eff6ff | Info background color for the toast                              |
-| `--gtt-info-color`                     | ![Color Preview](https://via.placeholder.com/20/1e40af?text=+) #1e40af | Info text color for the toast                                    |
-| `--gtt-animation-entrance-duration`    | 0.5s                                                                   | Default duration for entrance animations                         |
-| `--gtt-animation-entrance-direction`   | normal                                                                 | Default direction for entrance animations                        |
-| `--gtt-animation-entrance-timing-func` | ease                                                                   | Default timing function for entrance animations                  |
-| `--gtt-animation-entrance-delay`       | 0s                                                                     | Default delay for entrance animations                            |
-| `--gtt-animation-exit-duration`        | 0.5s                                                                   | Default duration for exit animations                             |
-| `--gtt-animation-exit-direction`       | normal                                                                 | Default direction for exit animations                            |
-| `--gtt-animation-exit-timing-function` | ease                                                                   | Default timing function for exit animations                      |
-| `--gtt-animation-exit-delay`           | 0s                                                                     | Default delay for exit animations                                |
-| `--gtt-animation-entrance-name-top`    | gttFadeInDown                                                          | Name of the entrance animation when direction is from the top    |
-| `--gtt-animation-exit-name-top`        | gttFadeOutUp                                                           | Name of the exit animation when direction is from the top        |
-| `--gtt-animation-entrance-name-bottom` | gttFadeInUp                                                            | Name of the entrance animation when direction is from the bottom |
-| `--gtt-animation-exit-name-bottom`     | gttFadeOutDown                                                         | Name of the exit animation when direction is from the bottom     |
-
 ## Custom Icons
 
 Specify custom SVG icons for each toast level:
@@ -174,6 +140,10 @@ toaster := goaster.NewToaster(
    goaster.WithIcon(toast.ErrorLevel, "<svg>...</svg>"),
 )
 ```
+
+## Theming
+
+Customizing the appearance of `goaster` notifications to align with your design preferences is both straightforward and flexible, accomplished by using CSS custom properties (CSS variables) prefixed with `gtt`. For a comprehensive list of CSS custom properties, along with their default values and descriptions, please consult the tabber [CSS custom Props](./docs/css-props.md) document.
 
 ## Examples
 
