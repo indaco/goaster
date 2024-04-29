@@ -1,17 +1,17 @@
 package main
 
 import (
-	"github.com/a-h/templ"
-	"github.com/indaco/goaster"
 	"log"
 	"net/http"
 	"os"
+
+	"github.com/a-h/templ"
+	"github.com/indaco/goaster"
 )
 
 func HandleHome(w http.ResponseWriter, r *http.Request) {
-	result := false
 	toaster := goaster.NewToaster()
-	templ.Handler(HomePage(result, toaster)).ServeHTTP(w, r)
+	templ.Handler(HomePage(toaster)).ServeHTTP(w, r)
 }
 
 func main() {

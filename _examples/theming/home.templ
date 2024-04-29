@@ -2,7 +2,7 @@ package main
 
 import "github.com/indaco/goaster"
 
-templ HomePage(result bool, toaster *goaster.Toaster) {
+templ HomePage(toaster *goaster.Toaster) {
 	<!DOCTYPE html>
 	<html lang="en">
 		<head>
@@ -13,26 +13,16 @@ templ HomePage(result bool, toaster *goaster.Toaster) {
 			@goaster.GoasterCSS()
 			<!-- set css vars for theming -->
 			<style type="text/css">
-			    :root {
-                    --gtt-border-style: dashed;
+				:root {
+					--gtt-border-style: dashed;
 
-                    --gtt-success-border-color: #a3e635; /* lime-400 */
-                    --gtt-success-bg: #f7fee7; /* lime-50 */
-                    --gtt-success-color: #3f6212; /* lime-800 */
-
-                    --gtt-error-border-color: #f472b6; /* pink-400 */
-                    --gtt-error-bg: #fdf4ff; /* pink-50 */
-                    --gtt-error-color: #9d174d; /* pink-800 */
-                }
+					--gtt-success-base: #84cc16;
+				}
 			</style>
 		</head>
 		<body class="min-h-screen relative flex flex-col">
 			<!-- display the messages -->
-			if result {
-				@toaster.Success("Success Toast")
-			} else {
-				@toaster.Error("Error Toast")
-			}
+			@toaster.Success("Success Toast")
 			<!-- inject toast javascript -->
 			@goaster.GoasterJS(toaster, nil)
 		</body>
