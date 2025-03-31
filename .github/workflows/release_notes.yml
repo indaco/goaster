@@ -1,9 +1,8 @@
-name: Create GitHub Release from Commit Message
+name: Create Release Notes
 
 on:
-  push:
-    branches:
-      - main
+  release:
+    types: [created]
 
 jobs:
   create-release-notes:
@@ -35,6 +34,6 @@ jobs:
           draft: false
           prerelease: false
           make_latest: 'true'
-          token: ${{ secrets.TEMPO_TOKEN }}
+          token: ${{ secrets.GOASTER_TOKEN }}
           body_path: ${{ github.workspace }}/.changes/${{ steps.extract_version.outputs.version }}.md
           generate_release_notes: false
