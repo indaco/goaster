@@ -1,0 +1,23 @@
+package pages
+
+import (
+	"github.com/indaco/goaster/demos/layouts"
+	"github.com/indaco/goaster/demos/layouts/partials"
+)
+
+templ HomePage() {
+	@layouts.Page() {
+		@partials.Head("goaster - demo")
+		@partials.Body() {
+			<h2>goaster - Demos</h2>
+			<ul class="li"><a href="/single">Single Toast</a></ul>
+			<ul class="li"><a href="/multiple">Multiple Toasts</a></ul>
+			<ul class="li"><a href="/custom-animations">Custom Animations</a></ul>
+			<ul class="li"><a href="/custom-icons">Custom Icons</a></ul>
+			<ul class="li"><a href="/themes">Themes</a></ul>
+			<ul class="li"><a href="/variants/accent-light">Variant</a></ul>
+			<ul class="li"><a href="/gohtml/single">GoHTML Single Toast</a></ul>
+			<ul class="li"><a href="/gohtml/multiple">GoHTML Multiple Toast</a></ul>
+		}
+	}
+}

@@ -1,29 +1,18 @@
-package main
+package handlers
 
 import (
 	"context"
-	"github.com/indaco/goaster"
 	"html/template"
 	"log"
 	"net/http"
-	"os"
+
+	"github.com/indaco/goaster/demos/types"
 
 	"github.com/a-h/templ"
+	"github.com/indaco/goaster"
 )
 
-// PageData represents the data to be rendered in the HTML template
-type PageData struct {
-	Toast ToastComponent
-}
-
-type ToastComponent struct {
-	CSS  template.HTML
-	HTML template.HTML
-	JS   template.HTML
-}
-
-// HandleHome is the handler function for the home page "/"
-func HandleHome(w http.ResponseWriter, r *http.Request) {
+func HandleGoHtmlSingle(w http.ResponseWriter, r *http.Request) {
 	// Create a toaster instance
 	toaster := goaster.NewToaster()
 
@@ -45,8 +34,8 @@ func HandleHome(w http.ResponseWriter, r *http.Request) {
 	// Render the needed JS for toast component as template.HTML
 	toastJS, _ := toastHTMLGenerator.GoasterJSToGoHTML(toaster, nil)
 
-	data := PageData{
-		Toast: ToastComponent{
+	data := types.PageData{
+		Toast: types.ToastComponent{
 			CSS:  toastCSS,
 			HTML: toastHtml,
 			JS:   toastJS,
@@ -80,17 +69,5 @@ func HandleHome(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "failed to render template", http.StatusInternalServerError)
 		log.Printf("failed to render template: %v", err)
 		return
-	}
-}
-
-func main() {
-	mux := http.NewServeMux()
-	mux.HandleFunc("GET /", HandleHome)
-
-	port := ":3300"
-	log.Printf("Listening on %s", port)
-	if err := http.ListenAndServe(port, mux); err != nil {
-		log.Printf("failed to start server: %v", err)
-		os.Exit(1)
 	}
 }

@@ -1,0 +1,17 @@
+package pages
+
+import (
+	"github.com/indaco/goaster"
+	"github.com/indaco/goaster/demos/layouts"
+	"github.com/indaco/goaster/demos/layouts/partials"
+)
+
+templ VariantAccentLightPage(toaster *goaster.Toaster) {
+	@layouts.Page() {
+		@partials.Head("goaster - accent light variant")
+		@partials.Body() {
+			<!-- display the messages -->
+			@toaster.Success("Success Toast")
+		}
+	}
+}

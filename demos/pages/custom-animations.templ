@@ -1,16 +1,14 @@
-package main
+package pages
 
-import "github.com/indaco/goaster"
+import (
+	"github.com/indaco/goaster"
+	"github.com/indaco/goaster/demos/layouts"
+	"github.com/indaco/goaster/demos/layouts/partials"
+)
 
-templ HomePage(toaster *goaster.Toaster) {
-	<!DOCTYPE html>
-	<html lang="en">
-		<head>
-			<meta charset="UTF-8"/>
-			<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-			<title>goaster - custom animations</title>
-			<!-- inject toast styles -->
-			@goaster.GoasterCSS()
+templ CustomAnimationPage(toaster *goaster.Toaster) {
+	@layouts.Page() {
+		@partials.Head("goaster - custom animation") {
 			<!-- use [animate.css](https://animate.style/) for additional animation -->
 			<link
 				rel="stylesheet"
@@ -25,12 +23,10 @@ templ HomePage(toaster *goaster.Toaster) {
                     --gtt-animation-exit-name-top: bounceOut;
                 }
 			</style>
-		</head>
-		<body class="min-h-screen relative flex flex-col">
+		}
+		@partials.Body() {
 			<!-- display the messages -->
 			@toaster.Info("Info Toast")
-			<!-- inject toast javascript -->
-			@goaster.GoasterJS(toaster, nil)
-		</body>
-	</html>
+		}
+	}
 }
