@@ -1,7 +1,9 @@
 package goaster
 
 import (
+	"context"
 	"reflect"
+	"strings"
 	"testing"
 
 	"github.com/a-h/templ"
@@ -143,46 +145,30 @@ func TestToasterNotificationMethods(t *testing.T) {
 		expectedLevel Level
 		message       string
 	}{
-		{
-			name:          "Default notification",
-			methodToTest:  (*Toaster).Default,
-			expectedLevel: DefaultLevel,
-			message:       "Default message",
-		},
-		{
-			name:          "Success notification",
-			methodToTest:  (*Toaster).Success,
-			expectedLevel: SuccessLevel,
-			message:       "Success message",
-		},
-		{
-			name:          "Error notification",
-			methodToTest:  (*Toaster).Error,
-			expectedLevel: ErrorLevel,
-			message:       "Error message",
-		},
-		{
-			name:          "Warning notification",
-			methodToTest:  (*Toaster).Warning,
-			expectedLevel: WarningLevel,
-			message:       "Warning message",
-		},
-		{
-			name:          "Info notification",
-			methodToTest:  (*Toaster).Info,
-			expectedLevel: InfoLevel,
-			message:       "Info message",
-		},
+		{"Default", (*Toaster).Default, DefaultLevel, "Default message"},
+		{"Success", (*Toaster).Success, SuccessLevel, "Success message"},
+		{"Error", (*Toaster).Error, ErrorLevel, "Error message"},
+		{"Warning", (*Toaster).Warning, WarningLevel, "Warning message"},
+		{"Info", (*Toaster).Info, InfoLevel, "Info message"},
 	}
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			toaster := ToasterDefaults()
-			tt.methodToTest(toaster, tt.message)
+			component := tt.methodToTest(toaster, tt.message)
 
-			// Validate the queue has exactly one message with the expected content and level
-			if toaster.queue.Size() != 1 {
-				t.Fatalf("expected 0 message in the queue, got %d", toaster.queue.Size())
+			var sb strings.Builder
+			err := component.Render(context.Background(), &sb)
+			if err != nil {
+				t.Fatalf("failed to render component: %v", err)
+			}
+
+			html := sb.String()
+			if !strings.Contains(html, tt.message) {
+				t.Errorf("expected message %q in output, got: %s", tt.message, html)
+			}
+			if !strings.Contains(html, `data-level="`+tt.expectedLevel.String()+`"`) {
+				t.Errorf("expected level %q in output, got: %s", tt.expectedLevel, html)
 			}
 		})
 	}

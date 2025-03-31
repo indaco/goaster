@@ -37,16 +37,3 @@ const (
 	AccentLight = Variant("accent-light")
 	AccentDark  = Variant("accent-dark")
 )
-
-/* ------------------------------------------------------------------------- */
-/* ENTRANCE ANIMATION CLASSES                                                */
-/* ------------------------------------------------------------------------- */
-
-var toastEntranceClasses = map[Position]string{
-	TopRight:     "gttShowFromTop",
-	TopLeft:      "gttShowFromTop",
-	TopCenter:    "gttShowFromTop",
-	BottomRight:  "gttShowFromBottom",
-	BottomLeft:   "gttShowFromBottom",
-	BottomCenter: "gttShowFromBottom",
-}

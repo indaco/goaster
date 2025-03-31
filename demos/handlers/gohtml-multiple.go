@@ -17,14 +17,6 @@ func HandleGoHtmlMultiple(w http.ResponseWriter, r *http.Request) {
 
 	toastHTMLGenerator := goaster.NewHTMLGenerator()
 
-	// Render the needed CSS for toast component as template.HTML
-	toastCSS, err := toastHTMLGenerator.GoasterCSSToGoHTML()
-	if err != nil {
-		http.Error(w, "failed to render toast CSS", http.StatusInternalServerError)
-		log.Printf("failed to render toast CSS: %v", err)
-		return
-	}
-
 	// Push messages
 	toaster.PushDefault("Default Toast")
 	toaster.PushSuccess("Success Toast")
@@ -40,19 +32,9 @@ func HandleGoHtmlMultiple(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// Render the needed JS for toast component as template.HTML
-	toastJS, err := toastHTMLGenerator.GoasterJSToGoHTML(toaster, nil)
-	if err != nil {
-		http.Error(w, "failed to render toast JS", http.StatusInternalServerError)
-		log.Printf("failed to render toast JS: %v", err)
-		return
-	}
-
 	data := types.PageData{
 		Toast: types.ToastComponent{
-			CSS:  toastCSS,
 			HTML: toastHtml,
-			JS:   toastJS,
 		},
 	}
 
@@ -64,15 +46,10 @@ func HandleGoHtmlMultiple(w http.ResponseWriter, r *http.Request) {
 			<meta charset="UTF-8">
 			<meta name="viewport" content="width=device-width, initial-scale=1.0">
 			<title>go-templ-toast</title>
-			<!-- inject toast styles -->
-			{{ .Toast.CSS }}
 		</head>
 		<body>
 			<!-- display the messages -->
 			{{ .Toast.HTML }}
-
-			<!-- inject toast javascript -->
-			{{ .Toast.JS }}
 		</body>
 		</html>
 	`))

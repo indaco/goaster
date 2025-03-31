@@ -8,7 +8,5 @@ type PageData struct {
 }
 
 type ToastComponent struct {
-	CSS  template.HTML
 	HTML template.HTML
-	JS   template.HTML
 }

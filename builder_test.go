@@ -1,18 +1,16 @@
-package goaster_test
+package goaster
 
 import (
 	"testing"
-
-	"github.com/indaco/goaster"
 )
 
 func TestToasterBuilder_Defaults(t *testing.T) {
-	toaster := goaster.NewToasterBuilder().Build()
+	toaster := NewToasterBuilder().Build()
 
 	if toaster == nil {
 		t.Fatal("expected toaster instance, got nil")
 	}
-	if toaster.Position != goaster.BottomRight {
+	if toaster.Position != BottomRight {
 		t.Errorf("expected default position to be BottomRight, got %v", toaster.Position)
 	}
 	if len(toaster.Icons) == 0 {
@@ -24,13 +22,13 @@ func TestToasterBuilder_Defaults(t *testing.T) {
 }
 
 func TestToasterBuilder_CustomConfig(t *testing.T) {
-	toaster := goaster.NewToasterBuilder().
-		WithPosition(goaster.TopLeft).
+	toaster := NewToasterBuilder().
+		WithPosition(TopLeft).
 		WithBorder(false).
 		WithAutoDismiss(false).
 		Build()
 
-	if toaster.Position != goaster.TopLeft {
+	if toaster.Position != TopLeft {
 		t.Errorf("expected position TopLeft, got %v", toaster.Position)
 	}
 	if toaster.Border != false {
@@ -42,8 +40,8 @@ func TestToasterBuilder_CustomConfig(t *testing.T) {
 }
 
 func TestToasterBuilder_WithAllOptions(t *testing.T) {
-	toaster := goaster.NewToasterBuilder().
-		WithVariant(goaster.AccentLight).
+	toaster := NewToasterBuilder().
+		WithVariant(AccentLight).
 		WithBorder(false).
 		WithRounded(true).
 		WithShowIcon(false).
@@ -51,11 +49,11 @@ func TestToasterBuilder_WithAllOptions(t *testing.T) {
 		WithAutoDismiss(false).
 		WithAnimation(false).
 		WithProgressBar(false).
-		WithPosition(goaster.TopCenter).
-		WithIcon(goaster.ErrorLevel, "<svg>Error</svg>").
+		WithPosition(TopCenter).
+		WithIcon(ErrorLevel, "<svg>Error</svg>").
 		Build()
 
-	if toaster.Variant != goaster.AccentLight {
+	if toaster.Variant != AccentLight {
 		t.Errorf("expected Variant to be AccentLight, got %v", toaster.Variant)
 	}
 	if toaster.Border {
@@ -79,22 +77,22 @@ func TestToasterBuilder_WithAllOptions(t *testing.T) {
 	if toaster.ProgressBar {
 		t.Errorf("expected ProgressBar=false")
 	}
-	if toaster.Position != goaster.TopCenter {
+	if toaster.Position != TopCenter {
 		t.Errorf("expected Position=TopCenter, got %v", toaster.Position)
 	}
-	if icon, ok := toaster.Icons[goaster.ErrorLevel]; !ok || icon != "<svg>Error</svg>" {
+	if icon, ok := toaster.Icons[ErrorLevel]; !ok || icon != "<svg>Error</svg>" {
 		t.Errorf("expected custom ErrorLevel icon to be set, got %q", icon)
 	}
 }
 
 func TestToasterBuilder_WithOptionsMerge(t *testing.T) {
-	builder := goaster.NewToasterBuilder().
+	builder := NewToasterBuilder().
 		WithBorder(false)
 
 	// Apply additional options
 	toaster := builder.WithOptions(
-		goaster.WithAutoDismiss(false),
-		goaster.WithAnimation(false),
+		WithAutoDismiss(false),
+		WithAnimation(false),
 	).Build()
 
 	if toaster.Border != false {
@@ -110,13 +108,13 @@ func TestToasterBuilder_WithOptionsMerge(t *testing.T) {
 
 func TestToasterBuilder_WithIconNilMap(t *testing.T) {
 	// Manually simulate icon map being nil
-	builder := goaster.NewToasterBuilder()
+	builder := NewToasterBuilder()
 	builder.Build().Icons = nil // forcibly set to nil
 
 	// Set new icon — this should initialize the map
-	toaster := builder.WithIcon(goaster.WarningLevel, "<svg>Warning</svg>").Build()
+	toaster := builder.WithIcon(WarningLevel, "<svg>Warning</svg>").Build()
 
-	icon, ok := toaster.Icons[goaster.WarningLevel]
+	icon, ok := toaster.Icons[WarningLevel]
 	if !ok || icon != "<svg>Warning</svg>" {
 		t.Errorf("expected WarningLevel icon to be set correctly, got %q", icon)
 	}
@@ -124,17 +122,17 @@ func TestToasterBuilder_WithIconNilMap(t *testing.T) {
 
 func TestToasterBuilder_Build_FallbackToDefaultPosition(t *testing.T) {
 	// Simulate missing Position
-	builder := goaster.NewToasterBuilder()
+	builder := NewToasterBuilder()
 	builder.Build().Position = "" // forcibly unset
 	toaster := builder.Build()
 
-	if toaster.Position != goaster.BottomRight {
+	if toaster.Position != BottomRight {
 		t.Errorf("expected fallback Position to be BottomRight, got %v", toaster.Position)
 	}
 }
 
 func TestToasterBuilder_Build_FallbackToDefaultIcons(t *testing.T) {
-	builder := goaster.NewToasterBuilder()
+	builder := NewToasterBuilder()
 	builder.Build().Icons = nil // forcibly unset
 	toaster := builder.Build()
 
@@ -144,36 +142,33 @@ func TestToasterBuilder_Build_FallbackToDefaultIcons(t *testing.T) {
 }
 
 func TestToasterBuilder_Build_FallbackToNewQueue_Clean(t *testing.T) {
-	builder := goaster.NewToasterBuilder()
-	builder.Build().Queue().Dequeue() // trigger init
-	builder.Build().Queue().Dequeue()
-	builder.Build().Queue().Dequeue()
-
-	// forcibly nil the queue
-	builder.Build().Queue().Dequeue()
+	builder := NewToasterBuilder()
 	toaster := builder.Build()
-	toaster.Queue().Dequeue()
 
-	// ACTUAL REAL CLEAN VERSION BELOW:
-	toaster = goaster.NewToasterBuilder().Build()
-	toaster.Queue().Dequeue() // Should not panic
+	// Attempt to dequeue from an empty queue
+	_, err := toaster.Queue().Dequeue()
+	if err == nil {
+		t.Errorf("expected error when dequeuing from an empty queue, got nil")
+	}
+
+	// Make sure the queue is initialized
 	if toaster.Queue() == nil {
 		t.Errorf("expected Queue to be initialized")
 	}
 }
 
 func TestToasterBuilder_Build_SetsDefaultPositionIfEmpty(t *testing.T) {
-	builder := goaster.NewToasterBuilder()
+	builder := NewToasterBuilder()
 	builder.Build().Position = "" // simulate unset
 
 	toaster := builder.Build()
-	if toaster.Position != goaster.BottomRight {
+	if toaster.Position != BottomRight {
 		t.Errorf("expected Position to default to BottomRight, got %v", toaster.Position)
 	}
 }
 
 func TestToasterBuilder_Build_SetsDefaultIconsIfNil(t *testing.T) {
-	builder := goaster.NewToasterBuilder()
+	builder := NewToasterBuilder()
 	builder.Build().Icons = nil // simulate nil
 
 	toaster := builder.Build()
@@ -183,19 +178,21 @@ func TestToasterBuilder_Build_SetsDefaultIconsIfNil(t *testing.T) {
 }
 
 func TestToasterBuilder_Build_InitializesQueueIfNil(t *testing.T) {
-	builder := goaster.NewToasterBuilder()
-	builder.Build().Queue().Dequeue() // init first
+	builder := NewToasterBuilder()
 
-	builder.Build().Queue().Dequeue() // simulate use
-	builder.Build().Queue().Dequeue()
+	// Manually set queue to nil to simulate uninitialized queue
+	builder.Build().queue = nil
 
-	// force nil
-	builder.Build().Queue().Dequeue()
+	// Call Build again to trigger fallback
+	toaster := builder.Build()
 
-	// Actually clean version:
-	toaster := goaster.NewToasterBuilder().Build()
-	toaster.Queue().Dequeue()
 	if toaster.Queue() == nil {
-		t.Errorf("expected Queue to be initialized")
+		t.Errorf("expected Queue to be initialized, got nil")
+	}
+
+	// Ensure it functions properly
+	_, err := toaster.Queue().Dequeue()
+	if err == nil {
+		t.Errorf("expected error when dequeuing from empty queue, got nil")
 	}
 }

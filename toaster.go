@@ -1,6 +1,10 @@
 package goaster
 
-import "github.com/a-h/templ"
+import (
+	"github.com/a-h/templ"
+	"github.com/indaco/goaster/components"
+	"github.com/indaco/goaster/internal/viewmodel"
+)
 
 // Toaster holds configuration for toast notifications.
 type Toaster struct {
@@ -29,6 +33,30 @@ func ToasterDefaults() *Toaster {
 		Position:    BottomRight,
 		Icons:       defaultIcons(),
 		queue:       NewQueue(),
+	}
+}
+
+func (t *Toaster) ToViewModel() viewmodel.ToasterViewModel {
+	var toasts []viewmodel.ToastViewModel
+	for _, toast := range t.Queue().GetMessagesAndDequeue() {
+		toasts = append(toasts, viewmodel.ToastViewModel{
+			Message: toast.Message,
+			Level:   toast.Level.String(),
+			Icon:    t.Icons[toast.Level],
+		})
+	}
+
+	return viewmodel.ToasterViewModel{
+		Variant:     t.Variant.String(),
+		Border:      t.Border,
+		Rounded:     t.Rounded,
+		ShowIcon:    t.ShowIcon,
+		Button:      t.Button,
+		AutoDismiss: t.AutoDismiss,
+		Animation:   t.Animation,
+		ProgressBar: t.ProgressBar,
+		Position:    t.Position.String(),
+		Toasts:      toasts,
 	}
 }
 
@@ -76,35 +104,35 @@ func (t *Toaster) PushInfo(message string) {
 
 // RenderAll prints all the toast notifications in the queue.
 func (t *Toaster) RenderAll() templ.Component {
-	return container(t)
+	return components.Container(t.ToViewModel())
 }
 
 // Default displays a default toast notification.
 func (t *Toaster) Default(message string) templ.Component {
 	t.queue.Enqueue(NewToast(message, DefaultLevel))
-	return container(t)
+	return components.Container(t.ToViewModel())
 }
 
 // Success displays a success toast notification.
 func (t *Toaster) Success(message string) templ.Component {
 	t.queue.Enqueue(NewToast(message, SuccessLevel))
-	return container(t)
+	return components.Container(t.ToViewModel())
 }
 
 // Error displays an error toast notification.
 func (t *Toaster) Error(message string) templ.Component {
 	t.queue.Enqueue(NewToast(message, ErrorLevel))
-	return container(t)
+	return components.Container(t.ToViewModel())
 }
 
 // Warning displays a warning toast notification.
 func (t *Toaster) Warning(message string) templ.Component {
 	t.queue.Enqueue(NewToast(message, WarningLevel))
-	return container(t)
+	return components.Container(t.ToViewModel())
 }
 
 // Info displays an info toast notification.
 func (t *Toaster) Info(message string) templ.Component {
 	t.queue.Enqueue(NewToast(message, InfoLevel))
-	return container(t)
+	return components.Container(t.ToViewModel())
 }
