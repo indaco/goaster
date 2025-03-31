@@ -1,0 +1,47 @@
+package variants
+
+var toasterAccentLightVariantHandle = templ.NewOnceHandle()
+
+templ variantAccentLight() {
+	@toasterAccentLightVariantHandle.Once() {
+		<style type="text/css">
+/* [tempo] BEGIN - Do not edit! This section is auto-generated. */
+.gttToast[role='alert'][data-level='default'][data-variant='accent-light'] {
+  --gtt-color: var(--gtt-default-accent-color);
+  --gtt-bg: var(--gtt-accent-light-bg);
+  --gtt-border-color: var(--gtt-default-border-color);
+  border-left-color: var(--gtt-default-accent-border-color, #6b7280);
+}
+
+.gttToast[role='alert'][data-level='success'][data-variant='accent-light'] {
+  --gtt-color: var(--gtt-success-accent-color);
+  --gtt-bg: var(--gtt-accent-light-bg);
+  --gtt-border-color: var(--gtt-success-border-color);
+  border-left-color: var(--gtt-success-accent-dark-color, #22c55e);
+}
+
+.gttToast[role='alert'][data-level='error'][data-variant='accent-light'] {
+  --gtt-color: var(--gtt-error-accent-color);
+  --gtt-bg: var(--gtt-accent-light-bg);
+  --gtt-border-color: var(--gtt-error-border-color);
+  border-left-color: var(--gtt-error-accent-border-color, #ef4444);
+}
+
+.gttToast[role='alert'][data-level='warning'][data-variant='accent-light'] {
+  --gtt-color: var(--gtt-warning-accent-color);
+  --gtt-bg: var(--gtt-accent-light-bg);
+  --gtt-border-color: var(--gtt-warning-border-color);
+  border-left-color: var(--gtt-warning-accent-border-color, #f97316);
+}
+
+.gttToast[role='alert'][data-level='info'][data-variant='accent-light'] {
+  --gtt-color: var(--gtt-info-accent-color);
+  --gtt-bg: var(--gtt-accent-light-bg);
+  --gtt-border-color: var(--gtt-info-border-color);
+  border-left-color: var(--gtt-info-accent-border-color, #3b82f6);
+}
+
+/* [tempo] END */
+</style>
+	}
+}

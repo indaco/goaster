@@ -1,0 +1,15 @@
+# Tempo CLI configuration file
+# Documentation & source code: https://github.com/indaco/tempo
+
+# The root folder for tempo files
+tempo_root: .tempo-files
+
+app:
+  # The name of the Go module being worked on.
+  go_module: github.com/indaco/goaster
+
+  # The Go package name where components will be organized and generated.
+  go_package: components
+
+  # The directory where asset files (CSS, JS) will be generated.
+  assets_dir: assets
