@@ -1,5 +1,9 @@
 package goaster
 
+/* ------------------------------------------------------------------------- */
+/* LEVELS                                                                    */
+/* ------------------------------------------------------------------------- */
+
 // Predefined toast levels
 const (
 	DefaultLevel Level = "default"
@@ -8,6 +12,10 @@ const (
 	WarningLevel Level = "warning"
 	InfoLevel    Level = "info"
 )
+
+/* ------------------------------------------------------------------------- */
+/* POSITIONS                                                                 */
+/* ------------------------------------------------------------------------- */
 
 // Predefined toast positions
 const (
@@ -19,9 +27,26 @@ const (
 	BottomCenter = Position("bottom-center")
 )
 
+/* ------------------------------------------------------------------------- */
+/* VARIANTS                                                                  */
+/* ------------------------------------------------------------------------- */
+
 // Predefined style variants
 const (
 	Accent      = Variant("accent")
 	AccentLight = Variant("accent_light")
 	AccentDark  = Variant("accent_dark")
 )
+
+/* ------------------------------------------------------------------------- */
+/* ENTRANCE ANIMATION CLASSES                                                */
+/* ------------------------------------------------------------------------- */
+
+var toastEntranceClasses = map[Position]string{
+	TopRight:     "gttShowFromTop",
+	TopLeft:      "gttShowFromTop",
+	TopCenter:    "gttShowFromTop",
+	BottomRight:  "gttShowFromBottom",
+	BottomLeft:   "gttShowFromBottom",
+	BottomCenter: "gttShowFromBottom",
+}
