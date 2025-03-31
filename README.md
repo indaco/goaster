@@ -88,22 +88,6 @@ toaster := goaster.NewToaster(
 )
 ```
 
-### Add goester CSS and Javascript
-
-`goaster` leverages the `templ` library's features, including CSS Components and JavaScript Templates, to encapsulate all necessary styling and functionality without relying on external dependencies.
-
-- `GoasterCSS`: it supplies the required CSS, encapsulating the visual design and layout specifics of the toast notifications.
-- `GoasterJS`: it provides the JavaScript logic essential for dynamic behaviors such as displaying, hiding, and managing toast notifications.
-
-To facilitate integration with Go's `template/html` standard library, `goaster` includes a dedicated `HTMLGenerator` type to seamlessly integrate toast notifications into web applications built with Go's `html/template` standard library.
-
-3 methods, acting as wrappers to the templ's `templ.ToGoHTML`, generate the necessary HTML to be embedded them into server-rendered pages:
-
-- `GoasterCSSToGoHTML`: render the `GoasterCSS` component into a `template.HTML` value.
-- `GoasterJSToGoHTML`: render the `GoasterJS`component into a `template.HTML` value.
-
-> **Note**: refer to the [Examples](#examples) section to see how to use `goaster` with `templ` and `html/template`.
-
 ### Displaying Toast Messages
 
 Display different levels of toast messages:
@@ -143,18 +127,19 @@ toaster := goaster.NewToaster(
 
 ## Theming
 
-Customizing the appearance of `goaster` notifications to align with your design preferences is both straightforward and flexible, accomplished by using CSS custom properties (CSS variables) prefixed with `gtt`. For a comprehensive list of CSS custom properties, along with their default values and descriptions, please consult the tabber [CSS custom Props](./docs/css-props.md) document.
+Customizing the appearance of `goaster` notifications to align with your design preferences is both straightforward and flexible, accomplished by using CSS custom properties (CSS variables) prefixed with `gtt`.
+
+See the [CSS Custom Properties](./docs/css-props.md) reference for full details.
+
+## Use with Go's `template/html`
+
+To facilitate integration with Go's `template/html` standard library, `goaster` includes a dedicated `HTMLGenerator` type to seamlessly integrate toast notifications into web applications built with Go's `html/template` standard library.
+
+> **Note**: See the [Examples](#examples) section to learn how to use `goaster` with `templ` and `html/template`.
 
 ## Examples
 
-- [use with `a-h/templ` template](_examples/a-h-templ-single-toast)
-- [multiple messages with `a-h/templ`](_examples/a-h-templ-multiple-toasts)
-- [use with `template/html`](_examples/go-html-template-single-toast)
-- [multiple messages with `template/html`](_examples/go-html-template-multiple-toasts)
-- [theming](_examples/theming)
-- [variants](_examples/variants)
-- [custom icons](_examples/custom-icons)
-- [custom animations](_examples/custom-animations)
+👉 [Check out the examples with setup instructions](examples/)
 
 ## Contributing
 
