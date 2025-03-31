@@ -1,19 +1,28 @@
-<h1 align="center" style="font-size: 2.5rem;">
+<h1 align="center">
   goaster
 </h1>
+<h2 align="center" style="font-size: 1.5em;">
+  toast notification component for Go web applications.
+</h2>
 <p align="center">
-  <a href="https://github.com/indaco/goaster/blob/main/LICENSE" target="_blank">
-    <img src="https://img.shields.io/badge/license-mit-blue?style=flat-square&logo=none" alt="license" />
-  </a>
-  &nbsp;
+  <a href="https://github.com/indaco/goaster/actions/workflows/ci.yml" target="_blank">
+      <img src="https://github.com/indaco/goaster/actions/workflows/ci.yml/badge.svg" alt="CI" />
+    </a>
+    <a href="https://coveralls.io/github/indaco/goaster?branch=main" target="_blank">
+      <img src="https://coveralls.io/repos/github/indaco/goaster/badge.svg?branch=main" alt="Coverage Status" />
+    </a>
   <a href="https://goreportcard.com/report/github.com/indaco/goaster/" target="_blank">
     <img src="https://goreportcard.com/badge/github.com/indaco/goaster" alt="go report card" />
   </a>
-  &nbsp;
+  <a href="https://badge.fury.io/gh/indaco%2Fgoaster">
+    <img src="https://badge.fury.io/gh/indaco%2Fgoaster.svg" alt="GitHub version" height="18">
+  </a>
   <a href="https://pkg.go.dev/github.com/indaco/goaster/" target="_blank">
       <img src="https://pkg.go.dev/badge/github.com/indaco/goaster/.svg" alt="go reference" />
   </a>
-  &nbsp;
+   <a href="https://github.com/indaco/goaster/blob/main/LICENSE" target="_blank">
+    <img src="https://img.shields.io/badge/license-mit-blue?style=flat-square&logo=none" alt="license" />
+  </a>
   <a href="https://www.jetify.com/devbox/docs/contributor-quickstart/">
     <img src="https://www.jetify.com/img/devbox/shield_moon.svg" alt="Built with Devbox" />
   </a>
