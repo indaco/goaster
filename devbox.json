@@ -18,7 +18,11 @@
       "export GOROOT=$(go env GOROOT)",
       "echo '* Set Git hooks path\n'",
       "find .githooks -type f -exec chmod +x {} \\;",
-      "git config core.hooksPath .githooks"
+      "git config core.hooksPath .githooks",
+      "echo '* Install go-modernize'",
+      "go install golang.org/x/tools/gopls/internal/analysis/modernize/cmd/modernize@latest",
+      "echo '* Install tempo-cli'",
+      "go install github.com/indaco/tempo/cmd/tempo@latest"
     ],
     "scripts": {
       "build": ["make build"],
