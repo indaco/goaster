@@ -19,7 +19,12 @@ func HandleGoHtmlSingle(w http.ResponseWriter, r *http.Request) {
 	toastHTMLGenerator := goaster.NewHTMLGenerator()
 
 	// Render the needed CSS for toast component as template.HTML
-	toastCSS, _ := toastHTMLGenerator.GoasterCSSToGoHTML()
+	toastCSS, err := toastHTMLGenerator.GoasterCSSToGoHTML()
+	if err != nil {
+		http.Error(w, "failed to render toast CSS", http.StatusInternalServerError)
+		log.Printf("failed to render toast CSS: %v", err)
+		return
+	}
 
 	// Render the toast component into a template.HTML
 	c := toaster.Success("Success Toast")
@@ -32,7 +37,12 @@ func HandleGoHtmlSingle(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// Render the needed JS for toast component as template.HTML
-	toastJS, _ := toastHTMLGenerator.GoasterJSToGoHTML(toaster, nil)
+	toastJS, err := toastHTMLGenerator.GoasterJSToGoHTML(toaster, nil)
+	if err != nil {
+		http.Error(w, "failed to render toast JS", http.StatusInternalServerError)
+		log.Printf("failed to render toast JS: %v", err)
+		return
+	}
 
 	data := types.PageData{
 		Toast: types.ToastComponent{
