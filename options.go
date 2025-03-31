@@ -3,6 +3,15 @@ package goaster
 // Option represents a configuration function that modifies a Toaster instance.
 type Option func(*Toaster)
 
+// NewToaster creates a Toaster instance with default settings and applies any given options.
+func NewToaster(options ...Option) *Toaster {
+	toaster := ToasterDefaults()
+	for _, option := range options {
+		option(toaster)
+	}
+	return toaster
+}
+
 // WithVariant configures the style variant for the toast.
 func WithVariant(variant Variant) Option {
 	return func(tp *Toaster) {

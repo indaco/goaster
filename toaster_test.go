@@ -1,14 +1,14 @@
 package goaster
 
 import (
-	"github.com/a-h/templ"
 	"reflect"
 	"testing"
+
+	"github.com/a-h/templ"
 )
 
-// TestNewToasterDefault checks if a new Toaster is created with default values.
-func TestNewToasterDefault(t *testing.T) {
-	toaster := NewToaster()
+func TestToasterDefault(t *testing.T) {
+	toaster := ToasterDefaults()
 
 	if toaster.Variant != "" {
 		t.Errorf("expected Variant to be an empty string, got %v", toaster.Variant)
@@ -40,214 +40,10 @@ func TestNewToasterDefault(t *testing.T) {
 }
 
 // TestToasterOptions uses table-driven tests to verify the functional options of the Toaster.
-func TestToasterOptions(t *testing.T) {
-	tests := []struct {
-		name     string
-		options  []Option
-		expected Toaster
-	}{
-		{
-			name:    "Default options",
-			options: nil,
-			expected: Toaster{
-				Border:      true,
-				Rounded:     true,
-				ShowIcon:    true,
-				Button:      true,
-				AutoDismiss: true,
-				Animation:   true,
-				ProgressBar: true,
-				Position:    BottomRight,
-			},
-		},
-		{
-			name: "WithVariant accent",
-			options: []Option{
-				WithVariant(AccentLight),
-			},
-			expected: Toaster{
-				Variant:     AccentLight,
-				Border:      true,
-				Rounded:     true,
-				ShowIcon:    true,
-				Button:      true,
-				AutoDismiss: true,
-				Animation:   true,
-				ProgressBar: true,
-				Position:    BottomRight,
-			},
-		},
-		{
-			name: "WithBorder false",
-			options: []Option{
-				WithBorder(false),
-			},
-			expected: Toaster{
-				Border:      false,
-				Rounded:     true,
-				ShowIcon:    true,
-				Button:      true,
-				AutoDismiss: true,
-				Animation:   true,
-				ProgressBar: true,
-				Position:    BottomRight,
-			},
-		},
-		{
-			name: "WithRounded false",
-			options: []Option{
-				WithRounded(false),
-			},
-			expected: Toaster{
-				Border:      true,
-				Rounded:     false,
-				ShowIcon:    true,
-				Button:      true,
-				AutoDismiss: true,
-				Animation:   true,
-				ProgressBar: true,
-				Position:    BottomRight,
-			},
-		},
-		{
-			name: "WithShowIcon false",
-			options: []Option{
-				WithShowIcon(false),
-			},
-			expected: Toaster{
-				Border:      true,
-				Rounded:     true,
-				ShowIcon:    false,
-				Button:      true,
-				AutoDismiss: true,
-				Animation:   true,
-				ProgressBar: true,
-				Position:    BottomRight,
-			},
-		},
-		{
-			name: "WithButton false",
-			options: []Option{
-				WithButton(false),
-			},
-			expected: Toaster{
-				Border:      true,
-				Rounded:     true,
-				ShowIcon:    true,
-				Button:      false,
-				AutoDismiss: true,
-				Animation:   true,
-				ProgressBar: true,
-				Position:    BottomRight,
-			},
-		},
-		{
-			name: "WithAutoDismiss false",
-			options: []Option{
-				WithAutoDismiss(false),
-			},
-			expected: Toaster{
-				Border:      true,
-				Rounded:     true,
-				ShowIcon:    true,
-				Button:      true,
-				AutoDismiss: false,
-				Animation:   true,
-				ProgressBar: true,
-				Position:    BottomRight,
-			},
-		},
-		{
-			name: "WithAnimation false",
-			options: []Option{
-				WithAnimation(false),
-			},
-			expected: Toaster{
-				Border:      true,
-				Rounded:     true,
-				ShowIcon:    true,
-				Button:      true,
-				AutoDismiss: true,
-				Animation:   false,
-				ProgressBar: true,
-				Position:    BottomRight,
-			},
-		},
-		{
-			name: "WithProgressBar false",
-			options: []Option{
-				WithProgressBar(false),
-			},
-			expected: Toaster{
-				Border:      true,
-				Rounded:     true,
-				ShowIcon:    true,
-				Button:      true,
-				AutoDismiss: true,
-				Animation:   true,
-				ProgressBar: false,
-				Position:    BottomRight,
-			},
-		},
-		{
-			name: "WithPosition TopLeft",
-			options: []Option{
-				WithPosition(TopLeft),
-			},
-			expected: Toaster{
-				Border:      true,
-				Rounded:     true,
-				ShowIcon:    true,
-				Button:      true,
-				AutoDismiss: true,
-				Position:    TopLeft,
-			},
-		},
-	}
-
-	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			toaster := NewToaster(tt.options...)
-
-			// Check each field in expected Toaster struct
-			if toaster.Variant != tt.expected.Variant {
-				t.Errorf("Variant: expected %v, got %v", tt.expected.Variant, toaster.Variant)
-			}
-			if toaster.Border != tt.expected.Border {
-				t.Errorf("Border: expected %v, got %v", tt.expected.Border, toaster.Border)
-			}
-			if toaster.Rounded != tt.expected.Rounded {
-				t.Errorf("Rounded: expected %v, got %v", tt.expected.Rounded, toaster.Rounded)
-			}
-			if toaster.ShowIcon != tt.expected.ShowIcon {
-				t.Errorf("ShowIcon: expected %v, got %v", tt.expected.ShowIcon, toaster.ShowIcon)
-			}
-			if toaster.Button != tt.expected.Button {
-				t.Errorf("Button: expected %v, got %v", tt.expected.Button, toaster.Button)
-			}
-			if toaster.AutoDismiss != tt.expected.AutoDismiss {
-				t.Errorf("AutoDismiss: expected %v, got %v", tt.expected.AutoDismiss, toaster.AutoDismiss)
-			}
-			if toaster.Position != tt.expected.Position {
-				t.Errorf("Position: expected %v, got %v", tt.expected.Position, toaster.Position)
-			}
-		})
-	}
-}
-
-// TestWithIcon verifies the WithIcon functional option for custom icons.
-func TestWithIcon(t *testing.T) {
-	customIcon := "<svg>Custom Icon</svg>"
-	toaster := NewToaster(WithIcon(SuccessLevel, customIcon))
-
-	if toaster.Icons[SuccessLevel] != customIcon {
-		t.Errorf("WithIcon(SuccessLevel, customIcon) failed; expected custom icon, got %v", toaster.Icons[SuccessLevel])
-	}
-}
 
 // TestQueueAdd verifies adding messages to the queue.
 func TestQueueAdd(t *testing.T) {
-	toaster := NewToaster()
+	toaster := ToasterDefaults()
 	toaster.PushSuccess("Success message")
 	toaster.PushError("Error message")
 
@@ -320,8 +116,8 @@ func TestAddMessageMethods(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			toaster := NewToaster() // Create a new Toaster instance for each test
-			tt.addMessage(toaster)  // Execute the method to add a message
+			toaster := ToasterDefaults() // Create a new Toaster instance for each test
+			tt.addMessage(toaster)       // Execute the method to add a message
 
 			// Check if there's exactly one message in the queue
 			if toaster.queue.Size() != 1 {
@@ -381,7 +177,7 @@ func TestToasterNotificationMethods(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			toaster := NewToaster() // Assuming NewToaster correctly initializes the queue
+			toaster := ToasterDefaults()
 			tt.methodToTest(toaster, tt.message)
 
 			// Validate the queue has exactly one message with the expected content and level

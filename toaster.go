@@ -17,9 +17,8 @@ type Toaster struct {
 	queue       *Queue           // Toast queue
 }
 
-// NewToaster creates a Toaster instance with default settings and applies any given options.
-func NewToaster(options ...Option) *Toaster {
-	toaster := &Toaster{
+func ToasterDefaults() *Toaster {
+	return &Toaster{
 		Border:      true,
 		Rounded:     true,
 		ShowIcon:    true,
@@ -31,12 +30,6 @@ func NewToaster(options ...Option) *Toaster {
 		Icons:       defaultIcons(),
 		queue:       NewQueue(),
 	}
-
-	for _, option := range options {
-		option(toaster)
-	}
-
-	return toaster
 }
 
 /* ------------------------------------------------------------------------- */
