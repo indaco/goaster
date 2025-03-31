@@ -1,15 +1,23 @@
 {
-  "$schema": "https://raw.githubusercontent.com/jetpack-io/devbox/0.10.5/.schema/devbox.schema.json",
+  "$schema": "https://raw.githubusercontent.com/jetify-com/devbox/0.14.0/.schema/devbox.schema.json",
   "packages": [
     "git@latest",
-    "go@latest",
+    "go@1.23",
     "golangci-lint@latest",
     "gnumake@latest",
     "templ@latest"
   ],
+  "env": {
+    "GOPATH": "$HOME/go/",
+    "PATH": "$PATH:$HOME/go/bin"
+  },
   "shell": {
     "init_hook": [
-      "echo 'Welcome to @indaco/goaster devbox!'",
+      "echo '\nWelcome to @indaco/goaster devbox!\n'",
+      "echo '* Set GOROOT'",
+      "export GOROOT=$(go env GOROOT)",
+      "echo '* Set Git hooks path\n'",
+      "find .githooks -type f -exec chmod +x {} \\;",
       "git config core.hooksPath .githooks"
     ],
     "scripts": {
