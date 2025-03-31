@@ -31,25 +31,25 @@
 
 A configurable, themeable and non-intrusive server-rendered toast notification component for Go web applications. Built with [templ](https://github.com/a-h/templ) library for seamless integration with Go-based web frontends.
 
+<div style="display: flex; justify-content: center;">
+   <img src="https://raw.githubusercontent.com/indaco/goaster/gh-assets/demo.gif" alt="Image" >
+</div>
+
 ### Features
 
-- **No External Dependencies**: Built with native Go and the `templ` library, requiring no external frontend dependencies.
-- **Multiple Toasts**: Support to display multiple toast notifications.
-- **Configurable**: Customize appearance (bordered, rounded), behavior, and position.
-- **Variants**: Provide toast style variants like `Accent`, `AccentLight` and `AccentDark`.
-- **Themeable**: Use CSS variables to theme your toasts to match your application's design.
-- **Icon Support**: Include default SVG icons for various toast levels (such as success, error, info, etc.), allowing you to use your preferred icons.
-- **Positioning**: Flexible positioning of toast messages (top-right, bottom-left, etc.).
-- **Progress Bar for Auto-Dismiss**: A visual progress bar indicates the countdown until the toast will automatically dismiss (with auto-dismiss enabled only).
-- **Animations**: Entrance and exit animations for toast notifications.
-  - _Default Animations_: built-in animations for toasts appearing and disappearing.
-  - _Custom Animations_: Customize animations via CSS variables or integrate with external CSS animation libraries.
-  - _Animation Control_: Full control over animation timing, easing, delay and effects, via CSS variables.
-  - _Disable Animations Option_: Ability to completely disable animations, providing flexibility for different application needs and user preferences.
-
-<div style="display: flex; justify-content: center;">
-   <img src="statics/demo.gif" alt="Image" >
-</div>
+- **No External Dependencies**: Built with native Go and the [`templ`](https://templ.guide) library—no JavaScript or frontend dependencies required.
+- **Multiple Toasts**: Supports displaying multiple toast notifications simultaneously.
+- **Highly Configurable**: Customize appearance (bordered, rounded), behavior, and position to fit your UI.
+- **Variants**: Includes style variants such as `Accent`, `AccentLight`, and `AccentDark`.
+- **Themeable**: Easily theme your toasts using CSS variables to match your app’s design.
+- **Icon Support**: Comes with default SVG icons for common toast types (success, error, info, etc.)—or use your own.
+- **Flexible Positioning**: Display toast messages in any corner (top-right, bottom-left, etc.).
+- **Auto-Dismiss Progress Bar**: Visual progress indicator for toast duration (when auto-dismiss is enabled).
+- **Smooth Animations**:
+  - _Built-in Animations_: Default entrance and exit transitions.
+  - _Custom Animations_: Define your own via CSS variables or external animation libraries.
+  - _Animation Control_: Fine-tune timing, easing, delay, and effects with CSS variables.
+  - _Disable Option_: Disable all animations when needed (e.g., for accessibility or testing).
 
 ## Installation
 
