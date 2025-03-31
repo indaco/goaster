@@ -16,7 +16,9 @@ func main() {
 	mux.HandleFunc("GET /custom-animations", handlers.HandleCustomAnimations)
 	mux.HandleFunc("GET /custom-icons", handlers.HandleCustomIcons)
 	mux.HandleFunc("GET /themes", handlers.HandleThemes)
+	mux.HandleFunc("GET /variants/accent", handlers.HandleVariantAccent)
 	mux.HandleFunc("GET /variants/accent-light", handlers.HandleVariantAccentLight)
+	mux.HandleFunc("GET /variants/accent-dark", handlers.HandleVariantAccentDark)
 	mux.HandleFunc("GET /gohtml/single", handlers.HandleGoHtmlSingle)
 	mux.HandleFunc("GET /gohtml/multiple", handlers.HandleGoHtmlMultiple)
 

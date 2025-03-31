@@ -3,21 +3,32 @@ package pages
 import (
 	"github.com/indaco/goaster/examples/layouts"
 	"github.com/indaco/goaster/examples/layouts/partials"
+	"github.com/indaco/goaster/examples/styles"
 )
 
 templ HomePage() {
 	@layouts.Page() {
-		@partials.Head("goaster - demo")
+		@partials.Head("goaster - demo") {
+			@styles.Navigation()
+		}
 		@partials.Body() {
 			<h2>goaster - Demos</h2>
-			<ul class="li"><a href="/single">Single Toast</a></ul>
-			<ul class="li"><a href="/multiple">Multiple Toasts</a></ul>
-			<ul class="li"><a href="/custom-animations">Custom Animations</a></ul>
-			<ul class="li"><a href="/custom-icons">Custom Icons</a></ul>
-			<ul class="li"><a href="/themes">Themes</a></ul>
-			<ul class="li"><a href="/variants/accent-light">Variant</a></ul>
-			<ul class="li"><a href="/gohtml/single">GoHTML Single Toast</a></ul>
-			<ul class="li"><a href="/gohtml/multiple">GoHTML Multiple Toast</a></ul>
+			<ul class="nav">
+				<li><a href="/single">Single Toast</a></li>
+				<li><a href="/multiple">Multiple Toasts</a></li>
+				<li><a href="/custom-animations">Custom Animations</a></li>
+				<li><a href="/custom-icons">Custom Icons</a></li>
+				<li><a href="/themes">Themes</a></li>
+				<li>
+					<ul class="nav-sub">
+						<li><a href="/variants/accent">Accent Variant</a></li>
+						<li><a href="/variants/accent-light">Accent Light Variant</a></li>
+						<li><a href="/variants/accent-dark">Accent Dark Variant</a></li>
+					</ul>
+				</li>
+				<li><a href="/gohtml/single">GoHTML Single Toast</a></li>
+				<li><a href="/gohtml/multiple">GoHTML Multiple Toast</a></li>
+			</ul>
 		}
 	}
 }

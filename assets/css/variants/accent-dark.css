@@ -1,3 +1,9 @@
+.gttToast[role='alert'][data-variant='accent-dark'] {
+  border: 0;
+  border-left-width: 4px;
+  border-left-style: solid;
+}
+
 .gttToast[role='alert'][data-level='default'][data-variant='accent-dark'] {
   --gtt-color: var(--gtt-default-accent-dark-color);
   --gtt-bg: var(--gtt-accent-dark-bg);
