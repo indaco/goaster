@@ -28,7 +28,7 @@ jobs:
         run: go mod verify
 
       - name: Run tests
-        run: go test -count=1 -timeout 30s $(go list ./... | grep -Ev 'demos|components') -covermode=atomic
+        run: go test -count=1 -timeout 30s $(go list ./... | grep -Ev 'examples|components') -covermode=atomic
 
   golangci:
     name: lint
