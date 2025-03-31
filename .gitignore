@@ -28,3 +28,9 @@ tmp
 *_templ.txt
 _examples/**/*_templ.go
 sync.sh
+
+# tempo
+.tempo-lastrun
+
+# go test
+profile.cov
