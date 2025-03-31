@@ -34,8 +34,8 @@ const (
 // Predefined style variants
 const (
 	Accent      = Variant("accent")
-	AccentLight = Variant("accent_light")
-	AccentDark  = Variant("accent_dark")
+	AccentLight = Variant("accent-light")
+	AccentDark  = Variant("accent-dark")
 )
 
 /* ------------------------------------------------------------------------- */
