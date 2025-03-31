@@ -1,11 +1,12 @@
 package goaster
 
+// Toast holds a message and its level.
 type Toast struct {
 	Message string
-	Level   Level // Assuming ToastLevel is defined as before
+	Level   Level
 }
 
-// NewToast creates and returns a new Message with the specified text and level.
+// NewToast creates a new Toast with a message and level.
 func NewToast(msg string, level Level) Toast {
 	return Toast{
 		Message: msg,
