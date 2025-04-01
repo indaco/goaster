@@ -8,6 +8,7 @@ import (
 )
 
 templ Container(t viewmodel.ToasterViewModel) {
+	@css.GoasterCSSColors()
 	@css.GoasterCSS(t.Variant)
 	<div class="gttContainer" data-position={ t.Position }>
 		for _, toast := range t.Toasts {
@@ -24,7 +25,11 @@ templ component(t viewmodel.ToastViewModel, toaster viewmodel.ToasterViewModel) 
 		data-bordered={ strconv.FormatBool(toaster.Border) }
 		data-rounded={ strconv.FormatBool(toaster.Rounded) }
 		data-level={ t.Level }
-		data-variant={ toaster.Variant }
+		if toaster.Variant != "" {
+			data-variant={ toaster.Variant }
+		}
+		data-position={ toaster.Position }
+		data-animation={ strconv.FormatBool(toaster.Animation) }
 		if toaster.AutoDismiss {
 			data-auto-dismiss="true"
 		} else {
