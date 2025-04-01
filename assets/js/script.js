@@ -1,34 +1,46 @@
-const { DismissTimer = 3000, RemoveDuration = 500 } = options ?? {}
-
 /** Toast direction constants */
 const DIRECTION_TOP = 'top'
 const DIRECTION_BOTTOM = 'bottom'
 
-/** Auto-dismiss and removal durations */
-const DISMISS_TIMER = DismissTimer
-const REMOVE_DURATION = RemoveDuration
+/**
+ * @typedef {Object} GoasterJSConfig
+ * @property {number} [dismissTimer] - Time (in ms) before the toast auto-dismisses.
+ * @property {number} [removeDuration] - Duration (in ms) for the removal animation.
+ */
 
 /**
- * Removes all CSS classes from the specified element that start with the given prefix.
- * @param {HTMLElement} element - The element from which to remove classes.
- * @param {string} prefix - The prefix of classes to be removed.
+ * Initializes the Goaster system with optional configuration for toast timing.
+ *
+ * @param {GoasterJSConfig} [config={}] - Configuration options.
+ * @returns {{ dismissTimer: number, removeDuration: number }} The resolved configuration.
  */
-function removeClassesWithPrefix(element, prefix) {
-  element.classList.forEach((className) => {
-    if (className.startsWith(prefix)) {
-      element.classList.remove(className)
-    }
-  })
+function initGoaster({ dismissTimer = 3000, removeDuration = 500 } = {}) {
+  return { dismissTimer, removeDuration }
+}
+
+/**
+ * Removes known "show" classes from the toast element.
+ * @param {HTMLElement} element - The toast element.
+ */
+function removeShowClasses(element) {
+  const showClasses = ['gttShow', 'gttShowFromTop', 'gttShowFromBottom']
+  element.classList.remove(...showClasses)
 }
 
 /**
  * Performs the exit animation for a toast element and removes it from the DOM after the animation.
  *
  * @param {HTMLElement} element - The toast element to animate and remove.
- * @param {boolean} animated - Specifies whether to apply an exit animation.
- * @param {string} positionName - The position of the toast used to determine the direction of the exit animation.
+ * @param {boolean} animated - Whether to apply an exit animation.
+ * @param {string} positionName - The position of the toast used to determine animation direction.
+ * @param {number} duration - The duration before removal (in ms).
  */
-function performExitAnimationAndRemove(element, animated, positionName) {
+function performExitAnimationAndRemove(
+  element,
+  animated,
+  positionName,
+  duration = 500
+) {
   const classesToAdd = ['gttClose']
 
   if (animated) {
@@ -38,62 +50,24 @@ function performExitAnimationAndRemove(element, animated, positionName) {
         : 'gttCloseFromBottom'
     )
   }
+
   element.classList.add(...classesToAdd)
 
-  removeClassesWithPrefix(element, 'gttShow')
-  if (animated) removeClassesWithPrefix(element, 'gttShowFrom')
-
-  setTimeout(() => element.remove(), REMOVE_DURATION)
-}
-
-/**
- * Closes the toast by stopping event propagation, clearing auto-dismiss timer, and performing exit animation.
- * @param {Event} e - The event object.
- */
-function closeToast(e) {
-  e.stopPropagation()
-  const toast = e.target.closest('[class^="gttToast"]')
-  if (toast) {
-    clearTimeout(Number(toast.dataset.dismissTimer))
-    performExitAnimationAndRemove(
-      toast,
-      toaster.Animation,
-      toaster.Position.Name
-    )
-  }
-}
-
-/**
- * Initializes the automatic dismissal of toasts with an optional progress bar animation.
- */
-const handleAutoDismiss = {
-  init(isWithProgressBar) {
-    document
-      .querySelectorAll('[class^="gttToast"][data-auto-dismiss="true"]')
-      .forEach((toast) => {
-        if (isWithProgressBar) animateProgressBar(toast)
-
-        toast.dataset.dismissTimer = setTimeout(() => {
-          performExitAnimationAndRemove(
-            toast,
-            toaster.Animation,
-            toaster.Position.Name
-          )
-        }, DISMISS_TIMER)
-      })
-  }
+  removeShowClasses(element)
+  setTimeout(() => element.remove(), duration)
 }
 
 /**
  * Initializes and animates the progress bar within a toast notification element.
  *
  * @param {HTMLElement} element - The toast notification element containing the progress bar.
+ * @param {number} duration - Duration in milliseconds for the progress bar animation.
  */
-function animateProgressBar(element) {
-  const progressBarElement = element.querySelector('[class^="gttProgressBar"]')
+function animateProgressBar(element, duration = 3000) {
+  const progressBarElement = element.querySelector('.gttProgressBar')
 
   if (progressBarElement) {
-    progressBarElement.style.transition = `width ${DISMISS_TIMER}ms linear`
+    progressBarElement.style.transition = `width ${duration}ms linear`
     progressBarElement.style.width = '100%'
 
     requestAnimationFrame(() => {
@@ -102,13 +76,67 @@ function animateProgressBar(element) {
   }
 }
 
+/**
+ * Initializes the automatic dismissal of toasts with an optional progress bar animation.
+ *
+ * @param {boolean} isWithProgressBar - Whether to animate the progress bar.
+ * @param {number} dismissTimer - Duration before auto-dismiss (in ms).
+ * @param {number} removeDuration - Duration for removal animation (in ms).
+ */
+const handleAutoDismiss = {
+  init(isWithProgressBar, dismissTimer, removeDuration) {
+    document
+      .querySelectorAll('.gttToast[role="alert"][data-auto-dismiss="true"]')
+      .forEach((toast) => {
+        if (isWithProgressBar) animateProgressBar(toast, dismissTimer)
+
+        toast.dataset.dismissTimer = setTimeout(() => {
+          performExitAnimationAndRemove(
+            toast,
+            toast.dataset.animation === 'true',
+            toast.dataset.position,
+            removeDuration
+          )
+        }, dismissTimer)
+      })
+  }
+}
+
+/**
+ * Closes the toast by stopping propagation, clearing timers, and performing exit animation.
+ * @param {Event} e - The event object.
+ */
+function closeToast(e) {
+  e.stopPropagation()
+
+  const toast = e.target.closest('.gttToast[role="alert"]')
+  if (toast) {
+    clearTimeout(Number(toast.dataset.dismissTimer))
+    performExitAnimationAndRemove(
+      toast,
+      toast.dataset.animation === 'true',
+      toast.dataset.position
+    )
+  }
+}
+
 /** Close toast on button click */
 document.body.addEventListener('click', (e) => {
-  const closeButton = e.target.closest('[class*="gttCloseBtn"]')
+  const closeButton = e.target.closest('.gttCloseBtn')
   if (closeButton) closeToast(e)
 })
 
 /** Initialize auto-dismiss on page load */
 document.addEventListener('DOMContentLoaded', () => {
-  if (toaster) handleAutoDismiss.init(toaster.ProgressBar)
+  document
+    .querySelectorAll('.gttToast[data-auto-dismiss="true"]')
+    .forEach((el) => {
+      const { dismissTimer, removeDuration } = initGoaster({
+        dismissTimer: Number(el.dataset.dismissTimer) || undefined,
+        removeDuration: Number(el.dataset.removeDuration) || undefined
+      })
+
+      const hasProgressBar = !!el.querySelector('.gttProgressBar')
+      handleAutoDismiss.init(hasProgressBar, dismissTimer, removeDuration)
+    })
 })
