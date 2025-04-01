@@ -80,38 +80,68 @@ import "github.com/indaco/goaster"
 
 ### Creating a Toaster
 
-Initialize a `Toaster` with default settings:
+You can create a `Toaster` instance using one of the following approaches:
+
+#### 1. Use default settings
 
 ```go
-toaster := goaster.NewToaster()
+func HandleSingle(w http.ResponseWriter, r *http.Request) {
+  toaster := goaster.ToasterDefaults()
+  templ.Handler(pages.HomePage(toaster)).ServeHTTP(w, r)
+}
 ```
 
-or customize the toaster with options:
+#### 2. Use functional options
+
+Customize the toaster behavior on creation:
 
 ```go
-toaster := goaster.NewToaster(
-   goaster.WithBorder(false),
-   goaster.WithPosition(goaster.TopRight),
-   goaster.WithAutoDismiss(false)
-   // ...
-)
+func HandleSingle(w http.ResponseWriter, r *http.Request) {
+  toaster := goaster.NewToaster(
+    goaster.WithBorder(false),
+    goaster.WithPosition(goaster.TopRight),
+    goaster.WithAutoDismiss(false),
+    // ...
+  )
+  templ.Handler(pages.HomePage(toaster)).ServeHTTP(w, r)
+}
+```
+
+#### 3. Use the builder pattern
+
+More readable when chaining multiple settings:
+
+```go
+func HandleSingle(w http.ResponseWriter, r *http.Request) {
+  toaster := goaster.NewToasterBuilder().WithAutoDismiss(false).Build()
+  templ.Handler(pages.HomePage(toaster)).ServeHTTP(w, r)
+}
 ```
 
 ### Displaying Toast Messages
 
-Display different levels of toast messages:
+In your _templ_ pages, call the appropriate method on the `Toaster` instance:
 
-```go
-toaster.Default("Sample message.")
-toaster.Success("Operation completed successfully.")
-toaster.Error("An error occurred.")
-toaster.Info("Here's some information.")
-toaster.Warning("This is a warning message.")
+```templ
+templ UserPage(toaster *goaster.Toaster) {
+  @toaster.Success("Operation completed successfully.")
+}
 ```
 
-### Add Toast Messages to the queue and display them
+Each toast level has a corresponding method:
 
-Multiple toast messages in the queue:
+```templ
+@toaster.Default("Sample message.")
+@toaster.Error("An error occurred.")
+@toaster.Info("Here's some information.")
+@toaster.Warning("This is a warning message.")
+```
+
+> 💡 Toast messages are displayed when `@toaster.<Level>()` is called in your template.
+
+#### Queueing Toast Messages from Go
+
+You can queue multiple toast messages in your **handler**:
 
 ```go
 toaster.PushDefault("Sample message.")
@@ -119,8 +149,14 @@ toaster.PushSuccess("Operation completed successfully.")
 toaster.PushError("An error occurred.")
 toaster.PushInfo("Here's some information.")
 toaster.PushWarning("This is a warning message.")
+```
 
-toaster.RenderAll()
+Then render them all in your _templ_ page:
+
+```templ
+templ UserPage(toaster *goaster.Toaster) {
+  @toaster.RenderAll()
+}
 ```
 
 ## Custom Icons
