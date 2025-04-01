@@ -10,6 +10,6 @@ import (
 )
 
 func HandleThemes(w http.ResponseWriter, r *http.Request) {
-	toaster := goaster.NewToaster()
+	toaster := goaster.NewToasterBuilder().WithAutoDismiss(false).Build()
 	templ.Handler(pages.ThemesPage(toaster)).ServeHTTP(w, r)
 }

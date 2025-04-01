@@ -59,7 +59,7 @@ func CustomAnimationPage(toaster *goaster.Toaster) templ.Component {
 					}()
 				}
 				ctx = templ.InitializeContext(ctx)
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<!-- use [animate.css](https://animate.style/) for additional animation --> <link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css\"><!-- set css vars for entrance and exit animations --> <style type=\"text/css\">\n                :root {\n                    /* Entrance animation from animate.css */\n                    --gtt-animation-entrance-name-top: bounceIn;\n                    /* Exit animation from animate.css */\n                    --gtt-animation-exit-name-top: bounceOut;\n                }\n\t\t\t</style>")
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<!-- use [animate.css](https://animate.style/) for additional animation --> <link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css\"><!-- set css vars for entrance and exit animations --> <style type=\"text/css\">\n                :root {\n                    /* Entrance and exit animations from animate.css */\n                    --gtt-anim-name-in-bottom: bounceIn;\n                    --gtt-anim-name-out-bottom: bounceOut;\n                }\n\t\t\t</style>")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}

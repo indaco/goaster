@@ -10,8 +10,6 @@ import (
 )
 
 func HandleCustomAnimations(w http.ResponseWriter, r *http.Request) {
-	toaster := goaster.NewToaster(
-		goaster.WithAutoDismiss(false),
-	)
+	toaster := goaster.NewToasterBuilder().WithAutoDismiss(false).Build()
 	templ.Handler(pages.CustomAnimationPage(toaster)).ServeHTTP(w, r)
 }

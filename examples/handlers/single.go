@@ -11,6 +11,6 @@ import (
 
 func HandleSingle(w http.ResponseWriter, r *http.Request) {
 	result := true
-	toaster := goaster.NewToaster()
+	toaster := goaster.ToasterDefaults()
 	templ.Handler(pages.SingleToastPage(result, toaster)).ServeHTTP(w, r)
 }

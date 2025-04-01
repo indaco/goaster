@@ -59,7 +59,7 @@ func ThemesPage(toaster *goaster.Toaster) templ.Component {
 					}()
 				}
 				ctx = templ.InitializeContext(ctx)
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<style type=\"text/css\">\n\t\t\t\t:root {\n\t\t\t\t\t--gtt-border-style: dashed;\n\n\t\t\t\t\t--gtt-success-base: #84cc16;\n\t\t\t\t}\n\t\t\t</style>")
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<style type=\"text/css\">\n\t\t\t\t:root {\n\t\t\t\t\t--gtt-border-style: dashed;\n\t\t\t\t\t--gtt-border-width: 2px;\n\t\t\t\t\t--gtt-color-success-base: oklch(0.696 0.17 162.48);\n\t\t\t\t}\n\t\t\t</style>")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
