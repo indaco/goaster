@@ -15,9 +15,9 @@
 }
 
 .gttToast[role='alert'][data-level='default'][data-variant='accent-dark'] {
-  --gtt-color: var(--gtt-default-accent-dark-color);
-  --gtt-bg: var(--gtt-accent-dark-bg);
-  --gtt-border-color: var(--gtt-default-border-color);
+  --_gtt-color: var(--gtt-default-accent-dark-color);
+  --_gtt-bg: var(--gtt-accent-dark-bg);
+  --_gtt-border-color: var(--gtt-default-border-color);
   border-left-color: var(
     --gtt-default-accent-border-color,
     var(--gtt-color-default-base)
@@ -25,9 +25,9 @@
 }
 
 .gttToast[role='alert'][data-level='success'][data-variant='accent-dark'] {
-  --gtt-color: var(--gtt-success-accent-dark-color);
-  --gtt-bg: var(--gtt-accent-dark-bg);
-  --gtt-border-color: var(--gtt-success-border-color);
+  --_gtt-color: var(--gtt-success-accent-dark-color);
+  --_gtt-bg: var(--gtt-accent-dark-bg);
+  --_gtt-border-color: var(--gtt-success-border-color);
   border-left-color: var(
     --gtt-success-accent-border-color,
     var(--gtt-color-success-base)
@@ -35,9 +35,9 @@
 }
 
 .gttToast[role='alert'][data-level='error'][data-variant='accent-dark'] {
-  --gtt-color: var(--gtt-error-accent-dark-color);
-  --gtt-bg: var(--gtt-accent-dark-bg);
-  --gtt-border-color: var(--gtt-error-border-color);
+  --_gtt-color: var(--gtt-error-accent-dark-color);
+  --_gtt-bg: var(--gtt-accent-dark-bg);
+  --_gtt-border-color: var(--gtt-error-border-color);
   border-left-color: var(
     --gtt-error-accent-border-color,
     var(--gtt-color-error-base)
@@ -45,9 +45,9 @@
 }
 
 .gttToast[role='alert'][data-level='warning'][data-variant='accent-dark'] {
-  --gtt-color: var(--gtt-warning-accent-dark-color);
-  --gtt-bg: var(--gtt-accent-dark-bg);
-  --gtt-border-color: var(--gtt-warning-border-color);
+  --_gtt-color: var(--gtt-warning-accent-dark-color);
+  --_gtt-bg: var(--gtt-accent-dark-bg);
+  --_gtt-border-color: var(--gtt-warning-border-color);
   border-left-color: var(
     --gtt-warning-accent-border-color,
     var(--gtt-color-warning-base)
@@ -55,9 +55,9 @@
 }
 
 .gttToast[role='alert'][data-level='info'][data-variant='accent-dark'] {
-  --gtt-color: var(--gtt-info-accent-dark-color);
-  --gtt-bg: var(--gtt-accent-dark-bg);
-  --gtt-border-color: var(--gtt-info-border-color);
+  --_gtt-color: var(--gtt-info-accent-dark-color);
+  --_gtt-bg: var(--gtt-accent-dark-bg);
+  --_gtt-border-color: var(--gtt-info-border-color);
   border-left-color: var(
     --gtt-info-accent-border-color,
     var(--gtt-color-info-base)
