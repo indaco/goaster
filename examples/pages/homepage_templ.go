@@ -85,7 +85,7 @@ func HomePage() templ.Component {
 					}()
 				}
 				ctx = templ.InitializeContext(ctx)
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "<h2>goaster - Demos</h2><ul class=\"nav\"><li><a href=\"/single\">Single Toast</a></li><li><a href=\"/multiple\">Multiple Toasts</a></li><li><a href=\"/custom-animations\">Custom Animations</a></li><li><a href=\"/custom-icons\">Custom Icons</a></li><li><a href=\"/themes\">Themes</a></li><li><ul class=\"nav-sub\"><li><a href=\"/variants/accent\">Accent Variant</a></li><li><a href=\"/variants/accent-light\">Accent Light Variant</a></li><li><a href=\"/variants/accent-dark\">Accent Dark Variant</a></li></ul></li><li><a href=\"/gohtml/single\">GoHTML Single Toast</a></li><li><a href=\"/gohtml/multiple\">GoHTML Multiple Toast</a></li></ul>")
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "<h2>goaster - Demos</h2><ul class=\"nav\"><li><a href=\"/single\">Single Toast</a></li><li><a href=\"/multiple\">Multiple Toasts</a></li><li><a href=\"/custom-animations\">Custom Animations</a></li><li><a href=\"/custom-icons\">Custom Icons</a></li><li><a href=\"/themes\">Themes</a></li><li><a href=\"/\">Variants</a><ul class=\"nav-sub\"><li><a href=\"/variants/accent\">Accent Variant</a></li><li><a href=\"/variants/accent-light\">Accent Light Variant</a></li><li><a href=\"/variants/accent-dark\">Accent Dark Variant</a></li></ul></li><li><a href=\"/gohtml/single\">GoHTML Single Toast</a></li><li><a href=\"/gohtml/multiple\">GoHTML Multiple Toast</a></li></ul>")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
