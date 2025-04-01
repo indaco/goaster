@@ -62,30 +62,30 @@ These custom properties control spacing, layout, typography, and animation behav
 
 ### Layout
 
-| Property              | Default                           | Description                     |
-| :-------------------- | :-------------------------------- | :------------------------------ |
-| `--gtt-py`            | `0`                               | Vertical padding for the toast. |
-| `--gtt-px`            | `0.75em`                          | Horizontal padding.             |
-| `--gtt-bg`            | `var(--gtt-default-bg)`           | Background color.               |
-| `--gtt-border-color`  | `var(--gtt-default-border-color)` | Border color.                   |
-| `--gtt-border-width`  | `1px`                             | Border width.                   |
-| `--gtt-border-style`  | `solid`                           | Border style.                   |
-| `--gtt-border-radius` | `0.375rem`                        | Border radius.                  |
+| Property              | Default                        | Description                     |
+| :-------------------- | :----------------------------- | :------------------------------ |
+| `--gtt-py`            | `0`                            | Vertical padding for the toast. |
+| `--gtt-px`            | `0.75em`                       | Horizontal padding.             |
+| `--gtt-bg`            | `--gtt-color-<level>-lightest` | Background color.               |
+| `--gtt-border-color`  | `--gtt-color-<level>-lighter`  | Border color.                   |
+| `--gtt-border-width`  | `1px`                          | Border width.                   |
+| `--gtt-border-style`  | `solid`                        | Border style.                   |
+| `--gtt-border-radius` | `0.375rem`                     | Border radius.                  |
 
 ### Typography
 
 | Property            | Default                    | Description  |
 | :------------------ | :------------------------- | :----------- |
-| `--gtt-color`       | `var(--gtt-default-color)` | Text color.  |
+| `--gtt-color`       | `--gtt-color-<level>-dark` | Text color.  |
 | `--gtt-font`        | `inherit`                  | Font family. |
 | `--gtt-font-size`   | `1rem`                     | Font size.   |
 | `--gtt-line-height` | `1rem`                     | Line height. |
 
 ### Progress Bar
 
-| Property               | Default                             | Description            |
-| :--------------------- | :---------------------------------- | :--------------------- |
-| `--gtt-progress-color` | `var(--gtt-default-progress-color)` | Color of progress bar. |
+| Property               | Default                     | Description            |
+| :--------------------- | :-------------------------- | :--------------------- |
+| `--gtt-progress-color` | `--gtt-color-<level>-light` | Color of progress bar. |
 
 ### Animation
 

@@ -2,15 +2,33 @@
 
 All examples are unified under a single web application.
 
-To explore them:
+To explore them locally:
 
-1. Run the example server:
+1. **Clone the repository**
 
    ```bash
-   go run examples/main.go
+   git clone https://github.com/indaco/goaster.git
    ```
 
-2. Open your browser and go to [http://localhost:3000](http://localhost:3000) to view the homepage listing all available examples.
+2. **Run the example server**
+
+   You can either run it from the project root:
+
+   ```bash
+   cd goaster
+   make dev # or: task dev
+   ```
+
+   Or directly from the `examples` directory:
+
+   ```bash
+   cd goaster/examples
+   go run .
+   ```
+
+3. **Open your browser**
+
+   Visit [http://localhost:3000](http://localhost:3000) browse the homepage and explore all available examples.
 
 Each example includes:
 
