@@ -1,20 +1,6 @@
-color_red     := $(shell printf "\e[1;31m")
-color_green   := $(shell printf "\e[1;32m")
-color_yellow  := $(shell printf "\e[1;33m")
-color_blue    := $(shell printf "\e[1;34m")
-color_magenta := $(shell printf "\e[1;35m")
-color_cyan    := $(shell printf "\e[1;36m")
+# Colors
+color_green   := $(shell printf "\e[32m")  # Green color
 color_reset   := $(shell printf "\e[0m")
-
-EXAMPLES := \
-	_examples/a-h-templ-single-toast \
-	_examples/a-h-templ-multiple-toasts \
-	_examples/custom-animations \
-	_examples/custom-icons \
-	_examples/theming \
-	_examples/variants \
-	_examples/go-html-template-single-toast \
-	_examples/go-html-template-multiple-toasts
 
 # ==================================================================================== #
 # HELPERS
@@ -26,61 +12,91 @@ help: ## Print this help message
 	@echo ""
 	@echo "Available Actions:"
 	@echo ""
-	@awk -F ':|##' '/^[^\t].+?:.*?##/ {printf "  \033[36m%-15s\033[0m %s\n", $$1, $$NF}' $(MAKEFILE_LIST) | sort
+	@awk -v green="$(color_green)" -v reset="$(color_reset)" -F ':|##' \
+		'/^[^\t].+?:.*?##/ {printf "%s* %-15s%s %s\n", green, $$1, reset, $$NF}' $(MAKEFILE_LIST) | sort
 	@echo ""
 
 # ==================================================================================== #
-# PRIVATE BUILDERS
+# PRIVATE TARGETS
 # ==================================================================================== #
-_process_templ_files:
-	@echo "$(color_magenta)Process TEMPL files$(color_reset)"
+.PHONY: modernize
+modernize:
+	@modernize -test ./...
 
-	@echo "$(color_cyan) * Formatting templ files...$(color_reset)"
-	@templ fmt .
-
-	@echo "$(color_cyan) * Generating templ funcs...$(color_reset)"
-	@templ generate
-
-	@echo "$(color_green)Done!$(color_reset)"
-
-_go_tools:
-	@echo ""
-	@echo "$(color_magenta)Run go tools...$(color_reset)"
-
-	@echo "$(color_cyan) * Downloading modules...$(color_reset)"
-	@go mod download; go mod tidy
-	@go build -v ./...
-	@echo "$(color_cyan) * Running golangci-lint...$(color_reset)"
+.PHONY: lint
+lint:
 	@golangci-lint run ./...
-	@echo "$(color_cyan) * Running tests...$(color_reset)"
-	@$(MAKE) _test
 
-	@echo "$(color_green)Done!$(color_reset)"
-
-_test:
-	@go test -race -covermode=atomic ./...
-
-# ==================================================================================== #
-# BUILDERS
-# ==================================================================================== #
-
-examples: ## Process templ files in the _examples folder
-	@for example in $(EXAMPLES); do \
-		pushd $$example && templ fmt . && templ generate && popd; \
-	done
-
-test: ## Run go tests
-	@$(MAKE) _test
-
-templ: ## Process TEMPL files
-	@$(MAKE) _process_templ_files
-
-clean:
+.PHONY: test/view-total-coverage
+test/view-total-coverage:
 	@echo ""
-	@echo "$(color_magenta)Clean up$(color_reset)"
-	@find . -type f -name '*.grc.bk' -exec rm -f {} +
-	@find . -type f -name '*_templ.txt' -exec rm -f {} +
-	@echo "$(color_green)Done!$(color_reset)"
+	@echo "Total Coverage:"
+	@go tool cover -func=profile.cov | grep total | awk -F '[[:space:]]+' '{print $$NF}'
 
-build: ## The main build target
-	@$(MAKE) templ _go_tools
+.PHONY: test/view-coverage
+test/view-coverage:
+	@go tool cover -html=profile.cov
+	@echo "Coverage report displayed in your default browser."
+
+.PHONY: live/templ
+live/templ:
+	@templ generate --watch --proxy="http://localhost:3300" --open-browser=true
+
+.PHONY: live/server
+live/server:
+	@go run github.com/air-verse/air@v1.61.7 \
+		--build.cmd "go build -o tmp/bin/main ./examples" \
+		--build.bin "tmp/bin/main" \
+		--build.delay "100" \
+		--build.exclude_dir "assets,docs" \
+		--build.include_ext "go" \
+		--build.stop_on_error "false" \
+		--misc.clean_on_exit true
+
+.PHONY: live/sync
+live/sync:
+	@go run github.com/air-verse/air@v1.61.7 \
+		--build.cmd "tempo sync && templ generate -notify-proxy" \
+		--build.bin "true" \
+		--build.delay "100" \
+		--build.exclude_dir "" \
+		--build.include_dir "assets" \
+		--build.include_ext "js,css"
+
+# ==================================================================================== #
+# PUBLIC TARGETS
+# ==================================================================================== #
+.PHONY: test
+test: ## Run all tests and generate coverage report
+	@go test -count=1 -timeout 30s $(shell go list ./... | grep -Ev 'examples|components') -covermode=atomic -coverprofile=profile.cov
+	@$(MAKE) test/view-total-coverage
+
+.PHONY: test/coverage
+test/coverage: ## Run go tests and use go tool cover
+	@$(MAKE) test/force
+	@$(MAKE) test/view-coverage
+
+.PHONY: test/force
+test/force: ## Clean go tests cache and run all tests
+	@go clean -testcache
+	@$(MAKE) test
+
+.PHONY: templ
+templ: ## Run all tests and generate coverage report
+	@templ fmt . && templ generate
+
+.PHONY: dev
+dev: ## Run the dev server with live reload
+	make -j3 live/templ live/server live/sync
+
+.PHONY: pre-build
+pre-build: ## Run pre-build tasks
+	@$(MAKE) modernize
+	@$(MAKE) lint
+	@$(MAKE) test/force
+
+.PHONY: build
+build: ## Build for production with minified asset files
+	@$(MAKE) pre-build
+	@tempo sync --prod
+	@$(MAKE) templ
