@@ -1,0 +1,57 @@
+package styles
+
+var baseCSSHandle = templ.NewOnceHandle()
+
+templ Base() {
+	@baseCSSHandle.Once() {
+		<style type="text/css">
+@layer reset, base, components;
+
+@layer reset {
+	*,
+	*::before,
+	*::after {
+		box-sizing: border-box;
+		border: 0;
+		border-style: solid;
+	}
+}
+
+@layer base {
+	:root {
+		--bg-color: #ffffff;
+		--text-color: #000000;
+	}
+
+	:root[data-theme="dark"] {
+		--bg-color: #1b1b1f;
+		--text-color: #f9fafb;
+	}
+
+	@media (prefers-color-scheme: dark) {
+		:root {
+			--bg-color: #1b1b1f;
+			--text-color: #f9fafb;
+		}
+	}
+
+	body {
+		font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+		color: var(--text-color);
+		background-color: var(--bg-color);
+	}
+
+	.dark {
+		color: var(--text-color);
+		background-color: var(--bg-color);
+	}
+
+	.inline {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.75rem;
+	}
+}
+</style>
+	}
+}

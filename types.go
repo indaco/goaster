@@ -1,24 +1,29 @@
 package goaster
 
-import (
-	"github.com/a-h/templ"
-)
-
 // Level represents the severity level of a toast notification.
 type Level string
 
-// Position represents the name and CSS class (templ.CSSClass) for positioning the toast container on the screen.
-type Position struct {
-	Name string
-	CSS  templ.CSSClass
+func (l Level) String() string {
+	return string(l)
 }
 
-// LevelCSSClass represents the CSS class (templ.CSSClass) associated with a specific toast Level.
-type LevelCSSClass = templ.CSSClass
+// Position represents the placement for the toast container.
+type Position string
 
-// Variant represent a style variant for the toast component.
+func (p Position) String() string {
+	return string(p)
+}
+
+// Variant represents a style variant for the toast component.
 type Variant string
 
 func (v Variant) String() string {
 	return string(v)
+}
+
+// Icon is a named type for SVG string representations.
+type Icon string
+
+func (i Icon) String() string {
+	return string(i)
 }

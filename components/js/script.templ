@@ -1,0 +1,14 @@
+package js
+
+var jsHandle = templ.NewOnceHandle()
+
+templ GoasterJS() {
+	@jsHandle.Once() {
+		<script type="text/javascript">
+    /* [tempo] BEGIN - Do not edit! This section is auto-generated. */
+const DIRECTION_TOP="top",DIRECTION_BOTTOM="bottom";function initGoaster({dismissTimer=3e3,removeDuration=500}={}){return{dismissTimer,removeDuration}}function removeShowClasses(element){const showClasses=["gttShow","gttShowFromTop","gttShowFromBottom"];element.classList.remove(...showClasses)}function performExitAnimationAndRemove(element,animated,positionName,duration=500){const classesToAdd=["gttClose"];animated&&classesToAdd.push(positionName.startsWith(DIRECTION_TOP)?"gttCloseFromTop":"gttCloseFromBottom"),element.classList.add(...classesToAdd),removeShowClasses(element),setTimeout(()=>element.remove(),duration)}function animateProgressBar(element,duration=3e3){const progressBarElement=element.querySelector(".gttProgressBar");progressBarElement&&(progressBarElement.style.transition=`width ${duration}ms linear`,progressBarElement.style.width="100%",requestAnimationFrame(()=>{progressBarElement.style.width="0%"}))}const handleAutoDismiss={init(isWithProgressBar,dismissTimer,removeDuration){document.querySelectorAll('.gttToast[role="alert"][data-auto-dismiss="true"]').forEach(toast=>{isWithProgressBar&&animateProgressBar(toast,dismissTimer),toast.dataset.dismissTimer=setTimeout(()=>{performExitAnimationAndRemove(toast,toast.dataset.animation==="true",toast.dataset.position,removeDuration)},dismissTimer)})}};function closeToast(e){e.stopPropagation();const toast=e.target.closest('.gttToast[role="alert"]');toast&&(clearTimeout(Number(toast.dataset.dismissTimer)),performExitAnimationAndRemove(toast,toast.dataset.animation==="true",toast.dataset.position))}document.body.addEventListener("click",e=>{e.target.closest(".gttCloseBtn")&&closeToast(e)}),document.addEventListener("DOMContentLoaded",()=>{document.querySelectorAll('.gttToast[data-auto-dismiss="true"]').forEach(el=>{const{dismissTimer,removeDuration}=initGoaster({dismissTimer:Number(el.dataset.dismissTimer)||void 0,removeDuration:Number(el.dataset.removeDuration)||void 0}),hasProgressBar=!!el.querySelector(".gttProgressBar");handleAutoDismiss.init(hasProgressBar,dismissTimer,removeDuration)})});
+
+/* [tempo] END */
+    </script>
+	}
+}

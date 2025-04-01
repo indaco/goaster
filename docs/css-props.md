@@ -1,112 +1,105 @@
 # Goaster CSS custom props
 
-## Colors
+## Semantic Color Levels
 
-[Source Code](../goaster-css.templ#L12-L174).
+[Source Code](../assets/css/colors.css).
 
-| CSS Property        | Value   | Description                            |
-|---------------------|---------|----------------------------------------|
-| `--gtb-color-space` | `oklab` | The color space used for color mixing. |
+All semantic color levels use [`color-mix()`](<https://developer.mozilla.org/en-US/docs/Web/CSS/color-mix()>) in the `oklab` color space, defined by:
 
-### Default Level
+```css
+--gtt-color-space: oklab;
+```
 
-| CSS Property             | Value                        | Description                                                     |
-|--------------------------|------------------------------|-----------------------------------------------------------------|
-| `--gtt-default-base`     | `hsl(142deg 71% 45%)`         | Defines the base color of the default level.                    |
-| `--gtb-default-lightest` | Result of color-mix function | The lightest shade of the default base color at 10% brightness. |
-| `--gtb-default-lighter`  | Result of color-mix function | A lighter shade of the default base color at 20% brightness.    |
-| `--gtb-default-light`    | Result of color-mix function | A light shade of the default base color at 30% brightness.      |
-| `--gtb-default-dark`     | Result of color-mix function | A dark shade of the default base color at 70% brightness.       |
-| `--gtb-default-darker`   | Result of color-mix function | A darker shade of the default base color at 80% brightness.     |
-| `--gtb-default-darkest`  | Result of color-mix function | The darkest shade of the default base color at 90% brightness.  |
+| Level   | Base Value                   |
+| :------ | :--------------------------- |
+| default | `oklch(0.554 0.046 257.417)` |
+| success | `oklch(0.723 0.219 149.579)` |
+| error   | `oklch(0.637 0.237 25.331)`  |
+| warning | `oklch(0.769 0.188 70.08)`   |
+| info    | `oklch(0.623 0.214 259.815)` |
 
-### Success Level
+The following variables are generated from the base color:
 
-| CSS Property             | Value                        | Description                                                     |
-|--------------------------|------------------------------|-----------------------------------------------------------------|
-| `--gtt-success-base`     | `hsl(220deg 9% 46%)`         | Defines the base color of the success level.                    |
-| `--gtb-success-lightest` | Result of color-mix function | The lightest shade of the success base color at 10% brightness. |
-| `--gtb-success-lighter`  | Result of color-mix function | A lighter shade of the success base color at 20% brightness.    |
-| `--gtb-success-light`    | Result of color-mix function | A light shade of the success base color at 30% brightness.      |
-| `--gtb-success-dark`     | Result of color-mix function | A dark shade of the success base color at 70% brightness.       |
-| `--gtb-success-darker`   | Result of color-mix function | A darker shade of the success base color at 80% brightness.     |
-| `--gtb-success-darkest`  | Result of color-mix function | The darkest shade of the success base color at 90% brightness.  |
+- `--gtt-color-<level>-lightest`: 10% white
+- `--gtt-color-<level>-lighter`: 30% white
+- `--gtt-color-<level>-light`: 70% white
+- `--gtt-color-<level>-dark`: 70% black
+- `--gtt-color-<level>-darker`: 30% black
+- `--gtt-color-<level>-darkest`: 10% black
 
-### Error Level
+### Accent Variants
 
-| CSS Property           | Value                        | Description                                                   |
-|------------------------|------------------------------|---------------------------------------------------------------|
-| `--gtt-error-base`     | `hsl(0deg 84% 60%)`         | Defines the base color of the error level.                    |
-| `--gtb-error-lightest` | Result of color-mix function | The lightest shade of the error base color at 10% brightness. |
-| `--gtb-error-lighter`  | Result of color-mix function | A lighter shade of the error base color at 20% brightness.    |
-| `--gtb-error-light`    | Result of color-mix function | A light shade of the error base color at 30% brightness.      |
-| `--gtb-error-dark`     | Result of color-mix function | A dark shade of the error base color at 70% brightness.       |
-| `--gtb-error-darker`   | Result of color-mix function | A darker shade of the error base color at 80% brightness.     |
-| `--gtb-error-darkest`  | Result of color-mix function | The darkest shade of the error base color at 90% brightness.  |
+These tokens are used by the accent variants and override toast background colors.
 
-### Warning Level
+| Variant       | CSS Variable           | Value                           |
+| :------------ | :--------------------- | :------------------------------ |
+| `accent`      | `--gtt-accent-bg`      | `white`                         |
+| `accent-dark` | `--gtt-accent-dark-bg` | `hsla(220.9, 39.3%, 11%, 0.85)` |
 
-| CSS Property             | Value                        | Description                                                     |
-|--------------------------|------------------------------|-----------------------------------------------------------------|
-| `--gtt-warning-base`     | `hsl(25deg 95% 53%)`         | Defines the base color of the warning level.                    |
-| `--gtb-warning-lightest` | Result of color-mix function | The lightest shade of the warning base color at 10% brightness. |
-| `--gtb-warning-lighter`  | Result of color-mix function | A lighter shade of the warning base color at 20% brightness.    |
-| `--gtb-warning-light`    | Result of color-mix function | A light shade of the warning base color at 30% brightness.      |
-| `--gtb-warning-dark`     | Result of color-mix function | A dark shade of the warning base color at 70% brightness.       |
-| `--gtb-warning-darker`   | Result of color-mix function | A darker shade of the warning base color at 80% brightness.     |
-| `--gtb-warning-darkest`  | Result of color-mix function | The darkest shade of the warning base color at 90% brightness.  |
+#### Semantic Accent Color Overrides
 
-### Info Level
+Each level can override its accent color using the following properties:
 
-| CSS Property          | Value                        | Description                                                  |
-|-----------------------|------------------------------|--------------------------------------------------------------|
-| `--gtt-info-base`     | `hsl(217deg 91% 60%)`         | Defines the base color of the info level.                    |
-| `--gtb-info-lightest` | Result of color-mix function | The lightest shade of the info base color at 10% brightness. |
-| `--gtb-info-lighter`  | Result of color-mix function | A lighter shade of the info base color at 20% brightness.    |
-| `--gtb-info-light`    | Result of color-mix function | A light shade of the info base color at 30% brightness.      |
-| `--gtb-info-dark`     | Result of color-mix function | A dark shade of the info base color at 70% brightness.       |
-| `--gtb-info-darker`   | Result of color-mix function | A darker shade of the info base color at 80% brightness.     |
-| `--gtb-info-darkest`  | Result of color-mix function | The darkest shade of the info base color at 90% brightness.  |
+> Note: these are used when applying `variant="accent"` or `variant="accent-dark"`.
 
-## Component
+## Theming
 
-[Source Code](../goaster-css.templ#L176-L258).
+To customize any level (e.g., change the _success_ color), override the base variable:
 
-| CSS Property                           | Value                                   | Description                               |
-|----------------------------------------|-----------------------------------------|-------------------------------------------|
-| `--gtt-py`                             | `0`                                     | Padding Y for the toast element.          |
-| `--gtt-px`                             | `0.75em`                                | Padding X for the toast element.          |
-| `--gtt-bg`                             | var(--gtt-default-bg)                   | Background color for the toast element.   |
-| `--gtt-progress-bar-color`             | `var(--gtt-default-progress-bar-color)` | Progress bar color for the toast element. |
-| `--gtt-color`                          | `var(--gtt-default-color)`              | Text color for the toast element.         |
-| `--gtt-font-family`                    | `inherit`                               | Font family for the toast text.           |
-| `--gtt-font-size`                      | `1rem`                                  | Font size for the toast text.             |
-| `--gtt-line-height`                    | `1rem`                                  | Line height for the toast text.           |
-| `--gtt-border-width`                   | `1px`                                   | Border width for the toast.               |
-| `--gtt-border-style`                   | `solid`                                 | Border style for the toast.               |
-| `--gtt-border-color`                   | `var(--gtt-default-border-color)`       | Border color for the toast.               |
-| `--gtt-border-radius`                  | `0.375rem`                              | Border radius for the toast.              |
-| `--gtt-accent-light-bg`                | `white`                                 | Background color for accent toast.        |
-| `--gtt-accent-dark-bg`                 | `hsla(220.9, 39.3%, 11%, 0.85)`         | Background color for dark accent toast.   |
-| `--gtt-default-accent-color`           | `var(--gtt-default-dark)`               | Accent color for default level.           |
-| `--gtt-default-accent-dark-color`      | `var(--gtt-default-light)`              | Dark accent color for default level.      |
-| `--gtt-success-accent-color`           | `var(--gtt-success-dark)`               | Accent color for success level.           |
-| `--gtt-success-accent-dark-color`      | `var(--gtt-success-light)`              | Dark accent color for success level.      |
-| `--gtt-error-accent-color`             | `var(--gtt-error-dark)`                 | Accent color for error level.             |
-| `--gtt-error-accent-dark-color`        | `var(--gtt-error-light)`                | Dark accent color for error level.        |
-| `--gtt-warning-accent-color`           | `var(--gtt-warning-dark)`               | Accent color for warning level.           |
-| `--gtt-warning-accent-dark-color`      | `var(--gtt-warning-light)`              | Dark accent color for warning level.      |
-| `--gtt-info-accent-color`              | `var(--gtt-info-dark)`                  | Accent color for info level.              |
-| `--gtt-info-accent-dark-color`         | `var(--gtt-info-light)`                 | Dark accent color for info level.         |
-| `--gtt-animation-entrance-duration`    | `0.5s`                                  | Duration for entrance animation.          |
-| `--gtt-animation-entrance-direction`   | `normal`                                | Direction for entrance animation.         |
-| `--gtt-animation-entrance-timing-fn`   | `ease`                                  | Timing function for entrance animation.   |
-| `--gtt-animation-entrance-delay`       | `0s`                                    | Delay for entrance animation.             |
-| `--gtt-animation-exit-duration`        | `0.5s`                                  | Duration for exit animation.              |
-| `--gtt-animation-exit-direction`       | `normal`                                | Direction for exit animation.             |
-| `--gtt-animation-exit-timing-fn`       | `ease`                                  | Timing function for exit animation.       |
-| `--gtt-animation-exit-delay`           | `0s`                                    | Delay for exit animation.                 |
-| `--gtt-animation-entrance-name-top`    | `gttFadeInDown`                         | Animation name for entrance from top.     |
-| `--gtt-animation-exit-name-top`        | `gttFadeOutUp`                          | Animation name for exit to top.           |
-| `--gtt-animation-entrance-name-bottom` | `gttFadeInUp`                           | Animation name for entrance from bottom.  |
-| `--gtt-animation-exit-name-bottom`     | `gttFadeOutDown`                        | Animation name for exit to bottom.        |
+```css
+:root {
+  --gtt-color-success-base: oklch(0.72 0.25 150); /* your custom success color */
+}
+```
+
+All derived shades for `--gtt-color-success-*` will automatically update based on your base value.
+
+## Component Styles
+
+[Source Code](../assets/css/styles.css)
+
+These custom properties control spacing, layout, typography, and animation behavior for the toast component.
+
+### Layout
+
+| Property              | Default                        | Description                     |
+| :-------------------- | :----------------------------- | :------------------------------ |
+| `--gtt-py`            | `0`                            | Vertical padding for the toast. |
+| `--gtt-px`            | `0.75em`                       | Horizontal padding.             |
+| `--gtt-bg`            | `--gtt-color-<level>-lightest` | Background color.               |
+| `--gtt-border-color`  | `--gtt-color-<level>-lighter`  | Border color.                   |
+| `--gtt-border-width`  | `1px`                          | Border width.                   |
+| `--gtt-border-style`  | `solid`                        | Border style.                   |
+| `--gtt-border-radius` | `0.375rem`                     | Border radius.                  |
+
+### Typography
+
+| Property            | Default                    | Description  |
+| :------------------ | :------------------------- | :----------- |
+| `--gtt-color`       | `--gtt-color-<level>-dark` | Text color.  |
+| `--gtt-font`        | `inherit`                  | Font family. |
+| `--gtt-font-size`   | `1rem`                     | Font size.   |
+| `--gtt-line-height` | `1rem`                     | Line height. |
+
+### Progress Bar
+
+| Property               | Default                     | Description            |
+| :--------------------- | :-------------------------- | :--------------------- |
+| `--gtt-progress-color` | `--gtt-color-<level>-light` | Color of progress bar. |
+
+### Animation
+
+| Property                     | Default          | Description                                  |
+| :--------------------------- | :--------------- | :------------------------------------------- |
+| `--gtt-anim-name-in-top`     | `gttFadeInDown`  | Animation name for entering from the top.    |
+| `--gtt-anim-name-in-bottom`  | `gttFadeInUp`    | Animation name for entering from the bottom. |
+| `--gtt-anim-name-out-top`    | `gttFadeOutUp`   | Animation name for exiting to the top.       |
+| `--gtt-anim-name-out-bottom` | `gttFadeOutDown` | Animation name for exiting to the bottom.    |
+| `--gtt-anim-duration-in`     | `0.5s`           | Duration of entrance animation.              |
+| `--gtt-anim-delay-in`        | `0s`             | Delay before entrance starts.                |
+| `--gtt-anim-direction-in`    | `normal`         | Direction of entrance animation.             |
+| `--gtt-anim-timing-in`       | `ease`           | Timing function for entrance.                |
+| `--gtt-anim-duration-out`    | `0.5s`           | Duration of exit animation.                  |
+| `--gtt-anim-delay-out`       | `0s`             | Delay before exit starts.                    |
+| `--gtt-anim-direction-out`   | `normal`         | Direction of exit animation.                 |
+| `--gtt-anim-timing-out`      | `ease`           | Timing function for exit.                    |

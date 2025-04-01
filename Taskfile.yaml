@@ -1,0 +1,127 @@
+version: '3'
+
+tasks:
+  # ==================================================================================== #
+  # Private Tasks
+  # ==================================================================================== #
+  modernize:
+    desc: Run go-modernize
+    silent: true
+    internal: true
+    cmds:
+      - modernize -test ./...
+
+  lint:
+    desc: Run golangci-lint
+    silent: true
+    internal: true
+    cmds:
+      - golangci-lint run ./...
+
+  test/view-total-coverage:
+    desc: Display total test coverage from profile.cov
+    silent: true
+    internal: true
+    cmds:
+      - echo ""
+      - echo "Total Coverage:"
+      - go tool cover -func=profile.cov | grep total | awk -F '[[:space:]]+' '{print $NF}'
+
+  test/view-coverage:
+    desc: View the HTML coverage report
+    silent: true
+    internal: true
+    cmds:
+      - go tool cover -html=profile.cov
+      - echo "Coverage report displayed in your default browser."
+
+  live:templ:
+    desc: Run templ generation in watch mode
+    silent: true
+    internal: true
+    cmds:
+      - templ generate --watch --proxy="http://localhost:3300" --open-browser=true
+
+  live:server:
+    desc: Run air to detect file changes, re-build and re-run the server
+    silent: true
+    internal: true
+    cmds:
+      - |
+        go run github.com/air-verse/air@v1.61.7 \
+          --build.cmd "go build -o tmp/bin/main ./examples" \
+          --build.bin "tmp/bin/main" \
+          --build.delay "100" \
+          --build.exclude_dir "assets,docs" \
+          --build.include_ext "go" \
+          --build.stop_on_error "false" \
+          --misc.clean_on_exit true
+
+  live:sync:
+    desc: Watch for asset changes and reload browser via templ proxy
+    silent: true
+    internal: true
+    cmds:
+      - |
+        go run github.com/air-verse/air@v1.61.7 \
+          --build.cmd "tempo sync && templ generate -notify-proxy" \
+          --build.bin "true" \
+          --build.delay "100" \
+          --build.exclude_dir "" \
+          --build.include_dir "assets" \
+          --build.include_ext "js,css"
+
+  # ==================================================================================== #
+  # Public Tasks
+  # ==================================================================================== #
+  test:
+    desc: Run all tests and generate coverage report
+    silent: false
+    cmds:
+      - go test -count=1 -timeout 30s $(go list ./... | grep -Ev 'examples|components') -covermode=atomic -coverprofile=profile.cov
+      - task: test/view-total-coverage
+
+  test/coverage:
+    desc: Run go tests and use go tool cover
+    silent: false
+    deps:
+      - test/force
+    cmds:
+      - task: test/view-coverage
+
+  test/force:
+    desc: Clean go tests cache and run all tests
+    silent: false
+    cmds:
+      - go clean -testcache
+      - task: test
+
+  templ:
+    desc: Run templ fmt and templ generate commands
+    silent: false
+    cmds:
+      - templ fmt . && templ generate
+
+  dev:
+    desc: Run the dev server with live reload
+    silent: false
+    deps:
+      - live:templ
+      - live:server
+      - live:sync
+
+  pre-build:
+    desc: Run pre-build tasks
+    silent: false
+    deps:
+      - modernize
+      - lint
+      - test/force
+
+  build:
+    desc: Build for production with minified asset files
+    deps:
+      - pre-build
+    cmds:
+      - tempo sync --prod
+      - task: templ

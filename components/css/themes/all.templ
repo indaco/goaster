@@ -1,0 +1,10 @@
+package themes
+
+var toasterThemesHandle = templ.NewOnceHandle()
+
+templ ToasterThemes() {
+	@toasterThemesHandle.Once() {
+		@toasterThemeLight()
+		@toasterThemeDark()
+	}
+}

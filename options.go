@@ -1,7 +1,16 @@
 package goaster
 
-// Option type for functional options pattern, allowing customization of the Toaster instance.
+// Option represents a configuration function that modifies a Toaster instance.
 type Option func(*Toaster)
+
+// NewToaster creates a Toaster instance with default settings and applies any given options.
+func NewToaster(options ...Option) *Toaster {
+	toaster := ToasterDefaults()
+	for _, option := range options {
+		option(toaster)
+	}
+	return toaster
+}
 
 // WithVariant configures the style variant for the toast.
 func WithVariant(variant Variant) Option {
@@ -69,6 +78,9 @@ func WithPosition(position Position) Option {
 // WithIcon sets the icon for a specific toast level.
 func WithIcon(level Level, iconSVG string) Option {
 	return func(t *Toaster) {
+		if t.Icons == nil {
+			t.Icons = make(map[Level]string)
+		}
 		t.Icons[level] = iconSVG
 	}
 }

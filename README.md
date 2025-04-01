@@ -1,19 +1,28 @@
-<h1 align="center" style="font-size: 2.5rem;">
+<h1 align="center">
   goaster
 </h1>
+<h2 align="center" style="font-size: 1.5em;">
+  toast notification component for Go web applications.
+</h2>
 <p align="center">
-  <a href="https://github.com/indaco/goaster/blob/main/LICENSE" target="_blank">
-    <img src="https://img.shields.io/badge/license-mit-blue?style=flat-square&logo=none" alt="license" />
-  </a>
-  &nbsp;
+  <a href="https://github.com/indaco/goaster/actions/workflows/ci.yml" target="_blank">
+      <img src="https://github.com/indaco/goaster/actions/workflows/ci.yml/badge.svg" alt="CI" />
+    </a>
+    <a href="https://coveralls.io/github/indaco/goaster?branch=main" target="_blank">
+      <img src="https://coveralls.io/repos/github/indaco/goaster/badge.svg?branch=main" alt="Coverage Status" />
+    </a>
   <a href="https://goreportcard.com/report/github.com/indaco/goaster/" target="_blank">
     <img src="https://goreportcard.com/badge/github.com/indaco/goaster" alt="go report card" />
   </a>
-  &nbsp;
+  <a href="https://badge.fury.io/gh/indaco%2Fgoaster">
+    <img src="https://badge.fury.io/gh/indaco%2Fgoaster.svg" alt="GitHub version" height="18">
+  </a>
   <a href="https://pkg.go.dev/github.com/indaco/goaster/" target="_blank">
       <img src="https://pkg.go.dev/badge/github.com/indaco/goaster/.svg" alt="go reference" />
   </a>
-  &nbsp;
+   <a href="https://github.com/indaco/goaster/blob/main/LICENSE" target="_blank">
+    <img src="https://img.shields.io/badge/license-mit-blue?style=flat-square&logo=none" alt="license" />
+  </a>
   <a href="https://www.jetify.com/devbox/docs/contributor-quickstart/">
     <img src="https://www.jetify.com/img/devbox/shield_moon.svg" alt="Built with Devbox" />
   </a>
@@ -31,25 +40,23 @@
 
 A configurable, themeable and non-intrusive server-rendered toast notification component for Go web applications. Built with [templ](https://github.com/a-h/templ) library for seamless integration with Go-based web frontends.
 
+![goaster demo](https://raw.githubusercontent.com/indaco/goaster/gh-assets/demo.gif)
+
 ### Features
 
-- **No External Dependencies**: Built with native Go and the `templ` library, requiring no external frontend dependencies.
-- **Multiple Toasts**: Support to display multiple toast notifications.
-- **Configurable**: Customize appearance (bordered, rounded), behavior, and position.
-- **Variants**: Provide toast style variants like `Accent`, `AccentLight` and `AccentDark`.
-- **Themeable**: Use CSS variables to theme your toasts to match your application's design.
-- **Icon Support**: Include default SVG icons for various toast levels (such as success, error, info, etc.), allowing you to use your preferred icons.
-- **Positioning**: Flexible positioning of toast messages (top-right, bottom-left, etc.).
-- **Progress Bar for Auto-Dismiss**: A visual progress bar indicates the countdown until the toast will automatically dismiss (with auto-dismiss enabled only).
-- **Animations**: Entrance and exit animations for toast notifications.
-  - _Default Animations_: built-in animations for toasts appearing and disappearing.
-  - _Custom Animations_: Customize animations via CSS variables or integrate with external CSS animation libraries.
-  - _Animation Control_: Full control over animation timing, easing, delay and effects, via CSS variables.
-  - _Disable Animations Option_: Ability to completely disable animations, providing flexibility for different application needs and user preferences.
-
-<div style="display: flex; justify-content: center;">
-   <img src="statics/demo.gif" alt="Image" >
-</div>
+- **No External Dependencies**: Built with native Go and the [`templ`](https://templ.guide) library—no JavaScript or frontend dependencies required.
+- **Multiple Toasts**: Supports displaying multiple toast notifications simultaneously.
+- **Highly Configurable**: Customize appearance (bordered, rounded), behavior, and position to fit your UI.
+- **Variants**: Includes style variants such as `Accent`, `AccentLight`, and `AccentDark`.
+- **Themeable**: Easily theme your toasts using CSS variables to match your app’s design.
+- **Icon Support**: Comes with default SVG icons for common toast types (success, error, info, etc.)—or use your own.
+- **Flexible Positioning**: Display toast messages in any corner (top-right, bottom-left, etc.).
+- **Auto-Dismiss Progress Bar**: Visual progress indicator for toast duration (when auto-dismiss is enabled).
+- **Smooth Animations**:
+  - _Built-in Animations_: Default entrance and exit transitions.
+  - _Custom Animations_: Define your own via CSS variables or external animation libraries.
+  - _Animation Control_: Fine-tune timing, easing, delay, and effects with CSS variables.
+  - _Disable Option_: Disable all animations when needed (e.g., for accessibility or testing).
 
 ## Installation
 
@@ -71,54 +78,68 @@ import "github.com/indaco/goaster"
 
 ### Creating a Toaster
 
-Initialize a `Toaster` with default settings:
+You can create a `Toaster` instance using one of the following approaches:
+
+#### 1. Use default settings
 
 ```go
-toaster := goaster.NewToaster()
+func HandleSingle(w http.ResponseWriter, r *http.Request) {
+  toaster := goaster.ToasterDefaults()
+  templ.Handler(pages.HomePage(toaster)).ServeHTTP(w, r)
+}
 ```
 
-or customize the toaster with options:
+#### 2. Use functional options
+
+Customize the toaster behavior on creation:
 
 ```go
-toaster := goaster.NewToaster(
-   goaster.WithBorder(false),
-   goaster.WithPosition(goaster.TopRight),
-   goaster.WithAutoDismiss(false)
-   // ...
-)
+func HandleSingle(w http.ResponseWriter, r *http.Request) {
+  toaster := goaster.NewToaster(
+    goaster.WithBorder(false),
+    goaster.WithPosition(goaster.TopRight),
+    goaster.WithAutoDismiss(false),
+    // ...
+  )
+  templ.Handler(pages.HomePage(toaster)).ServeHTTP(w, r)
+}
 ```
 
-### Add goester CSS and Javascript
+#### 3. Use the builder pattern
 
-`goaster` leverages the `templ` library's features, including CSS Components and JavaScript Templates, to encapsulate all necessary styling and functionality without relying on external dependencies.
+More readable when chaining multiple settings:
 
-- `GoasterCSS`: it supplies the required CSS, encapsulating the visual design and layout specifics of the toast notifications.
-- `GoasterJS`: it provides the JavaScript logic essential for dynamic behaviors such as displaying, hiding, and managing toast notifications.
-
-To facilitate integration with Go's `template/html` standard library, `goaster` includes a dedicated `HTMLGenerator` type to seamlessly integrate toast notifications into web applications built with Go's `html/template` standard library.
-
-3 methods, acting as wrappers to the templ's `templ.ToGoHTML`, generate the necessary HTML to be embedded them into server-rendered pages:
-
-- `GoasterCSSToGoHTML`: render the `GoasterCSS` component into a `template.HTML` value.
-- `GoasterJSToGoHTML`: render the `GoasterJS`component into a `template.HTML` value.
-
-> **Note**: refer to the [Examples](#examples) section to see how to use `goaster` with `templ` and `html/template`.
+```go
+func HandleSingle(w http.ResponseWriter, r *http.Request) {
+  toaster := goaster.NewToasterBuilder().WithAutoDismiss(false).Build()
+  templ.Handler(pages.HomePage(toaster)).ServeHTTP(w, r)
+}
+```
 
 ### Displaying Toast Messages
 
-Display different levels of toast messages:
+In your _templ_ pages, call the appropriate method on the `Toaster` instance:
 
-```go
-toaster.Default("Sample message.")
-toaster.Success("Operation completed successfully.")
-toaster.Error("An error occurred.")
-toaster.Info("Here's some information.")
-toaster.Warning("This is a warning message.")
+```templ
+templ UserPage(toaster *goaster.Toaster) {
+  @toaster.Success("Operation completed successfully.")
+}
 ```
 
-### Add Toast Messages to the queue and display them
+Each toast level has a corresponding method:
 
-Multiple toast messages in the queue:
+```templ
+@toaster.Default("Sample message.")
+@toaster.Error("An error occurred.")
+@toaster.Info("Here's some information.")
+@toaster.Warning("This is a warning message.")
+```
+
+> 💡 Toast messages are displayed when `@toaster.<Level>()` is called in your template.
+
+#### Queueing Toast Messages from Go
+
+You can queue multiple toast messages in your **handler**:
 
 ```go
 toaster.PushDefault("Sample message.")
@@ -126,8 +147,14 @@ toaster.PushSuccess("Operation completed successfully.")
 toaster.PushError("An error occurred.")
 toaster.PushInfo("Here's some information.")
 toaster.PushWarning("This is a warning message.")
+```
 
-toaster.RenderAll()
+Then render them all in your _templ_ page:
+
+```templ
+templ UserPage(toaster *goaster.Toaster) {
+  @toaster.RenderAll()
+}
 ```
 
 ## Custom Icons
@@ -143,46 +170,26 @@ toaster := goaster.NewToaster(
 
 ## Theming
 
-Customizing the appearance of `goaster` notifications to align with your design preferences is both straightforward and flexible, accomplished by using CSS custom properties (CSS variables) prefixed with `gtt`. For a comprehensive list of CSS custom properties, along with their default values and descriptions, please consult the tabber [CSS custom Props](./docs/css-props.md) document.
+Customizing the appearance of `goaster` notifications to align with your design preferences is both straightforward and flexible, accomplished by using CSS custom properties (CSS variables) prefixed with `gtt`.
+
+See the [CSS Custom Properties](./docs/css-props.md) reference for full details.
+
+## Use with Go's `template/html`
+
+To facilitate integration with Go's `template/html` standard library, `goaster` includes a dedicated `HTMLGenerator` type to seamlessly integrate toast notifications into web applications built with Go's `html/template` standard library.
+
+> **Note**: See the [Examples](#examples) section to learn how to use `goaster` with `templ` and `html/template`.
 
 ## Examples
 
-- [use with `a-h/templ` template](_examples/a-h-templ-single-toast)
-- [multiple messages with `a-h/templ`](_examples/a-h-templ-multiple-toasts)
-- [use with `template/html`](_examples/go-html-template-single-toast)
-- [multiple messages with `template/html`](_examples/go-html-template-multiple-toasts)
-- [theming](_examples/theming)
-- [variants](_examples/variants)
-- [custom icons](_examples/custom-icons)
-- [custom animations](_examples/custom-animations)
+👉 [Check out the examples with setup instructions](examples/)
 
 ## Contributing
 
-Contributions are welcome! Feel free to open an issue or submit a pull request.
+Contributions are welcome!
 
-### Development Environment Setup
-
-To set up a development environment for this repository, you can use [devbox](https://www.jetify.com/devbox) along with the provided `devbox.json` configuration file.
-
-1. Install devbox by following the instructions in the [devbox documentation](https://www.jetify.com/devbox/docs/installing_devbox/).
-2. Clone this repository to your local machine.
-3. Navigate to the root directory of the cloned repository.
-4. Run `devbox install` to install all packages mentioned in the `devbox.json` file.
-5. Run `devbox shell` to start a new shell with access to the environment.
-6. Once the devbox environment is set up, you can start developing, testing, and contributing to the repository.
-
-### Using Makefile
-
-Additionally, you can make use of the provided `Makefile` to run various tasks:
-
-```bash
-make build       # The main build target
-make examples    # Process templ files in the _examples folder
-make templ       # Process TEMPL files
-make test        # Run go tests
-make help        # Print this help message
-```
+See the [Contributing Guide](/CONTRIBUTING.md) for setup instructions.
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is licensed under the MIT License – see the [LICENSE](./LICENSE) file for details.

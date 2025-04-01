@@ -1,0 +1,15 @@
+package themes
+
+import "fmt"
+
+var toasterThemeLightHandle = templ.NewOnceHandle()
+
+templ toasterThemeLight() {
+	@toasterThemeLightHandle.Once() {
+		<style type="text/css">
+/* [tempo] BEGIN - Do not edit! This section is auto-generated. */
+/* [tempo] END */
+</style>
+	}
+	{ fmt.Sprintf("\n") }
+}

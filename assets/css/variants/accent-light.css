@@ -1,0 +1,64 @@
+:root {
+  --gtt-accent-light-bg: white;
+  --gtt-default-accent-color: var(--gtt-color-default-dark);
+  --gtt-success-accent-color: var(--gtt-color-success-dark);
+  --gtt-error-accent-color: var(--gtt-color-error-dark);
+  --gtt-warning-accent-color: var(--gtt-color-warning-dark);
+  --gtt-info-accent-color: var(--gtt-color-info-dark);
+}
+
+.gttToast[role='alert'][data-variant='accent-light'] {
+  border: 0;
+  border-left-width: 4px;
+  border-left-style: solid;
+}
+
+.gttToast[role='alert'][data-level='default'][data-variant='accent-light'] {
+  --_gtt-color: var(--gtt-default-accent-color);
+  --_gtt-bg: var(--gtt-accent-light-bg);
+  --_gtt-border-color: var(--gtt-default-border-color);
+  border-left-color: var(
+    --gtt-default-accent-border-color,
+    var(--gtt-color-default-base)
+  );
+}
+
+.gttToast[role='alert'][data-level='success'][data-variant='accent-light'] {
+  --_gtt-color: var(--gtt-success-accent-color);
+  --_gtt-bg: var(--gtt-accent-light-bg);
+  --_gtt-border-color: var(--gtt-success-border-color);
+  border-left-color: var(
+    --gtt-success-accent-dark-color,
+    var(--gtt-color-success-base)
+  );
+}
+
+.gttToast[role='alert'][data-level='error'][data-variant='accent-light'] {
+  --_gtt-color: var(--gtt-error-accent-color);
+  --_gtt-bg: var(--gtt-accent-light-bg);
+  --_gtt-border-color: var(--gtt-error-border-color);
+  border-left-color: var(
+    --gtt-error-accent-border-color,
+    var(--gtt-color-error-base)
+  );
+}
+
+.gttToast[role='alert'][data-level='warning'][data-variant='accent-light'] {
+  --_gtt-color: var(--gtt-warning-accent-color);
+  --_gtt-bg: var(--gtt-accent-light-bg);
+  --_gtt-border-color: var(--gtt-warning-border-color);
+  border-left-color: var(
+    --gtt-warning-accent-border-color,
+    var(--gtt-color-warning-base)
+  );
+}
+
+.gttToast[role='alert'][data-level='info'][data-variant='accent-light'] {
+  --_gtt-color: var(--gtt-info-accent-color);
+  --_gtt-bg: var(--gtt-accent-light-bg);
+  --_gtt-border-color: var(--gtt-info-border-color);
+  border-left-color: var(
+    --gtt-info-accent-border-color,
+    var(--gtt-color-info-base)
+  );
+}
