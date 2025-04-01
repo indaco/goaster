@@ -7,7 +7,6 @@ on:
 jobs:
   create-release-notes:
     runs-on: ubuntu-latest
-    if: "startsWith(github.event.head_commit.message, 'chore(release):')"
     environment:
       name: Release
 
@@ -15,25 +14,14 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Extract version from commit message
-        id: extract_version
-        run: |
-          COMMIT_MSG="${{ github.event.head_commit.message }}"
-          if [[ "$COMMIT_MSG" =~ chore\(release\):\ v([0-9]+\.[0-9]+\.[0-9]+) ]]; then
-            VERSION="v${BASH_REMATCH[1]}"
-            echo "version=$VERSION" >> $GITHUB_OUTPUT
-          else
-            exit 1
-          fi
-
       - name: Create Release
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: ${{ steps.extract_version.outputs.version }}
-          name: ${{ steps.extract_version.outputs.version }}
+          tag_name: ${{ github.event.release.tag_name }}
+          name: ${{ github.event.release.tag_name }}
           draft: false
           prerelease: false
           make_latest: 'true'
           token: ${{ secrets.GOASTER_TOKEN }}
-          body_path: ${{ github.workspace }}/.changes/${{ steps.extract_version.outputs.version }}.md
+          body_path: ${{ github.workspace }}/.changes/${{ github.event.release.tag_name }}.md
           generate_release_notes: false
