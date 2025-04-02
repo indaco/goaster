@@ -40,7 +40,7 @@
 
 A configurable, themeable and non-intrusive server-rendered toast notification component for Go web applications. Built with [templ](https://github.com/a-h/templ) library for seamless integration with Go-based web frontends.
 
-![goaster demo](https://raw.githubusercontent.com/indaco/goaster/gh-assets/demo.gif)
+![goaster demo](https://raw.githubusercontent.com/indaco/gh-assets/main/goaster/demo.gif)
 
 ### Features
 
