@@ -241,7 +241,7 @@ button.gttCloseBtn:focus {
 /* ------------------------------------------------------------------------- */
 /* ANIMATION LOGIC                                                           */
 /* ------------------------------------------------------------------------- */
-.gttAnimated {
+.gttToast[data-animation='true'] {
   animation-duration: var(--_gtt-anim-duration-in);
   animation-direction: var(--_gtt-anim-direction-in);
   animation-timing-function: var(--_gtt-anim-timing-in);
@@ -255,11 +255,11 @@ button.gttCloseBtn:focus {
   animation-direction: var(--_gtt-anim-direction-out);
 }
 
-.gttShowFromTop {
+.gttToast[data-animation='true'].gttShowFromTop {
   animation-name: var(--_gtt-anim-name-in-top);
 }
 
-.gttShowFromBottom {
+.gttToast[data-animation='true'].gttShowFromBottom {
   animation-name: var(--_gtt-anim-name-in-bottom);
 }
 
