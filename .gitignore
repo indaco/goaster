@@ -34,3 +34,4 @@ sync.sh
 
 # go test
 profile.cov
+coverage.txt

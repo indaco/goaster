@@ -31,11 +31,11 @@ lint:
 test/view-total-coverage:
 	@echo ""
 	@echo "Total Coverage:"
-	@go tool cover -func=profile.cov | grep total | awk -F '[[:space:]]+' '{print $$NF}'
+	@go tool cover -func=coverage.txt | grep total | awk -F '[[:space:]]+' '{print $$NF}'
 
 .PHONY: test/view-coverage
 test/view-coverage:
-	@go tool cover -html=profile.cov
+	@go tool cover -html=coverage.txt
 	@echo "Coverage report displayed in your default browser."
 
 .PHONY: live/templ
@@ -68,7 +68,7 @@ live/sync:
 # ==================================================================================== #
 .PHONY: test
 test: ## Run all tests and generate coverage report
-	@go test -count=1 -timeout 30s $(shell go list ./... | grep -Ev 'examples|components') -covermode=atomic -coverprofile=profile.cov
+	@go test -count=1 -timeout 30s $(shell go list ./... | grep -Ev 'examples|components') -covermode=atomic -coverprofile=coverage.txt
 	@$(MAKE) test/view-total-coverage
 
 .PHONY: test/coverage

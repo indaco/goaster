@@ -8,8 +8,8 @@
   <a href="https://github.com/indaco/goaster/actions/workflows/ci.yml" target="_blank">
       <img src="https://github.com/indaco/goaster/actions/workflows/ci.yml/badge.svg" alt="CI" />
     </a>
-    <a href="https://coveralls.io/github/indaco/goaster?branch=main" target="_blank">
-      <img src="https://coveralls.io/repos/github/indaco/goaster/badge.svg?branch=main" alt="Coverage Status" />
+    <a href="https://codecov.io/gh/indaco/goaster">
+      <img src="https://codecov.io/gh/indaco/goaster/branch/main/graph/badge.svg" alt="Code coverage" />
     </a>
   <a href="https://goreportcard.com/report/github.com/indaco/goaster/" target="_blank">
     <img src="https://goreportcard.com/badge/github.com/indaco/goaster" alt="go report card" />

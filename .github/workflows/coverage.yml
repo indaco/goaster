@@ -25,9 +25,9 @@ jobs:
         run: go mod verify
 
       - name: Run go test
-        run: go test -count=1 -timeout 30s $(go list ./... | grep -Ev 'examples|components') -covermode=atomic -coverprofile=profile.cov
+        run: go test -count=1 -timeout 30s $(go list ./... | grep -Ev 'examples|components') -covermode=atomic -coverprofile=coverage.txt
 
-      - name: Send Coverage
-        uses: shogo82148/actions-goveralls@v1
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v5
         with:
-          path-to-profile: profile.cov
+          token: ${{ secrets.CODECOV_TOKEN }}

@@ -19,20 +19,20 @@ tasks:
       - golangci-lint run ./...
 
   test/view-total-coverage:
-    desc: Display total test coverage from profile.cov
+    desc: Display total test coverage from coverage.txt
     silent: true
     internal: true
     cmds:
       - echo ""
       - echo "Total Coverage:"
-      - go tool cover -func=profile.cov | grep total | awk -F '[[:space:]]+' '{print $NF}'
+      - go tool cover -func=coverage.txt | grep total | awk -F '[[:space:]]+' '{print $NF}'
 
   test/view-coverage:
     desc: View the HTML coverage report
     silent: true
     internal: true
     cmds:
-      - go tool cover -html=profile.cov
+      - go tool cover -html=coverage.txt
       - echo "Coverage report displayed in your default browser."
 
   live:templ:
@@ -78,7 +78,7 @@ tasks:
     desc: Run all tests and generate coverage report
     silent: false
     cmds:
-      - go test -count=1 -timeout 30s $(go list ./... | grep -Ev 'examples|components') -covermode=atomic -coverprofile=profile.cov
+      - go test -count=1 -timeout 30s $(go list ./... | grep -Ev 'examples|components') -covermode=atomic -coverprofile=coverage.txt
       - task: test/view-total-coverage
 
   test/coverage:
