@@ -6,19 +6,25 @@ import (
 
 func TestToasterBuilder_Defaults(t *testing.T) {
 	toaster := NewToasterBuilder().Build()
-
 	if toaster == nil {
 		t.Fatal("expected toaster instance, got nil")
 	}
-	if toaster.Position != BottomRight {
-		t.Errorf("expected default position to be BottomRight, got %v", toaster.Position)
-	}
-	if len(toaster.Icons) == 0 {
-		t.Errorf("expected default icons to be set")
-	}
-	if toaster.Queue() == nil {
-		t.Errorf("expected queue to be initialized")
-	}
+
+	t.Run("default position", func(t *testing.T) {
+		if toaster.Position != BottomRight {
+			t.Errorf("expected default position to be BottomRight, got %v", toaster.Position)
+		}
+	})
+	t.Run("default icons", func(t *testing.T) {
+		if len(toaster.Icons) == 0 {
+			t.Errorf("expected default icons to be set")
+		}
+	})
+	t.Run("queue initialized", func(t *testing.T) {
+		if toaster.Queue() == nil {
+			t.Errorf("expected queue to be initialized")
+		}
+	})
 }
 
 func TestToasterBuilder_CustomConfig(t *testing.T) {
