@@ -13,6 +13,7 @@ templ CustomAnimationPage(toaster *goaster.Toaster) {
 			<link
 				rel="stylesheet"
 				href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+				nonce={ templ.GetNonce(ctx) }
 			/>
 			<!-- set css vars for entrance and exit animations -->
 			<style type="text/css">

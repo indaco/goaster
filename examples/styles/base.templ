@@ -4,7 +4,7 @@ var baseCSSHandle = templ.NewOnceHandle()
 
 templ Base() {
 	@baseCSSHandle.Once() {
-		<style type="text/css">
+		<style type="text/css" nonce={ templ.GetNonce(ctx) }>
 @layer reset, base, components;
 
 @layer reset {

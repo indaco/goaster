@@ -4,7 +4,7 @@ var navigationCSSHandle = templ.NewOnceHandle()
 
 templ Navigation() {
 	@navigationCSSHandle.Once() {
-		<style type="text/css">
+		<style type="text/css" nonce={ templ.GetNonce(ctx) }>
 @layer base {
   .nav {
     list-style: none;

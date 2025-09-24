@@ -6,7 +6,7 @@ var toasterThemeDarkHandle = templ.NewOnceHandle()
 
 templ toasterThemeDark() {
 	@toasterThemeDarkHandle.Once() {
-		<style type="text/css">
+		<style type="text/css" nonce={ templ.GetNonce(ctx) }>
 /* [tempo] BEGIN - Do not edit! This section is auto-generated. */
 /* [tempo] END */
 </style>
