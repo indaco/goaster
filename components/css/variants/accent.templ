@@ -4,7 +4,7 @@ var toasterAccentVariantHandle = templ.NewOnceHandle()
 
 templ variantAccent() {
 	@toasterAccentVariantHandle.Once() {
-		<style type="text/css">
+		<style type="text/css" nonce={ templ.GetNonce(ctx) }>
 /* [tempo] BEGIN - Do not edit! This section is auto-generated. */
 :root{--gtt-default-accent-color: var(--gtt-color-default-dark);--gtt-success-accent-color: var(--gtt-color-success-dark);--gtt-error-accent-color: var(--gtt-color-error-dark);--gtt-warning-accent-color: var(--gtt-color-warning-dark);--gtt-info-accent-color: var(--gtt-color-info-dark)}.gttToast[role=alert][data-variant=accent]{border:0;border-left-width:4px;border-left-style:solid}.gttToast[role=alert][data-level=default][data-variant=accent]{border-left-color:var( --gtt-default-accent-border-color, var(--gtt-color-default-base) )}.gttToast[role=alert][data-level=success][data-variant=accent]{border-left-color:var( --gtt-success-accent-dark-color, var(--gtt-color-success-base) )}.gttToast[role=alert][data-level=error][data-variant=accent]{border-left-color:var( --gtt-error-accent-border-color, var(--gtt-color-error-base) )}.gttToast[role=alert][data-level=warning][data-variant=accent]{border-left-color:var( --gtt-warning-accent-border-color, var(--gtt-color-warning-base) )}.gttToast[role=alert][data-level=info][data-variant=accent]{border-left-color:var( --gtt-info-accent-border-color, var(--gtt-color-info-base) )}
 
