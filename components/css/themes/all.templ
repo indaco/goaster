@@ -1,8 +1,7 @@
 package themes
 
-var toasterThemesHandle = templ.NewOnceHandle()
-
 templ ToasterThemes() {
+	{{ toasterThemesHandle := templ.NewOnceHandle() }}
 	@toasterThemesHandle.Once() {
 		@toasterThemeLight()
 		@toasterThemeDark()

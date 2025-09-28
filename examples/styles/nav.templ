@@ -1,8 +1,7 @@
 package styles
 
-var navigationCSSHandle = templ.NewOnceHandle()
-
 templ Navigation() {
+	{{ navigationCSSHandle := templ.NewOnceHandle() }}
 	@navigationCSSHandle.Once() {
 		<style type="text/css" nonce={ templ.GetNonce(ctx) }>
 @layer base {

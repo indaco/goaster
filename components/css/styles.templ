@@ -6,9 +6,8 @@ import (
 	"github.com/indaco/goaster/components/css/variants"
 )
 
-var cssHandle = templ.NewOnceHandle()
-
 templ GoasterCSS(variant string) {
+	{{ cssHandle := templ.NewOnceHandle() }}
 	@cssHandle.Once() {
 		<style type="text/css" nonce={ templ.GetNonce(ctx) }>
     /* [tempo] BEGIN - Do not edit! This section is auto-generated. */

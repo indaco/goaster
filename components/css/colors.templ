@@ -1,8 +1,7 @@
 package css
 
-var cssColorsHandle = templ.NewOnceHandle()
-
 templ GoasterCSSColors() {
+	{{ cssColorsHandle := templ.NewOnceHandle() }}
 	@cssColorsHandle.Once() {
 		<style type="text/css" nonce={ templ.GetNonce(ctx) }>
 /* [tempo] BEGIN - Do not edit! This section is auto-generated. */

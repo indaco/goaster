@@ -1,8 +1,7 @@
 package styles
 
-var baseCSSHandle = templ.NewOnceHandle()
-
 templ Base() {
+	{{ baseCSSHandle := templ.NewOnceHandle() }}
 	@baseCSSHandle.Once() {
 		<style type="text/css" nonce={ templ.GetNonce(ctx) }>
 @layer reset, base, components;

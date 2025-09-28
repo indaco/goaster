@@ -1,8 +1,7 @@
 package js
 
-var jsHandle = templ.NewOnceHandle()
-
 templ GoasterJS() {
+	{{ jsHandle := templ.NewOnceHandle() }}
 	@jsHandle.Once() {
 		<script type="text/javascript" nonce={ templ.GetNonce(ctx) }>
     /* [tempo] BEGIN - Do not edit! This section is auto-generated. */
