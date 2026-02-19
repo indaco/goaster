@@ -21,7 +21,7 @@
 
 .gttToast[role='alert'][data-level='success'][data-variant='accent'] {
   border-left-color: var(
-    --gtt-success-accent-dark-color,
+    --gtt-success-accent-border-color,
     var(--gtt-color-success-base)
   );
 }
