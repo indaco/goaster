@@ -28,7 +28,7 @@
   --_gtt-bg: var(--gtt-accent-light-bg);
   --_gtt-border-color: var(--gtt-success-border-color);
   border-left-color: var(
-    --gtt-success-accent-dark-color,
+    --gtt-success-accent-border-color,
     var(--gtt-color-success-base)
   );
 }
