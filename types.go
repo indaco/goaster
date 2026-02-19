@@ -21,9 +21,3 @@ func (v Variant) String() string {
 	return string(v)
 }
 
-// Icon is a named type for SVG string representations.
-type Icon string
-
-func (i Icon) String() string {
-	return string(i)
-}

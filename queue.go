@@ -1,14 +1,20 @@
 package goaster
 
 import (
+	"errors"
 	"fmt"
 	"strings"
 )
 
+// ErrEmptyQueue is returned when attempting to dequeue from an empty queue.
+var ErrEmptyQueue = errors.New("queue is empty")
+
+// Queue is a FIFO container for Toast notifications.
 type Queue struct {
 	elements []Toast
 }
 
+// NewQueue creates and returns an empty Queue.
 func NewQueue() *Queue {
 	return &Queue{elements: make([]Toast, 0)}
 }
@@ -19,12 +25,13 @@ func (q *Queue) Enqueue(toast Toast) {
 }
 
 // Dequeue removes and returns the first element of the queue.
-// If the queue is empty, it returns -1 and an error.
+// If the queue is empty, it returns a zero-value Toast and ErrEmptyQueue.
 func (q *Queue) Dequeue() (Toast, error) {
 	if len(q.elements) == 0 {
-		return Toast{}, fmt.Errorf("queue is empty")
+		return Toast{}, ErrEmptyQueue
 	}
 	element := q.elements[0]
+	q.elements[0] = Toast{} // zero the slot to allow GC
 	q.elements = q.elements[1:]
 	return element, nil
 }
@@ -44,7 +51,7 @@ func (q *Queue) String() string {
 	var sb strings.Builder
 	sb.WriteString("Queue: front [")
 	for i, e := range q.elements {
-		sb.WriteString(fmt.Sprintf("%v", e))
+		fmt.Fprintf(&sb, "%v", e)
 		if i < len(q.elements)-1 {
 			sb.WriteString(", ")
 		}
@@ -53,19 +60,10 @@ func (q *Queue) String() string {
 	return sb.String()
 }
 
-// GetMessagesAndDequeue returns a slice of Toast messages from the queue.
-// It dequeues messages from the queue until it's empty.
-// **NOTE**: in a-h/templ only `for...range` is a valid `for`loop.
-func (q *Queue) GetMessagesAndDequeue() []Toast {
-	var messages []Toast
-
-	for q.Size() > 0 {
-		item, err := q.Dequeue()
-		if err != nil {
-			fmt.Println("Error:", err)
-			break
-		}
-		messages = append(messages, item)
-	}
+// DrainAll removes and returns all Toast messages from the queue.
+// After this call the queue is empty.
+func (q *Queue) DrainAll() []Toast {
+	messages := q.elements
+	q.elements = nil
 	return messages
 }

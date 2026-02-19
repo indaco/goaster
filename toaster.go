@@ -21,6 +21,7 @@ type Toaster struct {
 	queue       *Queue           // Toast queue
 }
 
+// ToasterDefaults returns a Toaster initialized with sensible default settings.
 func ToasterDefaults() *Toaster {
 	return &Toaster{
 		Border:      true,
@@ -36,9 +37,10 @@ func ToasterDefaults() *Toaster {
 	}
 }
 
+// ToViewModel converts the Toaster into a ToasterViewModel, draining the queue.
 func (t *Toaster) ToViewModel() viewmodel.ToasterViewModel {
 	var toasts []viewmodel.ToastViewModel
-	for _, toast := range t.Queue().GetMessagesAndDequeue() {
+	for _, toast := range t.Queue().DrainAll() {
 		toasts = append(toasts, viewmodel.ToastViewModel{
 			Message: toast.Message,
 			Level:   toast.Level.String(),
@@ -65,7 +67,11 @@ func (t *Toaster) ToViewModel() viewmodel.ToasterViewModel {
 /* ------------------------------------------------------------------------- */
 
 // Queue returns the internal toast queue.
+// If the queue has not been initialized, it is lazily created.
 func (t *Toaster) Queue() *Queue {
+	if t.queue == nil {
+		t.queue = NewQueue()
+	}
 	return t.queue
 }
 

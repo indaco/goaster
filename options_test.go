@@ -164,6 +164,8 @@ func TestToasterOptions(t *testing.T) {
 				ShowIcon:    true,
 				Button:      true,
 				AutoDismiss: true,
+				Animation:   true,
+				ProgressBar: true,
 				Position:    TopLeft,
 			},
 		},
@@ -191,6 +193,12 @@ func TestToasterOptions(t *testing.T) {
 			}
 			if toaster.AutoDismiss != tt.expected.AutoDismiss {
 				t.Errorf("AutoDismiss: expected %v, got %v", tt.expected.AutoDismiss, toaster.AutoDismiss)
+			}
+			if toaster.Animation != tt.expected.Animation {
+				t.Errorf("Animation: expected %v, got %v", tt.expected.Animation, toaster.Animation)
+			}
+			if toaster.ProgressBar != tt.expected.ProgressBar {
+				t.Errorf("ProgressBar: expected %v, got %v", tt.expected.ProgressBar, toaster.ProgressBar)
 			}
 			if toaster.Position != tt.expected.Position {
 				t.Errorf("Position: expected %v, got %v", tt.expected.Position, toaster.Position)
