@@ -27,16 +27,6 @@
     var(--_gtt-color-default-base) 70%,
     black
   );
-  --gtt-color-default-darker: color-mix(
-    in var(--_gtt-color-space),
-    var(--_gtt-color-default-base) 30%,
-    black
-  );
-  --gtt-color-default-darkest: color-mix(
-    in var(--_gtt-color-space),
-    var(--_gtt-color-default-base) 10%,
-    black
-  );
 
   /* - Success Level - */
   --_gtt-color-success-base: var(
@@ -61,16 +51,6 @@
   --gtt-color-success-dark: color-mix(
     in var(--_gtt-color-space),
     var(--_gtt-color-success-base) 70%,
-    black
-  );
-  --gtt-color-success-darker: color-mix(
-    in var(--_gtt-color-space),
-    var(--_gtt-color-success-base) 30%,
-    black
-  );
-  --gtt-color-success-darkest: color-mix(
-    in var(--_gtt-color-space),
-    var(--_gtt-color-success-base) 10%,
     black
   );
 
@@ -99,16 +79,6 @@
     var(--_gtt-color-error-base) 70%,
     black
   );
-  --gtt-color-error-darker: color-mix(
-    in var(--_gtt-color-space),
-    var(--_gtt-color-error-base) 30%,
-    black
-  );
-  --gtt-color-error-darkest: color-mix(
-    in var(--_gtt-color-space),
-    var(--_gtt-color-error-base) 10%,
-    black
-  );
 
   /* - Warning Level - */
   --_gtt-color-warning-base: var(
@@ -135,16 +105,6 @@
     var(--_gtt-color-warning-base) 70%,
     black
   );
-  --gtt-color-warning-darker: color-mix(
-    in var(--_gtt-color-space),
-    var(--_gtt-color-warning-base) 30%,
-    black
-  );
-  --gtt-color-warning-darkest: color-mix(
-    in var(--_gtt-color-space),
-    var(--_gtt-color-warning-base) 10%,
-    black
-  );
 
   /* - Info Level - */
   --_gtt-color-info-base: var(
@@ -169,16 +129,6 @@
   --gtt-color-info-dark: color-mix(
     in var(--_gtt-color-space),
     var(--_gtt-color-info-base) 70%,
-    black
-  );
-  --gtt-color-info-darker: color-mix(
-    in var(--_gtt-color-space),
-    var(--_gtt-color-info-base) 30%,
-    black
-  );
-  --gtt-color-info-darkest: color-mix(
-    in var(--_gtt-color-space),
-    var(--_gtt-color-info-base) 10%,
     black
   );
 }
