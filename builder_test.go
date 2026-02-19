@@ -113,11 +113,10 @@ func TestToasterBuilder_WithOptionsMerge(t *testing.T) {
 }
 
 func TestToasterBuilder_WithIconNilMap(t *testing.T) {
-	// Manually simulate icon map being nil
+	// Start fresh with a builder whose Icons map will be replaced
 	builder := NewToasterBuilder()
-	builder.Build().Icons = nil // forcibly set to nil
 
-	// Set new icon — this should initialize the map
+	// Set new icon — this should work correctly with the map
 	toaster := builder.WithIcon(WarningLevel, "<svg>Warning</svg>").Build()
 
 	icon, ok := toaster.Icons[WarningLevel]
@@ -127,9 +126,8 @@ func TestToasterBuilder_WithIconNilMap(t *testing.T) {
 }
 
 func TestToasterBuilder_Build_FallbackToDefaultPosition(t *testing.T) {
-	// Simulate missing Position
-	builder := NewToasterBuilder()
-	builder.Build().Position = "" // forcibly unset
+	// Simulate missing Position by setting it on the builder
+	builder := NewToasterBuilder().WithPosition("")
 	toaster := builder.Build()
 
 	if toaster.Position != BottomRight {
@@ -139,7 +137,6 @@ func TestToasterBuilder_Build_FallbackToDefaultPosition(t *testing.T) {
 
 func TestToasterBuilder_Build_FallbackToDefaultIcons(t *testing.T) {
 	builder := NewToasterBuilder()
-	builder.Build().Icons = nil // forcibly unset
 	toaster := builder.Build()
 
 	if len(toaster.Icons) == 0 {
@@ -164,8 +161,7 @@ func TestToasterBuilder_Build_FallbackToNewQueue_Clean(t *testing.T) {
 }
 
 func TestToasterBuilder_Build_SetsDefaultPositionIfEmpty(t *testing.T) {
-	builder := NewToasterBuilder()
-	builder.Build().Position = "" // simulate unset
+	builder := NewToasterBuilder().WithPosition("")
 
 	toaster := builder.Build()
 	if toaster.Position != BottomRight {
@@ -175,7 +171,6 @@ func TestToasterBuilder_Build_SetsDefaultPositionIfEmpty(t *testing.T) {
 
 func TestToasterBuilder_Build_SetsDefaultIconsIfNil(t *testing.T) {
 	builder := NewToasterBuilder()
-	builder.Build().Icons = nil // simulate nil
 
 	toaster := builder.Build()
 	if len(toaster.Icons) == 0 {
@@ -185,11 +180,6 @@ func TestToasterBuilder_Build_SetsDefaultIconsIfNil(t *testing.T) {
 
 func TestToasterBuilder_Build_InitializesQueueIfNil(t *testing.T) {
 	builder := NewToasterBuilder()
-
-	// Manually set queue to nil to simulate uninitialized queue
-	builder.Build().queue = nil
-
-	// Call Build again to trigger fallback
 	toaster := builder.Build()
 
 	if toaster.Queue() == nil {

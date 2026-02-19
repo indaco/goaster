@@ -1,6 +1,7 @@
 package goaster
 
 import (
+	"errors"
 	"testing"
 )
 
@@ -34,8 +35,8 @@ func TestQueue_EnqueueAndDequeue(t *testing.T) {
 	}
 
 	_, err = q.Dequeue()
-	if err == nil {
-		t.Errorf("expected error on dequeue from empty queue, got nil")
+	if !errors.Is(err, ErrEmptyQueue) {
+		t.Errorf("expected ErrEmptyQueue, got %v", err)
 	}
 }
 
@@ -63,7 +64,7 @@ func TestQueue_Size(t *testing.T) {
 	}
 }
 
-func TestQueue_GetMessagesAndDequeue(t *testing.T) {
+func TestQueue_DrainAll(t *testing.T) {
 	q := NewQueue()
 	toast1 := NewToast("Message A", WarningLevel)
 	toast2 := NewToast("Message B", ErrorLevel)
@@ -71,12 +72,12 @@ func TestQueue_GetMessagesAndDequeue(t *testing.T) {
 	q.Enqueue(toast1)
 	q.Enqueue(toast2)
 
-	messages := q.GetMessagesAndDequeue()
+	messages := q.DrainAll()
 	if len(messages) != 2 {
 		t.Fatalf("expected 2 messages, got %d", len(messages))
 	}
 	if !q.IsEmpty() {
-		t.Error("expected queue to be empty after GetMessagesAndDequeue")
+		t.Error("expected queue to be empty after DrainAll")
 	}
 	if messages[0].Message != "Message A" || messages[1].Message != "Message B" {
 		t.Error("messages are not in correct order")

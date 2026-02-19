@@ -1,6 +1,7 @@
 package goaster
 
 import (
+	"context"
 	"html/template"
 	"testing"
 )
@@ -11,7 +12,7 @@ func TestDisplayAll(t *testing.T) {
 	toaster := NewToaster()
 	toaster.PushInfo("Sample Toast")
 
-	html, err := g.DisplayAll(toaster)
+	html, err := g.DisplayAll(context.Background(), toaster)
 	if err != nil {
 		t.Fatalf("expected no error, got %v", err)
 	}
@@ -27,7 +28,7 @@ func TestGeneratedHTML_IsTemplateHTML(t *testing.T) {
 	toaster := NewToaster()
 	toaster.PushSuccess("Success Toast")
 
-	html, err := g.DisplayAll(toaster)
+	html, err := g.DisplayAll(context.Background(), toaster)
 	if err != nil {
 		t.Fatalf("unexpected error: %v", err)
 	}

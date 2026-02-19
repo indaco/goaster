@@ -72,7 +72,9 @@ func (b *ToasterBuilder) WithOptions(options ...Option) *ToasterBuilder {
 	return b
 }
 
-// Build finalizes and returns the configured Toaster instance.
+// Build finalizes and returns a copy of the configured Toaster instance.
+// Each call returns an independent Toaster so that mutations do not
+// affect subsequent Build calls.
 func (b *ToasterBuilder) Build() *Toaster {
 	// Ensure Position is not empty (should always be valid)
 	if b.toaster.Position == "" {
@@ -89,5 +91,6 @@ func (b *ToasterBuilder) Build() *Toaster {
 		b.toaster.queue = NewQueue()
 	}
 
-	return b.toaster
+	result := *b.toaster
+	return &result
 }

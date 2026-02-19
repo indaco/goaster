@@ -25,7 +25,7 @@ func HandleGoHtmlMultiple(w http.ResponseWriter, r *http.Request) {
 	toaster.PushInfo("Info Toast")
 
 	// Render the toast component into a template.HTML
-	toastHtml, err := toastHTMLGenerator.DisplayAll(toaster)
+	toastHtml, err := toastHTMLGenerator.DisplayAll(r.Context(), toaster)
 	if err != nil {
 		http.Error(w, "failed to render toast HTML", http.StatusInternalServerError)
 		log.Printf("failed to render toast HTML: %v", err)
