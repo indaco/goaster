@@ -4,7 +4,7 @@
     "git@latest",
     "go@1.23",
     "golangci-lint@latest",
-    "gnumake@latest",
+    "just@latest",
     "templ@latest"
   ],
   "env": {
@@ -25,9 +25,9 @@
       "go install github.com/indaco/tempo/cmd/tempo@latest"
     ],
     "scripts": {
-      "build": ["make build"],
-      "templ": ["make templ"],
-      "test": ["make test"]
+      "build": ["just build"],
+      "templ": ["just templ"],
+      "test": ["just test"]
     }
   }
 }

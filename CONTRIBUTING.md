@@ -25,7 +25,7 @@ To set up a development environment for this repository, you can use [devbox](ht
 If you prefer not to use Devbox, ensure you have the following tools installed:
 
 - [golangci-lint](https://golangci-lint.run/): For linting Go code.
-- [go-task](https://taskfile.dev/) or `make`: For running project tasks.
+- [just](https://just.systems/): For running project recipes.
 - [modernize](https://pkg.go.dev/golang.org/x/tools/gopls/internal/analysis/modernize): Run the modernizer analyzer to simplify code by using modern constructs.
 
 ## Setting Up Git Hooks
@@ -61,23 +61,24 @@ For users not using `devbox`, follow the steps below to manually install the Git
    .scripts\setup-hooks.bat
    ```
 
-## Running Tasks
+## Running Recipes
 
-This project provides both a `Makefile` and a `Taskfile` for running various tasks. You can use either `make` or `task` to execute the tasks, depending on your preference.
+This project uses [just](https://just.systems/) as its command runner.
 
-### View all available tasks
-
-- _Makefile_: `make help`
-- _Taskfile_: `task --list-all`
-
-#### Common tasks
+### View all available recipes
 
 ```bash
-build:               # Build for production with minified asset files
-dev:                 # Run the dev server with live reload
-pre-build:           # Run pre-build tasks
-templ:               # Run templ fmt and templ generate commands
-test:                # Run all tests and generate coverage report
-test/coverage:       # Run go tests and use go tool cover
-test/force:          # Clean go tests cache and run all tests
+just --list
+```
+
+### Common recipes
+
+```bash
+just build           # Build for production with minified asset files
+just dev             # Run the dev server with live reload
+just pre-build       # Run pre-build tasks
+just templ           # Run templ fmt and templ generate commands
+just test            # Run all tests and generate coverage report
+just test-coverage   # Run go tests and use go tool cover
+just test-force      # Clean go tests cache and run all tests
 ```

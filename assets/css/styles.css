@@ -1,7 +1,7 @@
 /* ------------------------------------------------------------------------- */
 /* RESET                                                                     */
 /* ------------------------------------------------------------------------- */
-* {
+.gttContainer * {
   box-sizing: border-box;
   border-width: 0;
   border-style: solid;
@@ -24,7 +24,7 @@
   /* Typography */
   --_gtt-font-family: var(--gtt-font-family, inherit);
   --_gtt-font-size: var(--gtt-font-size, 1rem);
-  --_gtt-line-height: var(--gtt-line-height, 1rem);
+  --_gtt-line-height: var(--gtt-line-height, 1.5);
   --_gtt-color: var(--gtt-color, var(--gtt-default-color));
 
   /* Background and Progress */
@@ -74,7 +74,7 @@
   --_gtt-anim-name-out-bottom: var(--gtt-anim-name-out-bottom, gttFadeOutDown);
   --_gtt-anim-delay-out: var(--gtt-anim-delay-out, 0s);
   --_gtt-anim-duration-out: var(--gtt-anim-duration-out, 0.5s);
-  --_gtt-anim-direction-out: (--gtt-anim-direction-out, normal);
+  --_gtt-anim-direction-out: var(--gtt-anim-direction-out, normal);
   --_gtt-anim-timing-out: var(--gtt-anim-timing-out, ease);
 }
 
@@ -83,7 +83,7 @@
 /* ------------------------------------------------------------------------- */
 .gttContainer {
   position: fixed;
-  z-index: 1000;
+  z-index: var(--gtt-z-index, 1000);
   display: flex;
   flex-direction: column-reverse;
   align-items: flex-end;
@@ -144,6 +144,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  visibility: hidden;
 
   background-color: var(--_gtt-bg);
   color: var(--_gtt-color);
@@ -336,5 +337,19 @@ button.gttCloseBtn:focus {
   to {
     transform: translate3d(0, 100%, 0);
     opacity: 0;
+  }
+}
+
+/* ------------------------------------------------------------------------- */
+/* REDUCED MOTION                                                            */
+/* ------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .gttToast[data-animation='true'],
+  .gttClose,
+  .gttCloseFromTop,
+  .gttCloseFromBottom,
+  .gttProgressBar {
+    animation: none !important;
+    transition: none !important;
   }
 }
