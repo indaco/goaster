@@ -16,7 +16,7 @@ To explore them locally:
 
    ```bash
    cd goaster
-   make dev # or: task dev
+   just dev
    ```
 
    Or directly from the `examples` directory:
