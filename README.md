@@ -42,12 +42,14 @@ A configurable, themeable and non-intrusive server-rendered toast notification c
 
 ![goaster demo](https://raw.githubusercontent.com/indaco/gh-assets/main/goaster/demo.gif)
 
+*The demo above may not reflect the latest enhancements. Refer to the [examples](examples/) for an up-to-date showcase of all features and variants.*
+
 ### Features
 
 - **No External Dependencies**: Built with native Go and the [`templ`](https://templ.guide) library—no JavaScript or frontend dependencies required.
 - **Multiple Toasts**: Supports displaying multiple toast notifications simultaneously.
 - **Highly Configurable**: Customize appearance (bordered, rounded), behavior, and position to fit your UI.
-- **Variants**: Includes style variants such as `Accent`, `AccentLight`, and `AccentDark`.
+- **Variants**: Includes style variants such as `Accent`, `AccentLight`, `AccentDark`, `Filled`, `Outlined`, `Soft`, `Minimal`, `Brutalist`, `Retro`, and `Neon`.
 - **Themeable**: Easily theme your toasts using CSS variables to match your app’s design.
 - **Icon Support**: Comes with default SVG icons for common toast types (success, error, info, etc.)—or use your own.
 - **Flexible Positioning**: Display toast messages in any corner (top-right, bottom-left, etc.).

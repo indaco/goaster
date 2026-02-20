@@ -27,20 +27,95 @@ The following variables are generated from the base color:
 - `--gtt-color-<level>-darker`: 30% black
 - `--gtt-color-<level>-darkest`: 10% black
 
-### Accent Variants
+### Variants
 
-These tokens are used by the accent variants and override toast background colors.
+[Source Code](../assets/css/variants/).
 
-| Variant       | CSS Variable           | Value                           |
-| :------------ | :--------------------- | :------------------------------ |
-| `accent`      | `--gtt-accent-bg`      | `white`                         |
-| `accent-dark` | `--gtt-accent-dark-bg` | `hsla(220.9, 39.3%, 11%, 0.85)` |
+All variants (except `accent-light` and `accent-dark`) automatically adapt to light/dark mode via `@media (prefers-color-scheme)`.
 
-#### Semantic Accent Color Overrides
+| Variant        | Light Mode                               | Dark Mode                                       | Key Visual                 |
+| :------------- | :--------------------------------------- | :---------------------------------------------- | :------------------------- |
+| `accent`       | White bg, dark text, colored left border | Dark bg, light text, colored left border        | Auto-adaptive left accent  |
+| `accent-light` | White bg, dark text, colored left border | - (forced light)                                | Explicit light mode        |
+| `accent-dark`  | - (forced dark)                          | Dark bg, light text, colored left border        | Explicit dark mode         |
+| `filled`       | Base-color bg, white text                | Dark-color bg, lightest text                    | Bold solid background      |
+| `outlined`     | Transparent bg, base border, dark text   | Transparent bg, light border, light text        | Full colored border        |
+| `soft`         | Lightest bg, dark text, no border        | Subtle tinted dark bg, lightest text, no border | Subtle tinted background   |
+| `minimal`      | Transparent bg, dark text, no border     | Transparent bg, light text, no border           | Just colored text          |
+| `brutalist`    | White bg, thick border, offset shadow    | Near-black bg, thick border, offset shadow      | Raw, heavy, blocky         |
+| `retro`        | Cream bg, warm tones, inset shadow       | Warm dark bg, warm tones                        | Vintage, nostalgic         |
+| `neon`         | Falls back to default                    | Dark bg, neon glow borders                      | Cyberpunk glow (dark only) |
 
-Each level can override its accent color using the following properties:
+#### Accent
 
-> Note: these are used when applying `variant="accent"` or `variant="accent-dark"`.
+Background tokens used by the accent family of variants.
+
+| Variant        | CSS Variable            | Light Default | Dark Default                    |
+| :------------- | :---------------------- | :------------ | :------------------------------ |
+| `accent`       | `--gtt-accent-bg`       | `white`       | `hsla(220.9, 39.3%, 11%, 0.85)` |
+| `accent-light` | `--gtt-accent-light-bg` | `white`       | -                               |
+| `accent-dark`  | `--gtt-accent-dark-bg`  | -             | `hsla(220.9, 39.3%, 11%, 0.85)` |
+
+Per-level accent color overrides (apply to `accent`, `accent-light`, `accent-dark`):
+
+- `--gtt-<level>-accent-color` - text color
+- `--gtt-<level>-accent-border-color` - left border color
+
+#### Filled
+
+Per-level overrides:
+
+- `--gtt-filled-<level>-bg` - background color
+- `--gtt-filled-<level>-color` - text color
+
+#### Outlined
+
+Per-level overrides:
+
+- `--gtt-outlined-<level>-color` - text color
+- `--gtt-outlined-<level>-border` - border color
+- `--gtt-outlined-bg` - shared background (default: `transparent`)
+
+#### Soft
+
+Per-level overrides:
+
+- `--gtt-soft-<level>-bg` - background color (light: lightest tint; dark: 15% base tint)
+- `--gtt-soft-<level>-color` - text color
+
+#### Minimal
+
+Per-level overrides:
+
+- `--gtt-minimal-<level>-color` - text color
+
+Background and border are always `transparent`.
+
+#### Brutalist
+
+Per-level overrides:
+
+- `--gtt-brutalist-<level>-color` - text color
+- `--gtt-brutalist-<level>-border` - border color
+- `--gtt-brutalist-bg` - shared background (light: `white`; dark: `hsl(0 0% 8%)`)
+
+Structural: `border-width: 3px`, `border-radius: 0`, `box-shadow: 4px 4px 0 0` with level base color.
+
+#### Retro
+
+Per-level overrides:
+
+- `--gtt-retro-<level>-color` - text color
+- `--gtt-retro-<level>-border` - border color
+- `--gtt-retro-bg` - shared background (light: `hsl(45 40% 96%)`; dark: `hsl(35 25% 18%)`)
+
+Structural: `border-width: 1px`, `box-shadow: inset 0 1px 2px` for paper-like depth.
+
+#### Neon (dark mode only)
+
+All styles are wrapped in `@media (prefers-color-scheme: dark)`. In light mode, toasts fall back to default appearance.
+
+Uses level base colors directly - no custom override properties. Structural: `border-width: 1px`, dual `box-shadow` glow via `color-mix()` at 40% and 15% opacity.
 
 ## Theming
 
@@ -48,7 +123,9 @@ To customize any level (e.g., change the _success_ color), override the base var
 
 ```css
 :root {
-  --gtt-color-success-base: oklch(0.72 0.25 150); /* your custom success color */
+  --gtt-color-success-base: oklch(
+    0.72 0.25 150
+  ); /* your custom success color */
 }
 ```
 
