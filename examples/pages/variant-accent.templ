@@ -10,8 +10,8 @@ templ VariantAccentPage(toaster *goaster.Toaster) {
 	@layouts.Page() {
 		@partials.Head("goaster - accent variant")
 		@partials.Body() {
-			<!-- display the messages -->
-			@toaster.Success("Success Toast")
+			<p><a href="/">&larr; Back</a></p>
+			@toaster.RenderAll()
 		}
 	}
 }

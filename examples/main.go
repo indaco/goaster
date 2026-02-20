@@ -19,6 +19,13 @@ func main() {
 	mux.HandleFunc("GET /variants/accent", handlers.HandleVariantAccent)
 	mux.HandleFunc("GET /variants/accent-light", handlers.HandleVariantAccentLight)
 	mux.HandleFunc("GET /variants/accent-dark", handlers.HandleVariantAccentDark)
+	mux.HandleFunc("GET /variants/filled", handlers.HandleVariantFilled)
+	mux.HandleFunc("GET /variants/outlined", handlers.HandleVariantOutlined)
+	mux.HandleFunc("GET /variants/soft", handlers.HandleVariantSoft)
+	mux.HandleFunc("GET /variants/minimal", handlers.HandleVariantMinimal)
+	mux.HandleFunc("GET /variants/brutalist", handlers.HandleVariantBrutalist)
+	mux.HandleFunc("GET /variants/retro", handlers.HandleVariantRetro)
+	mux.HandleFunc("GET /variants/neon", handlers.HandleVariantNeon)
 	mux.HandleFunc("GET /gohtml/single", handlers.HandleGoHtmlSingle)
 	mux.HandleFunc("GET /gohtml/multiple", handlers.HandleGoHtmlMultiple)
 

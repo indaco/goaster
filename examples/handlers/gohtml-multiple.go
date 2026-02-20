@@ -48,6 +48,7 @@ func HandleGoHtmlMultiple(w http.ResponseWriter, r *http.Request) {
 			<title>go-templ-toast</title>
 		</head>
 		<body>
+			<p><a href="/">&larr; Back</a></p>
 			<!-- display the messages -->
 			{{ .Toast.HTML }}
 		</body>

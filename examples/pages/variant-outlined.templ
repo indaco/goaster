@@ -1,0 +1,17 @@
+package pages
+
+import (
+	"github.com/indaco/goaster"
+	"github.com/indaco/goaster/examples/layouts"
+	"github.com/indaco/goaster/examples/layouts/partials"
+)
+
+templ VariantOutlinedPage(toaster *goaster.Toaster) {
+	@layouts.Page() {
+		@partials.Head("goaster - outlined variant")
+		@partials.Body() {
+			<p><a href="/">&larr; Back</a></p>
+			@toaster.RenderAll()
+		}
+	}
+}

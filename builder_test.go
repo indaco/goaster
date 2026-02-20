@@ -178,6 +178,30 @@ func TestToasterBuilder_Build_SetsDefaultIconsIfNil(t *testing.T) {
 	}
 }
 
+func TestToasterBuilder_WithVariant(t *testing.T) {
+	tests := []struct {
+		name    string
+		variant Variant
+	}{
+		{"Filled", Filled},
+		{"Outlined", Outlined},
+		{"Soft", Soft},
+		{"Minimal", Minimal},
+		{"Brutalist", Brutalist},
+		{"Retro", Retro},
+		{"Neon", Neon},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			toaster := NewToasterBuilder().WithVariant(tt.variant).Build()
+			if toaster.Variant != tt.variant {
+				t.Errorf("expected Variant to be %q, got %q", tt.variant, toaster.Variant)
+			}
+		})
+	}
+}
+
 func TestToasterBuilder_Build_InitializesQueueIfNil(t *testing.T) {
 	builder := NewToasterBuilder()
 	toaster := builder.Build()

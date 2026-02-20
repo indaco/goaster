@@ -10,6 +10,7 @@ templ MultipleToastPage(toaster *goaster.Toaster) {
 	@layouts.Page() {
 		@partials.Head("goaster - single toast")
 		@partials.Body() {
+			<p><a href="/">&larr; Back</a></p>
 			<!-- display the messages -->
 			@toaster.RenderAll()
 		}

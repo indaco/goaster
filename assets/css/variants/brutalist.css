@@ -1,0 +1,75 @@
+/* Light mode defaults */
+:root {
+  --gtt-brutalist-bg: white;
+  --gtt-brutalist-default-color: var(--gtt-color-default-dark);
+  --gtt-brutalist-default-border: var(--gtt-color-default-base);
+  --gtt-brutalist-success-color: var(--gtt-color-success-dark);
+  --gtt-brutalist-success-border: var(--gtt-color-success-base);
+  --gtt-brutalist-error-color: var(--gtt-color-error-dark);
+  --gtt-brutalist-error-border: var(--gtt-color-error-base);
+  --gtt-brutalist-warning-color: var(--gtt-color-warning-dark);
+  --gtt-brutalist-warning-border: var(--gtt-color-warning-base);
+  --gtt-brutalist-info-color: var(--gtt-color-info-dark);
+  --gtt-brutalist-info-border: var(--gtt-color-info-base);
+}
+
+/* Dark mode overrides */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --gtt-brutalist-bg: hsl(0 0% 8%);
+    --gtt-brutalist-default-color: var(--gtt-color-default-light);
+    --gtt-brutalist-success-color: var(--gtt-color-success-light);
+    --gtt-brutalist-error-color: var(--gtt-color-error-light);
+    --gtt-brutalist-warning-color: var(--gtt-color-warning-light);
+    --gtt-brutalist-info-color: var(--gtt-color-info-light);
+  }
+}
+
+/* Structural rules */
+.gttToast[role='alert'][data-variant='brutalist'] {
+  font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, 'DejaVu Sans Mono', monospace;
+  border-width: 3px;
+  border-style: solid;
+  border-radius: 0;
+}
+
+/* Per-level selectors */
+.gttToast[role='alert'][data-level='default'][data-variant='brutalist'] {
+  --_gtt-color: var(--gtt-brutalist-default-color);
+  --_gtt-bg: var(--gtt-brutalist-bg);
+  --_gtt-border-color: var(--gtt-brutalist-default-border);
+  --_gtt-progress-color: var(--gtt-brutalist-default-color);
+  box-shadow: 4px 4px 0 0 var(--gtt-color-default-base);
+}
+
+.gttToast[role='alert'][data-level='success'][data-variant='brutalist'] {
+  --_gtt-color: var(--gtt-brutalist-success-color);
+  --_gtt-bg: var(--gtt-brutalist-bg);
+  --_gtt-border-color: var(--gtt-brutalist-success-border);
+  --_gtt-progress-color: var(--gtt-brutalist-success-color);
+  box-shadow: 4px 4px 0 0 var(--gtt-color-success-base);
+}
+
+.gttToast[role='alert'][data-level='error'][data-variant='brutalist'] {
+  --_gtt-color: var(--gtt-brutalist-error-color);
+  --_gtt-bg: var(--gtt-brutalist-bg);
+  --_gtt-border-color: var(--gtt-brutalist-error-border);
+  --_gtt-progress-color: var(--gtt-brutalist-error-color);
+  box-shadow: 4px 4px 0 0 var(--gtt-color-error-base);
+}
+
+.gttToast[role='alert'][data-level='warning'][data-variant='brutalist'] {
+  --_gtt-color: var(--gtt-brutalist-warning-color);
+  --_gtt-bg: var(--gtt-brutalist-bg);
+  --_gtt-border-color: var(--gtt-brutalist-warning-border);
+  --_gtt-progress-color: var(--gtt-brutalist-warning-color);
+  box-shadow: 4px 4px 0 0 var(--gtt-color-warning-base);
+}
+
+.gttToast[role='alert'][data-level='info'][data-variant='brutalist'] {
+  --_gtt-color: var(--gtt-brutalist-info-color);
+  --_gtt-bg: var(--gtt-brutalist-bg);
+  --_gtt-border-color: var(--gtt-brutalist-info-border);
+  --_gtt-progress-color: var(--gtt-brutalist-info-color);
+  box-shadow: 4px 4px 0 0 var(--gtt-color-info-base);
+}

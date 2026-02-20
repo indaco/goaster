@@ -1,0 +1,13 @@
+package variants
+
+templ variantMinimal() {
+	{{ toasterMinimalVariantHandle := templ.NewOnceHandle() }}
+	@toasterMinimalVariantHandle.Once() {
+		<style type="text/css" nonce={ templ.GetNonce(ctx) }>
+/* [tempo] BEGIN - Do not edit! This section is auto-generated. */
+:root{--gtt-minimal-default-color: var(--gtt-color-default-dark);--gtt-minimal-success-color: var(--gtt-color-success-dark);--gtt-minimal-error-color: var(--gtt-color-error-dark);--gtt-minimal-warning-color: var(--gtt-color-warning-dark);--gtt-minimal-info-color: var(--gtt-color-info-dark)}@media (prefers-color-scheme: dark){:root{--gtt-minimal-default-color: var(--gtt-color-default-light);--gtt-minimal-success-color: var(--gtt-color-success-light);--gtt-minimal-error-color: var(--gtt-color-error-light);--gtt-minimal-warning-color: var(--gtt-color-warning-light);--gtt-minimal-info-color: var(--gtt-color-info-light)}}.gttToast[role=alert][data-variant=minimal]{border:0;box-shadow:none}.gttToast[role=alert][data-level=default][data-variant=minimal]{--_gtt-color: var(--gtt-minimal-default-color);--_gtt-bg: transparent;--_gtt-border-color: transparent;--_gtt-progress-color: var(--gtt-minimal-default-color)}.gttToast[role=alert][data-level=success][data-variant=minimal]{--_gtt-color: var(--gtt-minimal-success-color);--_gtt-bg: transparent;--_gtt-border-color: transparent;--_gtt-progress-color: var(--gtt-minimal-success-color)}.gttToast[role=alert][data-level=error][data-variant=minimal]{--_gtt-color: var(--gtt-minimal-error-color);--_gtt-bg: transparent;--_gtt-border-color: transparent;--_gtt-progress-color: var(--gtt-minimal-error-color)}.gttToast[role=alert][data-level=warning][data-variant=minimal]{--_gtt-color: var(--gtt-minimal-warning-color);--_gtt-bg: transparent;--_gtt-border-color: transparent;--_gtt-progress-color: var(--gtt-minimal-warning-color)}.gttToast[role=alert][data-level=info][data-variant=minimal]{--_gtt-color: var(--gtt-minimal-info-color);--_gtt-bg: transparent;--_gtt-border-color: transparent;--_gtt-progress-color: var(--gtt-minimal-info-color)}
+
+/* [tempo] END */
+</style>
+	}
+}

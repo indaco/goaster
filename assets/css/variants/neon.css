@@ -1,0 +1,59 @@
+/* Neon: dark-mode only variant */
+@media (prefers-color-scheme: dark) {
+  .gttToast[role='alert'][data-variant='neon'] {
+    font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, 'DejaVu Sans Mono', monospace;
+    border-width: 1px;
+    border-style: solid;
+    margin-inline: 24px;
+  }
+
+  .gttToast[role='alert'][data-level='default'][data-variant='neon'] {
+    --_gtt-color: var(--gtt-color-default-light);
+    --_gtt-bg: hsl(240 15% 9%);
+    --_gtt-border-color: var(--gtt-color-default-light);
+    --_gtt-progress-color: var(--gtt-color-default-light);
+    box-shadow:
+      0 0 8px 2px color-mix(in srgb, var(--gtt-color-default-light) 50%, transparent),
+      0 0 20px 6px color-mix(in srgb, var(--gtt-color-default-light) 20%, transparent);
+  }
+
+  .gttToast[role='alert'][data-level='success'][data-variant='neon'] {
+    --_gtt-color: var(--gtt-color-success-light);
+    --_gtt-bg: hsl(240 15% 9%);
+    --_gtt-border-color: var(--gtt-color-success-light);
+    --_gtt-progress-color: var(--gtt-color-success-light);
+    box-shadow:
+      0 0 8px 2px color-mix(in srgb, var(--gtt-color-success-light) 50%, transparent),
+      0 0 20px 6px color-mix(in srgb, var(--gtt-color-success-light) 20%, transparent);
+  }
+
+  .gttToast[role='alert'][data-level='error'][data-variant='neon'] {
+    --_gtt-color: var(--gtt-color-error-light);
+    --_gtt-bg: hsl(240 15% 9%);
+    --_gtt-border-color: var(--gtt-color-error-light);
+    --_gtt-progress-color: var(--gtt-color-error-light);
+    box-shadow:
+      0 0 8px 2px color-mix(in srgb, var(--gtt-color-error-light) 50%, transparent),
+      0 0 20px 6px color-mix(in srgb, var(--gtt-color-error-light) 20%, transparent);
+  }
+
+  .gttToast[role='alert'][data-level='warning'][data-variant='neon'] {
+    --_gtt-color: var(--gtt-color-warning-light);
+    --_gtt-bg: hsl(240 15% 9%);
+    --_gtt-border-color: var(--gtt-color-warning-light);
+    --_gtt-progress-color: var(--gtt-color-warning-light);
+    box-shadow:
+      0 0 8px 2px color-mix(in srgb, var(--gtt-color-warning-light) 50%, transparent),
+      0 0 20px 6px color-mix(in srgb, var(--gtt-color-warning-light) 20%, transparent);
+  }
+
+  .gttToast[role='alert'][data-level='info'][data-variant='neon'] {
+    --_gtt-color: var(--gtt-color-info-light);
+    --_gtt-bg: hsl(240 15% 9%);
+    --_gtt-border-color: var(--gtt-color-info-light);
+    --_gtt-progress-color: var(--gtt-color-info-light);
+    box-shadow:
+      0 0 8px 2px color-mix(in srgb, var(--gtt-color-info-light) 50%, transparent),
+      0 0 20px 6px color-mix(in srgb, var(--gtt-color-info-light) 20%, transparent);
+  }
+}

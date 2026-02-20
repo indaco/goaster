@@ -12,6 +12,20 @@ func UseVariant(variant string) templ.Component {
 		return variantAccentLight()
 	case "accent-dark":
 		return variantAccentDark()
+	case "filled":
+		return variantFilled()
+	case "outlined":
+		return variantOutlined()
+	case "soft":
+		return variantSoft()
+	case "minimal":
+		return variantMinimal()
+	case "brutalist":
+		return variantBrutalist()
+	case "retro":
+		return variantRetro()
+	case "neon":
+		return variantNeon()
 	default:
 		return templ.NopComponent
 	}

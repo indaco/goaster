@@ -20,4 +20,3 @@ type Variant string
 func (v Variant) String() string {
 	return string(v)
 }
-

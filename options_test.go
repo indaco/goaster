@@ -208,9 +208,27 @@ func TestToasterOptions(t *testing.T) {
 }
 
 func TestWithVariant(t *testing.T) {
-	toaster := NewToaster(WithVariant(AccentDark))
-	if toaster.Variant != AccentDark {
-		t.Errorf("expected Variant to be %q, got %q", AccentDark, toaster.Variant)
+	tests := []struct {
+		name    string
+		variant Variant
+	}{
+		{"AccentDark", AccentDark},
+		{"Filled", Filled},
+		{"Outlined", Outlined},
+		{"Soft", Soft},
+		{"Minimal", Minimal},
+		{"Brutalist", Brutalist},
+		{"Retro", Retro},
+		{"Neon", Neon},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			toaster := NewToaster(WithVariant(tt.variant))
+			if toaster.Variant != tt.variant {
+				t.Errorf("expected Variant to be %q, got %q", tt.variant, toaster.Variant)
+			}
+		})
 	}
 }
 
