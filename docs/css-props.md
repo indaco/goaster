@@ -1,13 +1,17 @@
-# Goaster CSS custom props
+# Goaster CSS Custom Properties
+
+> Variables prefixed with `--_gtt-` are internal. Only `--gtt-*` variables are intended for user override.
 
 ## Semantic Color Levels
 
-[Source Code](../assets/css/colors.css).
+[Source Code](../assets/css/colors.css)
 
-All semantic color levels use [`color-mix()`](<https://developer.mozilla.org/en-US/docs/Web/CSS/color-mix()>) in the `oklab` color space, defined by:
+All semantic color levels use [`color-mix()`](<https://developer.mozilla.org/en-US/docs/Web/CSS/color-mix()>) in the `oklab` color space. Override the color space with:
 
 ```css
---gtt-color-space: oklab;
+:root {
+  --gtt-color-space: oklab; /* default */
+}
 ```
 
 | Level   | Base Value                   |
@@ -18,18 +22,16 @@ All semantic color levels use [`color-mix()`](<https://developer.mozilla.org/en-
 | warning | `oklch(0.769 0.188 70.08)`   |
 | info    | `oklch(0.623 0.214 259.815)` |
 
-The following variables are generated from the base color:
+Four derived variables are generated per level from the base color:
 
-- `--gtt-color-<level>-lightest`: 10% white
-- `--gtt-color-<level>-lighter`: 30% white
-- `--gtt-color-<level>-light`: 70% white
-- `--gtt-color-<level>-dark`: 70% black
-- `--gtt-color-<level>-darker`: 30% black
-- `--gtt-color-<level>-darkest`: 10% black
+- `--gtt-color-<level>-lightest`: 10% base, 90% white
+- `--gtt-color-<level>-lighter`: 30% base, 70% white
+- `--gtt-color-<level>-light`: 70% base, 30% white
+- `--gtt-color-<level>-dark`: 70% base, 30% black
 
-### Variants
+## Variants
 
-[Source Code](../assets/css/variants/).
+[Source Code](../assets/css/variants/)
 
 All variants (except `accent-light` and `accent-dark`) automatically adapt to light/dark mode via `@media (prefers-color-scheme)`.
 
@@ -46,9 +48,9 @@ All variants (except `accent-light` and `accent-dark`) automatically adapt to li
 | `retro`        | Cream bg, warm tones, inset shadow       | Warm dark bg, warm tones                        | Vintage, nostalgic         |
 | `neon`         | Falls back to default                    | Dark bg, neon glow borders                      | Cyberpunk glow (dark only) |
 
-#### Accent
+### Accent
 
-Background tokens used by the accent family of variants.
+Shared background tokens:
 
 | Variant        | CSS Variable            | Light Default | Dark Default                    |
 | :------------- | :---------------------- | :------------ | :------------------------------ |
@@ -56,34 +58,42 @@ Background tokens used by the accent family of variants.
 | `accent-light` | `--gtt-accent-light-bg` | `white`       | -                               |
 | `accent-dark`  | `--gtt-accent-dark-bg`  | -             | `hsla(220.9, 39.3%, 11%, 0.85)` |
 
-Per-level accent color overrides (apply to `accent`, `accent-light`, `accent-dark`):
+Per-level overrides for `accent` and `accent-light`:
 
 - `--gtt-<level>-accent-color` - text color
 - `--gtt-<level>-accent-border-color` - left border color
 
-#### Filled
+Per-level overrides for `accent-dark`:
+
+- `--gtt-<level>-accent-dark-color` - text color
+- `--gtt-<level>-accent-border-color` - left border color (shared with accent/accent-light)
+
+### Filled
 
 Per-level overrides:
 
 - `--gtt-filled-<level>-bg` - background color
 - `--gtt-filled-<level>-color` - text color
 
-#### Outlined
+### Outlined
 
 Per-level overrides:
 
 - `--gtt-outlined-<level>-color` - text color
 - `--gtt-outlined-<level>-border` - border color
-- `--gtt-outlined-bg` - shared background (default: `transparent`)
 
-#### Soft
+Shared:
+
+- `--gtt-outlined-bg` - background (default: `transparent`)
+
+### Soft
 
 Per-level overrides:
 
-- `--gtt-soft-<level>-bg` - background color (light: lightest tint; dark: 15% base tint)
+- `--gtt-soft-<level>-bg` - background color (light: lightest tint; dark: 30% dark shade mixed with neutral)
 - `--gtt-soft-<level>-color` - text color
 
-#### Minimal
+### Minimal
 
 Per-level overrides:
 
@@ -91,92 +101,111 @@ Per-level overrides:
 
 Background and border are always `transparent`.
 
-#### Brutalist
+### Brutalist
 
 Per-level overrides:
 
 - `--gtt-brutalist-<level>-color` - text color
 - `--gtt-brutalist-<level>-border` - border color
-- `--gtt-brutalist-bg` - shared background (light: `white`; dark: `hsl(0 0% 8%)`)
 
-Structural: `border-width: 3px`, `border-radius: 0`, `box-shadow: 4px 4px 0 0` with level base color.
+Shared:
 
-#### Retro
+- `--gtt-brutalist-bg` - background (light: `white`; dark: `hsl(0 0% 8%)`)
+
+Structural: `border-width: 3px`, `border-radius: 0`, `box-shadow: 4px 4px 0 0` with level base color, monospace font stack.
+
+### Retro
 
 Per-level overrides:
 
 - `--gtt-retro-<level>-color` - text color
 - `--gtt-retro-<level>-border` - border color
-- `--gtt-retro-bg` - shared background (light: `hsl(45 40% 96%)`; dark: `hsl(35 25% 18%)`)
 
-Structural: `border-width: 1px`, `box-shadow: inset 0 1px 2px` for paper-like depth.
+Shared:
 
-#### Neon (dark mode only)
+- `--gtt-retro-bg` - background (light: `hsl(45 40% 96%)`; dark: `hsl(35 25% 18%)`)
 
-All styles are wrapped in `@media (prefers-color-scheme: dark)`. In light mode, toasts fall back to default appearance.
+Structural: `border-width: 1px`, `box-shadow: inset 0 1px 2px` for paper-like depth, serif font stack (Georgia, Palatino).
 
-Uses level base colors directly - no custom override properties. Structural: `border-width: 1px`, dual `box-shadow` glow via `color-mix()` at 40% and 15% opacity.
+### Neon (dark mode only)
+
+No custom override properties. Uses level colors directly.
+
+Structural: `border-width: 1px`, dual `box-shadow` glow via `color-mix()` at 50% and 20% opacity, monospace font stack. In light mode, toasts fall back to default appearance.
 
 ## Theming
 
-To customize any level (e.g., change the _success_ color), override the base variable:
+### Override a base color
+
+To change a level's color (e.g., success), override its base variable. All derived shades update automatically:
 
 ```css
 :root {
-  --gtt-color-success-base: oklch(
-    0.72 0.25 150
-  ); /* your custom success color */
+  --gtt-color-success-base: oklch(0.65 0.3 155);
 }
 ```
 
-All derived shades for `--gtt-color-success-*` will automatically update based on your base value.
+### Override a specific level's appearance
+
+Each level exposes semantic theme aliases that sit between the color primitives and the component. Override these to change one level without touching the base color:
+
+- `--gtt-<level>-bg` - background
+- `--gtt-<level>-color` - text color
+- `--gtt-<level>-border-color` - border color
+- `--gtt-<level>-progress-bar-color` - progress bar color
+
+```css
+:root {
+  --gtt-success-bg: #d4edda;
+  --gtt-success-color: #155724;
+}
+```
 
 ## Component Styles
 
 [Source Code](../assets/css/styles.css)
 
-These custom properties control spacing, layout, typography, and animation behavior for the toast component.
-
 ### Layout
 
-| Property              | Default                        | Description                     |
-| :-------------------- | :----------------------------- | :------------------------------ |
-| `--gtt-py`            | `0`                            | Vertical padding for the toast. |
-| `--gtt-px`            | `0.75em`                       | Horizontal padding.             |
-| `--gtt-bg`            | `--gtt-color-<level>-lightest` | Background color.               |
-| `--gtt-border-color`  | `--gtt-color-<level>-lighter`  | Border color.                   |
-| `--gtt-border-width`  | `1px`                          | Border width.                   |
-| `--gtt-border-style`  | `solid`                        | Border style.                   |
-| `--gtt-border-radius` | `0.375rem`                     | Border radius.                  |
+| Property              | Default    | Description        |
+| :-------------------- | :--------- | :----------------- |
+| `--gtt-py`            | `0`        | Vertical padding   |
+| `--gtt-px`            | `0.75em`   | Horizontal padding |
+| `--gtt-bg`            | per-level  | Background color   |
+| `--gtt-border-color`  | per-level  | Border color       |
+| `--gtt-border-width`  | `1px`      | Border width       |
+| `--gtt-border-style`  | `solid`    | Border style       |
+| `--gtt-border-radius` | `0.375rem` | Border radius      |
+| `--gtt-z-index`       | `1000`     | Stack order        |
 
 ### Typography
 
-| Property            | Default                    | Description  |
-| :------------------ | :------------------------- | :----------- |
-| `--gtt-color`       | `--gtt-color-<level>-dark` | Text color.  |
-| `--gtt-font`        | `inherit`                  | Font family. |
-| `--gtt-font-size`   | `1rem`                     | Font size.   |
-| `--gtt-line-height` | `1rem`                     | Line height. |
+| Property            | Default   | Description |
+| :------------------ | :-------- | :---------- |
+| `--gtt-color`       | per-level | Text color  |
+| `--gtt-font-family` | `inherit` | Font family |
+| `--gtt-font-size`   | `1rem`    | Font size   |
+| `--gtt-line-height` | `1.5`     | Line height |
 
 ### Progress Bar
 
-| Property               | Default                     | Description            |
-| :--------------------- | :-------------------------- | :--------------------- |
-| `--gtt-progress-color` | `--gtt-color-<level>-light` | Color of progress bar. |
+| Property               | Default   | Description        |
+| :--------------------- | :-------- | :----------------- |
+| `--gtt-progress-color` | per-level | Progress bar color |
 
 ### Animation
 
-| Property                     | Default          | Description                                  |
-| :--------------------------- | :--------------- | :------------------------------------------- |
-| `--gtt-anim-name-in-top`     | `gttFadeInDown`  | Animation name for entering from the top.    |
-| `--gtt-anim-name-in-bottom`  | `gttFadeInUp`    | Animation name for entering from the bottom. |
-| `--gtt-anim-name-out-top`    | `gttFadeOutUp`   | Animation name for exiting to the top.       |
-| `--gtt-anim-name-out-bottom` | `gttFadeOutDown` | Animation name for exiting to the bottom.    |
-| `--gtt-anim-duration-in`     | `0.5s`           | Duration of entrance animation.              |
-| `--gtt-anim-delay-in`        | `0s`             | Delay before entrance starts.                |
-| `--gtt-anim-direction-in`    | `normal`         | Direction of entrance animation.             |
-| `--gtt-anim-timing-in`       | `ease`           | Timing function for entrance.                |
-| `--gtt-anim-duration-out`    | `0.5s`           | Duration of exit animation.                  |
-| `--gtt-anim-delay-out`       | `0s`             | Delay before exit starts.                    |
-| `--gtt-anim-direction-out`   | `normal`         | Direction of exit animation.                 |
-| `--gtt-anim-timing-out`      | `ease`           | Timing function for exit.                    |
+| Property                     | Default          | Description                    |
+| :--------------------------- | :--------------- | :----------------------------- |
+| `--gtt-anim-name-in-top`     | `gttFadeInDown`  | Entrance animation from top    |
+| `--gtt-anim-name-in-bottom`  | `gttFadeInUp`    | Entrance animation from bottom |
+| `--gtt-anim-name-out-top`    | `gttFadeOutUp`   | Exit animation to top          |
+| `--gtt-anim-name-out-bottom` | `gttFadeOutDown` | Exit animation to bottom       |
+| `--gtt-anim-duration-in`     | `0.5s`           | Entrance duration              |
+| `--gtt-anim-delay-in`        | `0s`             | Entrance delay                 |
+| `--gtt-anim-direction-in`    | `normal`         | Entrance direction             |
+| `--gtt-anim-timing-in`       | `ease`           | Entrance timing function       |
+| `--gtt-anim-duration-out`    | `0.5s`           | Exit duration                  |
+| `--gtt-anim-delay-out`       | `0s`             | Exit delay                     |
+| `--gtt-anim-direction-out`   | `normal`         | Exit direction                 |
+| `--gtt-anim-timing-out`      | `ease`           | Exit timing function           |
