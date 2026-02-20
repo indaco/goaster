@@ -6,9 +6,9 @@ import (
 	"github.com/indaco/goaster/examples/layouts/partials"
 )
 
-templ VariantAccentPage(toaster *goaster.Toaster) {
+templ VariantFilledPage(toaster *goaster.Toaster) {
 	@layouts.Page() {
-		@partials.Head("goaster - accent variant")
+		@partials.Head("goaster - filled variant")
 		@partials.Body() {
 			<p><a href="/">&larr; Back</a></p>
 			@toaster.RenderAll()

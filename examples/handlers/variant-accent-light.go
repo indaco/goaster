@@ -14,5 +14,10 @@ func HandleVariantAccentLight(w http.ResponseWriter, r *http.Request) {
 		goaster.WithVariant(goaster.AccentLight),
 		goaster.WithAutoDismiss(false),
 	)
+	toaster.PushDefault("Default Toast")
+	toaster.PushSuccess("Success Toast")
+	toaster.PushError("Error Toast")
+	toaster.PushWarning("Warning Toast")
+	toaster.PushInfo("Info Toast")
 	templ.Handler(pages.VariantAccentLightPage(toaster)).ServeHTTP(w, r)
 }

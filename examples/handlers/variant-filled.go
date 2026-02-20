@@ -9,9 +9,9 @@ import (
 	"github.com/indaco/goaster"
 )
 
-func HandleVariantAccentDark(w http.ResponseWriter, r *http.Request) {
+func HandleVariantFilled(w http.ResponseWriter, r *http.Request) {
 	toaster := goaster.NewToaster(
-		goaster.WithVariant(goaster.AccentDark),
+		goaster.WithVariant(goaster.Filled),
 		goaster.WithAutoDismiss(false),
 	)
 	toaster.PushDefault("Default Toast")
@@ -19,5 +19,5 @@ func HandleVariantAccentDark(w http.ResponseWriter, r *http.Request) {
 	toaster.PushError("Error Toast")
 	toaster.PushWarning("Warning Toast")
 	toaster.PushInfo("Info Toast")
-	templ.Handler(pages.VariantAccentDarkPage(toaster)).ServeHTTP(w, r)
+	templ.Handler(pages.VariantFilledPage(toaster)).ServeHTTP(w, r)
 }

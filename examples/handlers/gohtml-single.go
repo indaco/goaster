@@ -42,6 +42,7 @@ func HandleGoHtmlSingle(w http.ResponseWriter, r *http.Request) {
 			<title>goaster - template/html 1</title>
 		</head>
 		<body>
+			<p><a href="/">&larr; Back</a></p>
 			<!-- display the messages -->
 			{{ .Toast.HTML }}
 		</body>

@@ -25,6 +25,7 @@ templ CustomAnimationPage(toaster *goaster.Toaster) {
 			</style>
 		}
 		@partials.Body() {
+			<p><a href="/">&larr; Back</a></p>
 			<!-- display the messages -->
 			@toaster.Info("Info Toast")
 		}
