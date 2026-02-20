@@ -2,8 +2,8 @@
   "$schema": "https://raw.githubusercontent.com/jetify-com/devbox/0.14.0/.schema/devbox.schema.json",
   "packages": [
     "git@latest",
-    "go@1.23",
-    "golangci-lint@latest",
+    "go@1.25.5",
+    "golangci-lint@2.9.0",
     "just@latest",
     "templ@0.3.960"
   ],
@@ -19,10 +19,10 @@
       "echo '* Set Git hooks path\n'",
       "find .githooks -type f -exec chmod +x {} \\;",
       "git config core.hooksPath .githooks",
-      "echo '* Install go-modernize'",
-      "go install golang.org/x/tools/gopls/internal/analysis/modernize/cmd/modernize@latest",
       "echo '* Install tempo-cli'",
-      "go install github.com/indaco/tempo/cmd/tempo@latest"
+      "go install github.com/indaco/tempo/cmd/tempo@latest",
+      "echo '* Install go-modernize'",
+      "go install golang.org/x/tools/gopls/internal/analysis/modernize/cmd/modernize@latest"
     ],
     "scripts": {
       "build": ["just build"],
