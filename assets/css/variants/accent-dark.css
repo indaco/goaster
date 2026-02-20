@@ -20,7 +20,7 @@
   --_gtt-border-color: var(--gtt-default-border-color);
   border-left-color: var(
     --gtt-default-accent-border-color,
-    var(--gtt-color-default-base)
+    var(--_gtt-color-default-base)
   );
 }
 
@@ -30,7 +30,7 @@
   --_gtt-border-color: var(--gtt-success-border-color);
   border-left-color: var(
     --gtt-success-accent-border-color,
-    var(--gtt-color-success-base)
+    var(--_gtt-color-success-base)
   );
 }
 
@@ -40,7 +40,7 @@
   --_gtt-border-color: var(--gtt-error-border-color);
   border-left-color: var(
     --gtt-error-accent-border-color,
-    var(--gtt-color-error-base)
+    var(--_gtt-color-error-base)
   );
 }
 
@@ -50,7 +50,7 @@
   --_gtt-border-color: var(--gtt-warning-border-color);
   border-left-color: var(
     --gtt-warning-accent-border-color,
-    var(--gtt-color-warning-base)
+    var(--_gtt-color-warning-base)
   );
 }
 
@@ -60,6 +60,6 @@
   --_gtt-border-color: var(--gtt-info-border-color);
   border-left-color: var(
     --gtt-info-accent-border-color,
-    var(--gtt-color-info-base)
+    var(--_gtt-color-info-base)
   );
 }

@@ -1,29 +1,38 @@
 /* Light mode defaults */
 :root {
-  --gtt-outlined-bg: transparent;
+  --gtt-outlined-default-bg: var(--gtt-color-default-lightest);
   --gtt-outlined-default-color: var(--gtt-color-default-dark);
-  --gtt-outlined-default-border: var(--gtt-color-default-base);
+  --gtt-outlined-default-border: var(--_gtt-color-default-base);
+  --gtt-outlined-success-bg: var(--gtt-color-success-lightest);
   --gtt-outlined-success-color: var(--gtt-color-success-dark);
-  --gtt-outlined-success-border: var(--gtt-color-success-base);
+  --gtt-outlined-success-border: var(--_gtt-color-success-base);
+  --gtt-outlined-error-bg: var(--gtt-color-error-lightest);
   --gtt-outlined-error-color: var(--gtt-color-error-dark);
-  --gtt-outlined-error-border: var(--gtt-color-error-base);
+  --gtt-outlined-error-border: var(--_gtt-color-error-base);
+  --gtt-outlined-warning-bg: var(--gtt-color-warning-lightest);
   --gtt-outlined-warning-color: var(--gtt-color-warning-dark);
-  --gtt-outlined-warning-border: var(--gtt-color-warning-base);
+  --gtt-outlined-warning-border: var(--_gtt-color-warning-base);
+  --gtt-outlined-info-bg: var(--gtt-color-info-lightest);
   --gtt-outlined-info-color: var(--gtt-color-info-dark);
-  --gtt-outlined-info-border: var(--gtt-color-info-base);
+  --gtt-outlined-info-border: var(--_gtt-color-info-base);
 }
 
 /* Dark mode overrides */
 @media (prefers-color-scheme: dark) {
   :root {
+    --gtt-outlined-default-bg: transparent;
     --gtt-outlined-default-color: var(--gtt-color-default-light);
     --gtt-outlined-default-border: var(--gtt-color-default-light);
+    --gtt-outlined-success-bg: transparent;
     --gtt-outlined-success-color: var(--gtt-color-success-light);
     --gtt-outlined-success-border: var(--gtt-color-success-light);
+    --gtt-outlined-error-bg: transparent;
     --gtt-outlined-error-color: var(--gtt-color-error-light);
     --gtt-outlined-error-border: var(--gtt-color-error-light);
+    --gtt-outlined-warning-bg: transparent;
     --gtt-outlined-warning-color: var(--gtt-color-warning-light);
     --gtt-outlined-warning-border: var(--gtt-color-warning-light);
+    --gtt-outlined-info-bg: transparent;
     --gtt-outlined-info-color: var(--gtt-color-info-light);
     --gtt-outlined-info-border: var(--gtt-color-info-light);
   }
@@ -38,35 +47,35 @@
 /* Per-level selectors */
 .gttToast[role='alert'][data-level='default'][data-variant='outlined'] {
   --_gtt-color: var(--gtt-outlined-default-color);
-  --_gtt-bg: var(--gtt-outlined-bg);
+  --_gtt-bg: var(--gtt-outlined-default-bg);
   --_gtt-border-color: var(--gtt-outlined-default-border);
   --_gtt-progress-color: var(--gtt-outlined-default-color);
 }
 
 .gttToast[role='alert'][data-level='success'][data-variant='outlined'] {
   --_gtt-color: var(--gtt-outlined-success-color);
-  --_gtt-bg: var(--gtt-outlined-bg);
+  --_gtt-bg: var(--gtt-outlined-success-bg);
   --_gtt-border-color: var(--gtt-outlined-success-border);
   --_gtt-progress-color: var(--gtt-outlined-success-color);
 }
 
 .gttToast[role='alert'][data-level='error'][data-variant='outlined'] {
   --_gtt-color: var(--gtt-outlined-error-color);
-  --_gtt-bg: var(--gtt-outlined-bg);
+  --_gtt-bg: var(--gtt-outlined-error-bg);
   --_gtt-border-color: var(--gtt-outlined-error-border);
   --_gtt-progress-color: var(--gtt-outlined-error-color);
 }
 
 .gttToast[role='alert'][data-level='warning'][data-variant='outlined'] {
   --_gtt-color: var(--gtt-outlined-warning-color);
-  --_gtt-bg: var(--gtt-outlined-bg);
+  --_gtt-bg: var(--gtt-outlined-warning-bg);
   --_gtt-border-color: var(--gtt-outlined-warning-border);
   --_gtt-progress-color: var(--gtt-outlined-warning-color);
 }
 
 .gttToast[role='alert'][data-level='info'][data-variant='outlined'] {
   --_gtt-color: var(--gtt-outlined-info-color);
-  --_gtt-bg: var(--gtt-outlined-bg);
+  --_gtt-bg: var(--gtt-outlined-info-bg);
   --_gtt-border-color: var(--gtt-outlined-info-border);
   --_gtt-progress-color: var(--gtt-outlined-info-color);
 }

@@ -11,6 +11,7 @@ templ VariantNeonPage(toaster *goaster.Toaster) {
 		@partials.Head("goaster - neon variant")
 		@partials.Body() {
 			<p><a href="/">&larr; Back</a></p>
+			<p><em>The neon variant is designed for dark mode. In light mode it falls back to default styling.</em></p>
 			@toaster.RenderAll()
 		}
 	}

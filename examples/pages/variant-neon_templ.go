@@ -67,7 +67,7 @@ func VariantNeonPage(toaster *goaster.Toaster) templ.Component {
 					}()
 				}
 				ctx = templ.InitializeContext(ctx)
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "<p><a href=\"/\">&larr; Back</a></p>")
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "<p><a href=\"/\">&larr; Back</a></p><p><em>The neon variant is designed for dark mode. In light mode it falls back to default styling.</em></p>")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}

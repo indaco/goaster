@@ -1,14 +1,14 @@
 /* Light mode defaults */
 :root {
-  --gtt-filled-default-bg: var(--gtt-color-default-base);
+  --gtt-filled-default-bg: var(--_gtt-color-default-base);
   --gtt-filled-default-color: white;
-  --gtt-filled-success-bg: var(--gtt-color-success-base);
+  --gtt-filled-success-bg: var(--_gtt-color-success-base);
   --gtt-filled-success-color: white;
-  --gtt-filled-error-bg: var(--gtt-color-error-base);
+  --gtt-filled-error-bg: var(--_gtt-color-error-base);
   --gtt-filled-error-color: white;
-  --gtt-filled-warning-bg: var(--gtt-color-warning-base);
-  --gtt-filled-warning-color: var(--gtt-color-warning-dark);
-  --gtt-filled-info-bg: var(--gtt-color-info-base);
+  --gtt-filled-warning-bg: var(--_gtt-color-warning-base);
+  --gtt-filled-warning-color: white;
+  --gtt-filled-info-bg: var(--_gtt-color-info-base);
   --gtt-filled-info-color: white;
 }
 

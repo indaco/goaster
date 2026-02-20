@@ -35,35 +35,42 @@ Four derived variables are generated per level from the base color:
 
 All variants (except `accent-light` and `accent-dark`) automatically adapt to light/dark mode via `@media (prefers-color-scheme)`.
 
-| Variant        | Light Mode                               | Dark Mode                                       | Key Visual                 |
-| :------------- | :--------------------------------------- | :---------------------------------------------- | :------------------------- |
-| `accent`       | White bg, dark text, colored left border | Dark bg, light text, colored left border        | Auto-adaptive left accent  |
-| `accent-light` | White bg, dark text, colored left border | - (forced light)                                | Explicit light mode        |
-| `accent-dark`  | - (forced dark)                          | Dark bg, light text, colored left border        | Explicit dark mode         |
-| `filled`       | Base-color bg, white text                | Dark-color bg, lightest text                    | Bold solid background      |
-| `outlined`     | Transparent bg, base border, dark text   | Transparent bg, light border, light text        | Full colored border        |
-| `soft`         | Lightest bg, dark text, no border        | Subtle tinted dark bg, lightest text, no border | Subtle tinted background   |
-| `minimal`      | Transparent bg, dark text, no border     | Transparent bg, light text, no border           | Just colored text          |
-| `brutalist`    | White bg, thick border, offset shadow    | Near-black bg, thick border, offset shadow      | Raw, heavy, blocky         |
-| `retro`        | Cream bg, warm tones, inset shadow       | Warm dark bg, warm tones                        | Vintage, nostalgic         |
-| `neon`         | Falls back to default                    | Dark bg, neon glow borders                      | Cyberpunk glow (dark only) |
+| Variant        | Light Mode                                       | Dark Mode                                       | Key Visual                 |
+| :------------- | :----------------------------------------------- | :---------------------------------------------- | :------------------------- |
+| `accent`       | Lightest-tint bg, dark text, colored left border | Dark-tint bg, light text, colored left border   | Auto-adaptive left accent  |
+| `accent-light` | Lightest-tint bg, dark text, colored left border | - (forced light)                                | Explicit light mode        |
+| `accent-dark`  | - (forced dark)                                  | Dark bg, light text, colored left border        | Explicit dark mode         |
+| `filled`       | Base-color bg, white text                        | Dark-color bg, lightest text                    | Bold solid background      |
+| `outlined`     | Lightest-tint bg, base border, dark text         | Transparent bg, light border, light text        | Full colored border        |
+| `soft`         | Lightest bg, dark text, no border                | Subtle tinted dark bg, lightest text, no border | Subtle tinted background   |
+| `minimal`      | Transparent bg, dark text, no border             | Transparent bg, light text, no border           | Just colored text          |
+| `brutalist`    | White bg, thick border, offset shadow            | Near-black bg, thick border, offset shadow      | Raw, heavy, blocky         |
+| `retro`        | Cream bg, warm tones, inset shadow               | Warm dark bg, warm tones                        | Vintage, nostalgic         |
+| `neon`         | Falls back to default                            | Dark bg, neon glow borders                      | Cyberpunk glow (dark only) |
 
 ### Accent
 
-Shared background tokens:
+Per-level overrides:
 
-| Variant        | CSS Variable            | Light Default | Dark Default                    |
-| :------------- | :---------------------- | :------------ | :------------------------------ |
-| `accent`       | `--gtt-accent-bg`       | `white`       | `hsla(220.9, 39.3%, 11%, 0.85)` |
-| `accent-light` | `--gtt-accent-light-bg` | `white`       | -                               |
-| `accent-dark`  | `--gtt-accent-dark-bg`  | -             | `hsla(220.9, 39.3%, 11%, 0.85)` |
-
-Per-level overrides for `accent` and `accent-light`:
-
+- `--gtt-accent-<level>-bg` - background (light: lightest tint; dark: 15% dark shade mixed with neutral)
 - `--gtt-<level>-accent-color` - text color
 - `--gtt-<level>-accent-border-color` - left border color
 
-Per-level overrides for `accent-dark`:
+### Accent Light
+
+Per-level overrides:
+
+- `--gtt-accent-light-<level>-bg` - background (lightest tint)
+- `--gtt-<level>-accent-light-color` - text color
+- `--gtt-<level>-accent-border-color` - left border color (shared with accent)
+
+### Accent Dark
+
+Shared:
+
+- `--gtt-accent-dark-bg` - background (default: `hsla(220.9, 39.3%, 11%, 0.85)`)
+
+Per-level overrides:
 
 - `--gtt-<level>-accent-dark-color` - text color
 - `--gtt-<level>-accent-border-color` - left border color (shared with accent/accent-light)
@@ -79,12 +86,11 @@ Per-level overrides:
 
 Per-level overrides:
 
+- `--gtt-outlined-<level>-bg` - background (light: lightest tint; dark: `transparent`)
 - `--gtt-outlined-<level>-color` - text color
 - `--gtt-outlined-<level>-border` - border color
 
-Shared:
-
-- `--gtt-outlined-bg` - background (default: `transparent`)
+Structural: `border-width: 2px`.
 
 ### Soft
 
