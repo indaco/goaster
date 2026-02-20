@@ -4,6 +4,18 @@ All notable changes to this project will be documented in this file.
 
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). The changelog is generated and managed by [sley](https://github.com/indaco/sley).
 
+## v0.3.0 - 2026-02-20
+
+### 🚀 Enhancements
+
+- **css:** add new style variants with light/dark mode support ([276af3a](https://github.com/indaco/goaster/commit/276af3a)) ([#14](https://github.com/indaco/goaster/pull/14))
+
+**Full Changelog:** [v0.2.4...v0.3.0](https://github.com/indaco/goaster/compare/v0.2.4...v0.3.0)
+
+### ❤️ Contributors
+
+- [@indaco](https://github.com/indaco)
+
 ## v0.2.4 - 2026-02-19
 
 ### 🩹 Fixes
